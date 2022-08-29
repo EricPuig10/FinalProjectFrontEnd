@@ -7,7 +7,33 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  display: contents;
+  text-decoration: none;
+  color: inherit;
+}
+
+:root {
+  /* FONTS */
+  --font-family-title: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  --font-family-main: "Source Sans Pro", sans-serif;
+  --title-font-size: large;
+  --main-font-size: medium;
+  --detail-font-size: medium;
+
+  /* COLORS */
+  --title-color: black;
+  --main-color: rgba(11, 201, 209, 1);
+  --secondary-color: rgba(255, 255, 255, 1);
+  --tertiary-color: orange;
 }
