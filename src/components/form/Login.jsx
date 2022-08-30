@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { authService} from '../../services/authService';
 import { localAuthService } from '../../services/localAuthService';
-import { BtLogin, CtButton, CtForm, CtInput, Form } from './Login.styled'
+import { BtLogin, CtButton, CtForm, CtInput, Form, Label } from './Login.styled'
 
 function Login() {
 
@@ -31,22 +31,30 @@ function Login() {
     }
 
   return (
+
     <CtForm>
+
         <Form>
-            <CtInput
-                type="text"
-                name="username"
-                placeholder="user name"
-                value={userData.username}
-                onChange={onInputChange}
-            />
-            <CtInput
-                type="password"
-                name="password"
-                placeholder="user password"
-                value={userData.password}
-                onChange={onInputChange}
-            />
+            <Label htmlFor="title">
+                <CtInput
+                    type="text"
+                    name="username"
+                    placeholder="user name"
+                    value={userData.username}
+                    onChange={onInputChange}
+                />
+            </Label>
+
+            <Label htmlFor="password">
+                <CtInput
+                    type="password"
+                    name="password"
+                    placeholder="user password"
+                    value={userData.password}
+                    onChange={onInputChange}
+                />
+            </Label>
+
             <CtButton>
                 <BtLogin type="button" id="login" onClick={signin}>
                     LOG IN
