@@ -27,6 +27,7 @@ function Login() {
                 id: res.id,
             };
             localAuthService.saveAuthUser(authUser);
+            window.location = "/";
         })
     }
 

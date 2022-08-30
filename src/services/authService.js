@@ -9,4 +9,13 @@ export const authService= {
         .then(res => {return res.data});
         return auth;
     },
+
+    logout() {
+        localStorage.removeItem("auth_token");
+        localStorage.removeItem("auth_user");
+        localStorage.removeItem("auth_id");
+        localStorage.removeItem("auth");
+    
+        window.location = "/login";
+      },
 }
