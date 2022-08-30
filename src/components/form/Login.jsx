@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { authService} from '../../services/authService';
 import { localAuthService } from '../../services/localAuthService';
-import { BtLogin, CtButton, CtForm, CtInput, Form, Label } from './Login.styled'
+import { BtLogin, CtButton, CtForm, CtInput, Form, Label } from './Login.styled';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
 
@@ -10,6 +11,7 @@ function Login() {
         password: "",
     });
 
+    let navigate = useNavigate();
 
     const onInputChange = (e) => {
         let name = e.target.name;
@@ -27,7 +29,7 @@ function Login() {
                 id: res.id,
             };
             localAuthService.saveAuthUser(authUser);
-            window.location = "/";
+            navigate("/", { replace: true });
         })
     }
 
