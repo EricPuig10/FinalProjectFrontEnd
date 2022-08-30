@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { authService} from '../../services/authService';
+import { localAuthService } from '../../services/localAuthService';
 import { BtLogin, CtButton, CtForm, CtInput, Form } from './Login.styled'
 
 function Login() {
@@ -15,6 +17,18 @@ function Login() {
         setUserData({ ...userData, [name]:value });
     };
 
+    const signin = () => {
+        authService.signin(userData).then((res) =>{
+            console.log(userData)
+
+            const authUser = {
+                token: res.accessToken,
+                username: res.username,
+                id: res.id,
+            };
+            localAuthService.saveAuthUser(authUser);
+        })
+    }
 
   return (
     <CtForm>
@@ -34,7 +48,7 @@ function Login() {
                 onChange={onInputChange}
             />
             <CtButton>
-                <BtLogin type="button" id="login">
+                <BtLogin type="button" id="login" onClick={signin}>
                     LOG IN
                 </BtLogin>
             </CtButton>
