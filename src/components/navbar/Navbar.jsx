@@ -16,7 +16,7 @@ function Navbar() {
         <Logo src="https://www.rompemosloscodigos.org/wp-content/uploads/2020/06/logo-factoria-F5.png"></Logo>
       </DivLogo>
       <DivButton>
-        {!localAuthService.isLogged ? (
+        {localAuthService.isLogged ? (
           <Link to="/login">
             <LogInButton>LogIn</LogInButton>
           </Link>
