@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { candidatsService } from "../../services/candidatsService";
+import { Table, Td, Th, Tr } from "./List.styled";
 
 function List() {
   const [candidats, setCandidats] = useState([]);
@@ -25,69 +26,69 @@ function List() {
           <p>{candidat.age}</p>
         </div>
       ))} */}
-      <table>
-        <tr>
-          <th>Name</th>
+      <Table>
+        <Tr>
+          <Th>Name</Th>
 
-          <th>Lastname</th>
+          <Th>Lastname</Th>
 
-          <th>Second Name</th>
+          <Th>Second Name</Th>
 
-          <th>Email</th>
+          <Th>Email</Th>
 
-          <th>Phone</th>
+          <Th>Phone</Th>
 
-          <th>Age</th>
+          <Th>Age</Th>
 
-          <th>Gender</th>
+          <Th>Gender</Th>
 
-          <th>Nationality</th>
+          <Th>Nationality</Th>
 
-          <th>Laboral situation</th>
+          <Th>Laboral situation</Th>
 
-          <th>Solo Learn Progress</th>
+          <Th>Solo Learn Progress</Th>
 
-          <th>Code Academy Progress</th>
+          <Th>Code Academy Progress</Th>
 
-          <th>Assisted Informative Session</th>
+          <Th>Assisted Informative Session</Th>
 
-          <th>Bootcamp</th>
+          <Th>Bootcamp</Th>
 
-          <th>Process State</th>
-        </tr>
+          <Th>Process State</Th>
+        </Tr>
 
         {candidats.map((candidat, key) => (
-          <tr key={candidat.id}>
-            <td>{candidat.name}</td>
+          <Tr key={candidat.id}>
+            <Td>{candidat.name}</Td>
 
-            <td>{candidat.lastname}</td>
+            <Td>{candidat.lastname}</Td>
 
-            <td>{candidat.secondlastname}</td>
+            <Td>{candidat.secondlastname}</Td>
 
-            <td>{candidat.email}</td>
+            <Td>{candidat.email}</Td>
 
-            <td>{candidat.phone}</td>
+            <Td>{candidat.phone}</Td>
 
-            <td>{candidat.age}</td>
+            <Td>{candidat.age}</Td>
 
-            <td>{candidat.gender}</td>
+            <Td>{candidat.gender}</Td>
 
-            <td>{candidat.nationality}</td>
+            <Td>{candidat.nationality}</Td>
 
-            <td>{candidat.laboralsituation}</td>
+            <Td>{candidat.laboralsituation}</Td>
 
-            <td>{candidat.sololearnprogress}</td>
+            <Td>{candidat.sololearnprogress}</Td>
 
-            <td>{candidat.codeacademyprogress}</td>
+            <Td>{candidat.codeacademyprogress}</Td>
 
-            <td>{candidat.assistedtoinformativesession ? "true" : "false"}</td>
+            <Td>{candidat.assistedtoinformativesession ? "True" : "false"}</Td>
 
-            <td>{candidat.bootcamp.bootcampName}</td>
+            <Td>{candidat.bootcamp.bootcampName}</Td>
 
-            <td>{candidat.processState.name}</td>
-          </tr>
+            <Td>{candidat.processState.name}</Td>
+          </Tr>
         ))}
-      </table>
+      </Table>
     </div>
   );
 }
