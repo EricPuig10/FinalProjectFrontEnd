@@ -2,11 +2,10 @@ import styled from "styled-components";
 
 export const CtTable = styled.div`
 /* border: 2px solid blue; */
-padding-top: 5rem;
+/* padding-top: 5rem; */
 width: 100%;
 display: flex;
-justify-content: center;
-
+justify-content: flex-end;
 `;
 
 export const Table = styled.table`
