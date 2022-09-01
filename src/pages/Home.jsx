@@ -6,7 +6,7 @@ import List from "../components/List/List";
 export const Home = () => {
   return (
   <>
-  <Navbar />
+ <Navbar />
   <div>
     <Sidebar/>
     <List/>
