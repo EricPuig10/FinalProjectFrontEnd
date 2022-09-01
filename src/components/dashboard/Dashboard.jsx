@@ -1,11 +1,23 @@
 import React from 'react'
 import List from '../List/List'
-import {CtDashboard} from "./Dashboard.styled";
+import {Button, CtButton, CtDashboard, CtTopbar} from "./Dashboard.styled";
 
 function Dashboard() {
+
+
   return (
-    <div className='dashboard'>
+    <div>
+
+
     <CtDashboard>
+      <CtTopbar>
+        <CtButton>
+          <Button>what
+
+          </Button>
+        </CtButton>
+      </CtTopbar>
+
         <List/>
     </CtDashboard>
     </div>
