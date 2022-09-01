@@ -1,31 +1,35 @@
 import React, { useEffect, useState } from "react";
+import { bootcampsService } from "../../services/bootcampsService";
 import { candidatsService } from "../../services/candidatsService";
 import { Table, Td, Th, Tr } from "./List.styled";
 
 function List() {
   const [candidats, setCandidats] = useState([]);
+  const [bootcamps, setBootcamps] = useState([]);
+
   const getAllCandidats = () => {
     candidatsService.getAllCandidats().then((res) => {
       setCandidats(res);
     });
   };
+
+  const getAllBootcamps = () => {
+    bootcampsService.getAllBootcamps().then((res) => {
+      setBootcamps(res);
+    });
+  };
+
   useEffect(() => {
     getAllCandidats();
+    getAllBootcamps();
   }, []);
-  console.log(candidats);
+
   return (
     <div>
-      <div>List</div>
-      {/* {candidats.map((candidat, key) => (
-        <div key={candidat.id}>
-          <p>{candidat.name}</p>
-          <p>{candidat.lastname}</p>
-          <p>{candidat.secondlastname}</p>
-          <p>{candidat.email}</p>
-          <p>{candidat.phone}</p>
-          <p>{candidat.age}</p>
-        </div>
-      ))} */}
+      {bootcamps.map((bootcamp, key) => (
+        <li key={bootcamp.id}>{bootcamp.bootcampName}</li>
+      ))}
+
       <Table>
         <Tr>
           <Th>Name</Th>
@@ -58,7 +62,8 @@ function List() {
         </Tr>
 
         {candidats.map((candidat, key) => (
-          <Tr key={candidat.id}>
+          
+          <Tr key={key}>
             <Td>{candidat.name}</Td>
 
             <Td>{candidat.lastname}</Td>
