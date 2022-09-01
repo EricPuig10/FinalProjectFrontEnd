@@ -4,6 +4,7 @@ import { localAuthService } from '../../services/localAuthService';
 import { BtLogin, CtButton, CtForm, CtInput, Form, Label } from './Login.styled';
 import { useNavigate } from 'react-router-dom';
 
+
 function Login() {
 
     const [userData, setUserData] = useState({
@@ -14,6 +15,7 @@ function Login() {
     let navigate = useNavigate();
 
     const onInputChange = (e) => {
+        e.persist();
         let name = e.target.name;
         let value = e.target.value;
         setUserData({ ...userData, [name]:value });
@@ -22,16 +24,22 @@ function Login() {
     const signin = () => {
         authService.signin(userData).then((res) =>{
             console.log(userData)
+            console.log(res)
 
             const authUser = {
                 token: res.accessToken,
                 username: res.username,
                 id: res.id,
             };
+            localStorage.setItem("auth_token", res.accessToken);
+            localStorage.setItem("auth_user", res.username);
+            localStorage.setItem("auth_id", res.id);
             localAuthService.saveAuthUser(authUser);
             navigate("/", { replace: true });
         })
     }
+
+    
 
   return (
 
