@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { bootcampsService } from "../../services/bootcampsService";
 import { candidatsService } from "../../services/candidatsService";
-import { Table, Td, Th, Tr } from "./List.styled";
+import { Table, Td, Th, Tr,Button } from "./List.styled";
 
 function List() {
   const [candidats, setCandidats] = useState([]);
@@ -60,6 +60,8 @@ function List() {
 
           <Th>Process State</Th>
         </Tr>
+        <Button>delete</Button>
+        <Button>edit</Button>
 
         {candidats.map((candidat, key) => (
           

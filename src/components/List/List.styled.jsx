@@ -19,6 +19,9 @@ export const Th = styled.th `
 border: 1px solid gray;
 padding: 4px;
 `
+export const Button = styled.button `
+`
+    
 
 
 
