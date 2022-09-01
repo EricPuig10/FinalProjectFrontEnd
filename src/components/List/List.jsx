@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { candidatsService } from "../../services/candidatsService";
-import { Table, Td, Th, Tr } from "./List.styled";
+import { CtTable, Table, Td, Th, Tr } from "./List.styled";
 
 function List() {
   const [candidats, setCandidats] = useState([]);
@@ -26,6 +26,7 @@ function List() {
           <p>{candidat.age}</p>
         </div>
       ))} */}
+    <CtTable>  
       <Table>
         <Tr>
           <Th>Name</Th>
@@ -89,6 +90,7 @@ function List() {
           </Tr>
         ))}
       </Table>
+    </CtTable>
     </div>
   );
 }
