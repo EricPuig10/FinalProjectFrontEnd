@@ -18,18 +18,16 @@ justify-content: space-between;
 `;
 
 export const CtLogo = styled.div`
+margin-left: 5%;
 height:20%;
-width: 100%;
-display: flex;
-justify-content: center;
-align-items: flex-start;
+width: 90%;
 `;
 
 
 export const Logo = styled.img`
-width: 10em;
-height:10em;
-object-fit:contain;
+width: 100%;
+height:100%;
+object-fit: contain;
 `;
 
 
