@@ -5,7 +5,6 @@ import { localAuthService } from "../../services/localAuthService";
 import { DivButton, DivLogo, DivNav, LogInButton, Logo } from "./Navbar.styled";
 
 function Navbar() {
-
   const logout = () => {
     authService.logout();
   };
@@ -16,12 +15,12 @@ function Navbar() {
         <Logo src="https://www.rompemosloscodigos.org/wp-content/uploads/2020/06/logo-factoria-F5.png"></Logo>
       </DivLogo>
       <DivButton>
-        {localAuthService.isLogged ? (
-          <Link to="/login">
-            <LogInButton>LogIn</LogInButton>
-          </Link>
-        ) : (
+        {localAuthService.isLogged() ? (
           <LogInButton onClick={logout}>LogOut</LogInButton>
+        ) : (
+          <Link to="/login">
+            <LogInButton>Log In</LogInButton>
+          </Link>
         )}
       </DivButton>
     </DivNav>

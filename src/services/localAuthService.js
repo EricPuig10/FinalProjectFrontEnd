@@ -11,6 +11,8 @@ export const localAuthService = {
         localStorage.setItem("auth", JSON.stringify(authUser));
       },
 
+
+
       isLogged(){
         const authJson = localStorage.getItem("auth")
           ? true
