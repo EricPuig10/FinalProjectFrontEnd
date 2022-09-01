@@ -5,7 +5,7 @@ import { CtTable, Table, Td, Th, Tr } from "./List.styled";
 
 function List() {
   const [candidats, setCandidats] = useState([]);
-  const [bootcamps, setBootcamps] = useState([]);
+  // const [bootcamps, setBootcamps] = useState([]);
 
   const getAllCandidats = () => {
     candidatsService.getAllCandidats().then((res) => {
@@ -13,25 +13,23 @@ function List() {
     });
   };
 
-  const getAllBootcamps = () => {
-    bootcampsService.getAllBootcamps().then((res) => {
-      setBootcamps(res);
-    });
-  };
+  // const getAllBootcamps = () => {
+  //   bootcampsService.getAllBootcamps().then((res) => {
+  //     setBootcamps(res);
+  //   });
+  // };
 
   useEffect(() => {
     getAllCandidats();
-    getAllBootcamps();
+    // getAllBootcamps();
   }, []);
 
   return (
-    <div>
-      {bootcamps.map((bootcamp, key) => (
-        <li key={bootcamp.id}>{bootcamp.bootcampName}</li>
-      ))}
+    <div style={{with: "fit-content"}}>
 
       <CtTable>
         <Table>
+        <tbody>
           <Tr>
             <Th>Name</Th>
 
@@ -95,10 +93,15 @@ function List() {
               <Td>{candidat.processState.name}</Td>
             </Tr>
           ))}
+        </tbody>
         </Table>
       </CtTable>
     </div>
   );
 }
+
+      {/* {bootcamps.map((bootcamp, key) => (
+        <li key={bootcamp.id}>{bootcamp.bootcampName}</li>
+      ))} */}
 
 export default List;

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const CtTable = styled.div`
-/* border: 2px solid blue; */
-/* padding-top: 5rem; */
+/* border: 2px solid blue;
+padding-top: 5rem; */
 width: 100%;
 display: flex;
 justify-content: flex-end;
