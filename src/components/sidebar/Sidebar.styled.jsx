@@ -3,10 +3,8 @@ import styled from "styled-components";
 export const CtSidebar = styled.div`
 box-sizing: border-box;
 position: absolute;
-width: 245px;
-height: 925px;
-left: 0px;
-top: 67px;
+width: 10%;
+height: 100%;
 mix-blend-mode: normal;
 background-color: #FF4700;
 display: flex;
@@ -26,8 +24,8 @@ align-items: flex-start;
 
 
 export const Logo = styled.img`
-left: 0px;
-top: 67px;
+width: 10em;
+height:10em;
 border: 5px solid red;
 object-fit:contain;
 `;
@@ -38,16 +36,13 @@ height:80%;
 width: 100%;
 display: flex;
 flex-direction: column;
-justify-content: center;
-align-items: center;
 border: 5px solid pink;
+display: flex;
 `;
 
 
 export const Button = styled.button`
-width: 100%;
-height: 40%;
-flex-direction: row;
+height:14%;
 background-color: transparent;
 border: none;
 color: white;

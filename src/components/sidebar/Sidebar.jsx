@@ -19,17 +19,20 @@ function Sidebar() {
         </CtLogo>
 
       <CtButton>
+          <Link to="/">
+          <Button><i className="fa-solid fa-house fa-xl"></i>Home</Button>
+          </Link>
           <Link to="/Candidats">
-            <Button>Candidats</Button>
+            <Button><i className="fa-solid fa-user fa-xl"></i>Candidats</Button>
           </Link>
           <Link to="/Bootcamp">
-          <Button>Bootcamp</Button>
+          <Button><i className="fa-solid fa-laptop-code fa-xl"></i>Bootcamp</Button>
           </Link>
-          <Link to="/Coders">
+          {/* <Link to="/Coders">
           <Button>Coders</Button>
-          </Link>
+          </Link> */}
           <Link to="/Settings">
-          <Button>Settings</Button>
+          <Button><i className="fa-solid fa-gear fa-xl"></i>Settings</Button>
           </Link>
       </CtButton>
       
