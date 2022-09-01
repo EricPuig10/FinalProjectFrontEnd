@@ -1,96 +1,102 @@
 import React, { useEffect, useState } from "react";
+import { bootcampsService } from "../../services/bootcampsService";
 import { candidatsService } from "../../services/candidatsService";
 import { CtTable, Table, Td, Th, Tr } from "./List.styled";
 
 function List() {
   const [candidats, setCandidats] = useState([]);
+  const [bootcamps, setBootcamps] = useState([]);
+
   const getAllCandidats = () => {
     candidatsService.getAllCandidats().then((res) => {
       setCandidats(res);
     });
   };
+
+  const getAllBootcamps = () => {
+    bootcampsService.getAllBootcamps().then((res) => {
+      setBootcamps(res);
+    });
+  };
+
   useEffect(() => {
     getAllCandidats();
+    getAllBootcamps();
   }, []);
-  console.log(candidats);
+
   return (
     <div>
-      <div>List</div>
-      {/* {candidats.map((candidat, key) => (
-        <div key={candidat.id}>
-          <p>{candidat.name}</p>
-          <p>{candidat.lastname}</p>
-          <p>{candidat.secondlastname}</p>
-          <p>{candidat.email}</p>
-          <p>{candidat.phone}</p>
-          <p>{candidat.age}</p>
-        </div>
-      ))} */}
-    <CtTable>  
-      <Table>
-        <Tr>
-          <Th>Name</Th>
+      {bootcamps.map((bootcamp, key) => (
+        <li key={bootcamp.id}>{bootcamp.bootcampName}</li>
+      ))}
 
-          <Th>Lastname</Th>
+      <CtTable>
+        <Table>
+          <Tr>
+            <Th>Name</Th>
 
-          <Th>Second Name</Th>
+            <Th>Lastname</Th>
 
-          <Th>Email</Th>
+            <Th>Second Name</Th>
 
-          <Th>Phone</Th>
+            <Th>Email</Th>
 
-          <Th>Age</Th>
+            <Th>Phone</Th>
 
-          <Th>Gender</Th>
+            <Th>Age</Th>
 
-          <Th>Nationality</Th>
+            <Th>Gender</Th>
 
-          <Th>Laboral situation</Th>
+            <Th>Nationality</Th>
 
-          <Th>Solo Learn Progress</Th>
+            <Th>Laboral situation</Th>
 
-          <Th>Code Academy Progress</Th>
+            <Th>Solo Learn Progress</Th>
 
-          <Th>Assisted Informative Session</Th>
+            <Th>Code Academy Progress</Th>
 
-          <Th>Bootcamp</Th>
+            <Th>Assisted Informative Session</Th>
 
-          <Th>Process State</Th>
-        </Tr>
+            <Th>Bootcamp</Th>
 
-        {candidats.map((candidat, key) => (
-          <Tr key={candidat.id}>
-            <Td>{candidat.name}</Td>
-
-            <Td>{candidat.lastname}</Td>
-
-            <Td>{candidat.secondlastname}</Td>
-
-            <Td>{candidat.email}</Td>
-
-            <Td>{candidat.phone}</Td>
-
-            <Td>{candidat.age}</Td>
-
-            <Td>{candidat.gender}</Td>
-
-            <Td>{candidat.nationality}</Td>
-
-            <Td>{candidat.laboralsituation}</Td>
-
-            <Td>{candidat.sololearnprogress}</Td>
-
-            <Td>{candidat.codeacademyprogress}</Td>
-
-            <Td>{candidat.assistedtoinformativesession ? "True" : "false"}</Td>
-
-            <Td>{candidat.bootcamp.bootcampName}</Td>
-
-            <Td>{candidat.processState.name}</Td>
+            <Th>Process State</Th>
           </Tr>
-        ))}
-      </Table>
-    </CtTable>
+
+          {candidats.map((candidat, key) => (
+            <Tr key={key}>
+              <Td>{candidat.name}</Td>
+
+              <Td>{candidat.lastname}</Td>
+
+              <Td>{candidat.secondlastname}</Td>
+
+              <Td>{candidat.email}</Td>
+
+              <Td>{candidat.phone}</Td>
+
+              <Td>{candidat.age}</Td>
+
+              <Td>{candidat.gender}</Td>
+
+              <Td>{candidat.nationality}</Td>
+
+              <Td>{candidat.laboralsituation}</Td>
+
+              <Td>{candidat.sololearnprogress}</Td>
+
+              <Td>{candidat.codeacademyprogress}</Td>
+
+              <Td>
+                {candidat.assistedtoinformativesession ? "True" : "false"}
+              </Td>
+
+              <Td>{candidat.bootcamp.bootcampName}</Td>
+
+              <Td>{candidat.processState.name}</Td>
+            </Tr>
+          ))}
+        </Table>
+      </CtTable>
     </div>
   );
 }
