@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { authService } from "../../services/authService";
 import { localAuthService } from "../../services/localAuthService";
 import { DivButton, DivLogo, DivNav, LogInButton, Logo } from "./Navbar.styled";
@@ -18,9 +17,7 @@ function Navbar() {
         {localAuthService.isLogged() ? (
           <LogInButton onClick={logout}>LogOut</LogInButton>
         ) : (
-          <Link to="/login">
-            <LogInButton>Log In</LogInButton>
-          </Link>
+          null
         )}
       </DivButton>
     </DivNav>

@@ -11,20 +11,15 @@ import {
   Txt} from './Sidebar.styled'
 
 function Sidebar() {
-
   const logout = () => {
     authService.logout();
   };
 
-
   return (
-    
-
     <CtSidebar>
-
-       <CtLogo>
+      <CtLogo>
         <Logo src="https://www.rompemosloscodigos.org/wp-content/uploads/2020/06/logo-factoria-F5.png"></Logo>
-        </CtLogo>
+      </CtLogo>
 
 
 
@@ -77,7 +72,7 @@ function Sidebar() {
       </CtButton>
 
     </CtSidebar>
-  )
+  );
 }
 
-export default Sidebar
+export default Sidebar;

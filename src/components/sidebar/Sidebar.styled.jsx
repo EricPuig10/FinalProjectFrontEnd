@@ -16,6 +16,7 @@ justify-content: space-around;
 `;
 
 export const CtLogo = styled.div`
+margin-left: 5%;
 height:20%;
 width: 100%;
 margin-top: 20%;
