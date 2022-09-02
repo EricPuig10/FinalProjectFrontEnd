@@ -25,83 +25,84 @@ function List() {
   }, []);
 
   return (
-    <div style={{with: "fit-content"}}>
-
+    <div style={{ with: "fit-content" }}>
       <CtTable>
         <Table>
-        <tbody>
-          <Tr>
-            <Th>Name</Th>
+          <tbody>
+            <Tr>
+              <Th>Name</Th>
 
-            <Th>Lastname</Th>
+              <Th>Lastname</Th>
 
-            <Th>Second Name</Th>
+              <Th>Second Name</Th>
 
-            <Th>Email</Th>
+              <Th>Email</Th>
 
-            <Th>Phone</Th>
+              <Th>Phone</Th>
 
-            <Th>Age</Th>
+              <Th>Age</Th>
 
-            <Th>Gender</Th>
+              <Th>Gender</Th>
 
-            <Th>Nationality</Th>
+              <Th>Nationality</Th>
 
-            <Th>Laboral situation</Th>
+              <Th>Laboral situation</Th>
 
-            <Th>Solo Learn Progress</Th>
+              <Th>Solo Learn Progress</Th>
 
-            <Th>Code Academy Progress</Th>
+              <Th>Code Academy Progress</Th>
 
-            <Th>Assisted Informative Session</Th>
+              <Th>Assisted Informative Session</Th>
 
-            <Th>Bootcamp</Th>
+              <Th>Bootcamp</Th>
 
-            <Th>Process State</Th>
-          </Tr>
-
-          {candidats.map((candidat, key) => (
-            <Tr key={key}>
-              <Td>{candidat.name}</Td>
-
-              <Td>{candidat.lastname}</Td>
-
-              <Td>{candidat.secondlastname}</Td>
-
-              <Td>{candidat.email}</Td>
-
-              <Td>{candidat.phone}</Td>
-
-              <Td>{candidat.age}</Td>
-
-              <Td>{candidat.gender}</Td>
-
-              <Td>{candidat.nationality}</Td>
-
-              <Td>{candidat.laboralsituation}</Td>
-
-              <Td>{candidat.sololearnprogress}</Td>
-
-              <Td>{candidat.codeacademyprogress}</Td>
-
-              <Td>
-                {candidat.assistedtoinformativesession ? "True" : "false"}
-              </Td>
-
-              <Td>{candidat.bootcamp.bootcampName}</Td>
-
-              <Td>{candidat.processState.name}</Td>
+              <Th>Process State</Th>
             </Tr>
-          ))}
-        </tbody>
+
+            {candidats.map((candidat, key) => (
+              <Tr key={key}>
+                <Td>{candidat.name}</Td>
+
+                <Td>{candidat.lastname}</Td>
+
+                <Td>{candidat.secondlastname}</Td>
+
+                <Td>{candidat.email}</Td>
+
+                <Td>{candidat.phone}</Td>
+
+                <Td>{candidat.age}</Td>
+
+                <Td>{candidat.gender}</Td>
+
+                <Td>{candidat.nationality}</Td>
+
+                <Td>{candidat.laboralsituation}</Td>
+
+                <Td>{candidat.sololearnprogress}</Td>
+
+                <Td>{candidat.codeacademyprogress}</Td>
+
+                <Td>
+                  {candidat.assistedtoinformativesession ? "True" : "false"}
+                </Td>
+
+                <Td>{candidat.bootcamp.bootcampName}</Td>
+
+                <Td>{candidat.processState.name}</Td>
+              </Tr>
+            ))}
+          </tbody>
         </Table>
       </CtTable>
     </div>
   );
 }
 
-      {/* {bootcamps.map((bootcamp, key) => (
+{
+  /* {bootcamps.map((bootcamp, key) => (
         <li key={bootcamp.id}>{bootcamp.bootcampName}</li>
-      ))} */}
+      ))} */
+}
 
 export default List;

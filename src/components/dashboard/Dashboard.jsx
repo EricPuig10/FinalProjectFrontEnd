@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
 import List from "../List/List";
-import {
-  CtBox,
-  CtDashboard,
-  CtList,
-  CtTopbar,
-} from "./Dashboard.styled";
+import { CtBox, CtDashboard, CtList, CtTopbar } from "./Dashboard.styled";
 import { candidatsService } from "../../services/candidatsService";
 import { bootcampsService } from "../../services/bootcampsService";
 
@@ -36,21 +31,20 @@ function Dashboard() {
   return (
     <div>
       <CtDashboard>
-        <CtTopbar>
+        {/* <CtTopbar>
           <CtBox>
             BOOTCAMPS
             {bootcamps.map((bootcamp, key) => (
               <ul key={bootcamp.id}>{bootcamp.bootcampName}</ul>
             ))}
-
-            {/* {candidats.map((candidat, key) => (
-              <List key={key} candidat={candidat} />
-            ))} */}
-
           </CtBox>
           <CtBox>BOX 2</CtBox>
           <CtBox>BOX 3</CtBox>
-        </CtTopbar>
+        </CtTopbar> */}
+        {/* {candidats.map((candidat, key) => (
+              <List key={key} candidat={candidat} />
+            ))} */}
+
         <CtList>
           <List />
         </CtList>
