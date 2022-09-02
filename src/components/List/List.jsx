@@ -59,9 +59,10 @@ function List() {
           <Th>Bootcamp</Th>
 
           <Th>Process State</Th>
+
+          <Th>actions</Th>
         </Tr>
-        <Button>delete</Button>
-        <Button>edit</Button>
+      
 
         {candidats.map((candidat, key) => (
           
@@ -93,6 +94,8 @@ function List() {
             <Td>{candidat.bootcamp.bootcampName}</Td>
 
             <Td>{candidat.processState.name}</Td>
+
+            <Td><Button>Edit</Button><Button>Delete</Button></Td>
           </Tr>
         ))}
       </Table>
