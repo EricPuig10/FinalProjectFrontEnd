@@ -5,7 +5,7 @@ export const Home = () => {
     <HomeDiv>
       <HomeText>Hello Admin, what do you want to check today?</HomeText>
       <DivImgHome>
-        <ImgHome src="https://gogeticon.net/files/1415312/ddbb04f51ca3a50a4262c824426a618d.png" />
+        <ImgHome src="https://developer.visa.com/images2/platform/homepage/homepage-06-2021-update/vdp-home-morewaystowork-illo.png" />
       </DivImgHome>
     </HomeDiv>
   );

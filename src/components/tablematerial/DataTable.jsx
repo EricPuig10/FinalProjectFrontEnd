@@ -3,8 +3,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useState } from "react";
 import { candidatsService } from "../../services/candidatsService";
 import { useEffect } from "react";
-import { TableButton } from "./DataTable.styled";
-
+import { CtTabBut, I, TableButton } from "./DataTable.styled";
 
 export default function DataTable() {
   const [candidats, setCandidats] = useState([]);
@@ -25,6 +24,7 @@ export default function DataTable() {
       renderCell: (cellValues) => {
         return (
           <>
+            <CtTabBut>
             <TableButton
               variant="contained"
               color="primary"
@@ -32,15 +32,18 @@ export default function DataTable() {
               //   handleClick(event, cellValues);
               // }}
             >
-              <i className="fa-regular fa-pen-to-square fa-xl"></i>
+            
+            <I><i className="fa-regular fa-pen-to-square"></i></I>
             </TableButton>
+
             <TableButton
               variant="contained"
               color="primary"
-              onClick={()=>deleteCandidat(cellValues.row.id)}
+              onClick={() => deleteCandidat(cellValues.row.id)}
             >
-              <i className="fa-solid fa-trash fa-xl"></i>
+            <I><i className="fa-regular fa-trash-can"></i></I>
             </TableButton>
+            </CtTabBut>
           </>
         );
       },
@@ -66,7 +69,7 @@ export default function DataTable() {
     { field: "bootcamp", headerName: "Bootcamp", width: 130 },
     { field: "processState", headerName: "Process State", width: 130 },
   ];
-  
+
   const deleteCandidat = (id) => {
     let candidatToDelete = candidats.filter((candidat) => candidat.id === id);
     let deleteConfirmed = window.confirm(
