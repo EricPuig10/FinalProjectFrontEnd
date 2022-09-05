@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { bootcampsService } from "../../services/bootcampsService";
 import { candidatsService } from "../../services/candidatsService";
 import { CtTable, Table, Td, Th, Tr } from "./List.styled";
 
@@ -99,10 +98,5 @@ function List() {
   );
 }
 
-{
-  /* {bootcamps.map((bootcamp, key) => (
-        <li key={bootcamp.id}>{bootcamp.bootcampName}</li>
-      ))} */
-}
 
 export default List;

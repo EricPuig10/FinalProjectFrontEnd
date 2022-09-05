@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const DivNav = styled.div`
-width: 80%;
+width: 100%;
 padding-left: 10%;
 padding-right: 10%;
 height: 70px;
-background-color: #FF4700;
+background-color: #ECE6E5;
 display: flex;
 justify-content: space-between;
 `;
@@ -20,10 +20,15 @@ align-items: center;
 
 `;
 
-export const Logo = styled.img`
+export const Logo = styled.h1`
 width:100%;
 height: 100%;
-object-fit:contain;
+display: flex;
+justify-content: center;
+align-items: center;
+color: #ea561d;
+padding-left:150%;
+
 `;
 
 
@@ -45,6 +50,6 @@ font-size: 1em;
 font-weight: bold;
 cursor: pointer;
 &:hover{
-    color: black;
+    color: #ea561d;
 }
 `;
