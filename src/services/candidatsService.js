@@ -21,6 +21,18 @@ export const candidatsService={
     getCandidatsByBootcampId(id) {
       const candidatsByBootcamp = axios.get(baseURL + "/bootcamps/" + id + "/candidats").then((res) => res.data);
       return candidatsByBootcamp;
+  },
+
+  deleteCandidat(id) {
+    const candidat = axios
+      .delete(baseURL + "/candidats/" + id)
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        return { error: err.response.data.message };
+      });
+    return candidat;
   }
 
 }
