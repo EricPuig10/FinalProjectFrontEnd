@@ -2,11 +2,11 @@ import styled from "styled-components";
 
 export const CtSidebar = styled.div`
 box-sizing: border-box;
-position: fixed;
+position: absolute;
 top:0%;
 left:0%;
 z-index: 0;
-width: 10%;
+width: 7%;
 height: 100%;
 mix-blend-mode: normal;
 background-color: #FF4700;
@@ -16,17 +16,20 @@ justify-content: space-around;
 `;
 
 export const CtLogo = styled.div`
-margin-left: 5%;
+position: relative;
+top: -8%;
+
 height:20%;
 width: 100%;
-margin-top: 20%;
+margin-top: 5%;
 display: flex;
 justify-content: center;
+align-items: flex-start;
 `;
 
 export const Logo = styled.img`
-width: 9em;
-height:8em;
+width: 90%;
+height:7em;
 object-fit:contain;
 `;
 

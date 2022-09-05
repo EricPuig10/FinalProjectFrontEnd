@@ -27,7 +27,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 color: #ea561d;
-padding-left:150%;
+padding-left:60%;
 
 `;
 
