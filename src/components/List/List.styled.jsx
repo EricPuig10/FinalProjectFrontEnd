@@ -42,6 +42,9 @@ tr:nth-of-type(odd) {
       opacity: 80%;
     }
 `;
+export const Button = styled.button`
+
+`;
 
 
 
