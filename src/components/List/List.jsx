@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { candidatsService } from "../../services/candidatsService";
-import {CtTable, Table, Td, Th, Tr} from "./List.styled";
+import { CtTable, Table, Td, Th, Tr } from "./List.styled";
 
 function List() {
   const [candidats, setCandidats] = useState([]);
@@ -97,6 +97,5 @@ function List() {
     </div>
   );
 }
-
 
 export default List;

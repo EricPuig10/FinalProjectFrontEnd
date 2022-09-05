@@ -25,24 +25,30 @@ export default function DataTable() {
         return (
           <>
             <CtTabBut>
-            <TableButton
-              variant="contained"
-              color="primary"
-              // onClick={(event) => {
-              //   handleClick(event, cellValues);
-              // }}
-            >
-            
-            <I><i className="fa-regular fa-pen-to-square"></i></I>
-            </TableButton>
+              <TableButton
+                variant="contained"
+                color="primary"
+                // onClick={(event) => {
+                //   handleClick(event, cellValues);
+                // }}
+              >
+                <i className="fa-regular fa-pen-to-square fa-lg"></i>
+              </TableButton>
 
-            <TableButton
-              variant="contained"
-              color="primary"
-              onClick={() => deleteCandidat(cellValues.row.id)}
-            >
-            <I><i className="fa-regular fa-trash-can"></i></I>
-            </TableButton>
+              <TableButton
+                variant="contained"
+                color="primary"
+                onClick={() => deleteCandidat(cellValues.row.id)}
+              >
+                <i className="fa-regular fa-trash-can fa-lg"></i>
+              </TableButton>
+              <TableButton
+                variant="contained"
+                color="primary"
+                // onClick={() => deleteCandidat(cellValues.row.id)}
+              >
+                <i className="fa-regular fa-file fa-lg"></i>
+              </TableButton>
             </CtTabBut>
           </>
         );
@@ -55,7 +61,6 @@ export default function DataTable() {
     {
       field: "age",
       headerName: "Age",
-      type: "number",
       width: 90,
     },
     { field: "email", headerName: "Email", width: 130 },
@@ -91,7 +96,15 @@ export default function DataTable() {
   };
 
   return (
-    <div style={{ height: 600, width: "90%", marginLeft: "10%", marginTop: "5%"}}>
+    <div
+      style={{
+        height: 500,
+        width: "90%",
+        paddingRight: "4%",
+        marginLeft: "10%",
+        marginTop: "2.5%",
+      }}
+    >
       <DataGrid
         columns={columns}
         rows={candidats}

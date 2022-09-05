@@ -34,11 +34,12 @@ padding-left:60%;
 
 export const DivButton = styled.div`
 height:100%;
-width: 10%;
+width: 20%;
 /* background-color: yellow; */
 display: flex;
-justify-content: center;
+justify-content: flex-end;
 align-items: center;
+margin-right: -10.5%;
 `;
 export const LogInButton = styled.button`
 width: 60%;
