@@ -1,5 +1,6 @@
 
 import { Home } from './pages/Home';
+import './components/dashboard/list.css'
 
 function App() {
   return (

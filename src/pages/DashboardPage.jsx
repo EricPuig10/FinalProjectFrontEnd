@@ -6,7 +6,7 @@ import Sidebar from "../components/sidebar/Sidebar";
 function DashboardPage() {
   return (
     <>
-      <Navbar />
+    <Navbar/>
       <div
         style={{
           height: "100vh",
