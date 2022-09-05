@@ -8,19 +8,23 @@ function Navbar() {
   const logout = () => {
     authService.logout();
   };
- const location = useLocation();
+
+  function capitalizeFirstLetter(string) {
+    return string.charAt(1).toUpperCase() + string.slice(2);
+  }
+
+  const location = useLocation();
+  const title = capitalizeFirstLetter(location.pathname);
 
   return (
     <DivNav>
       <DivLogo>
-        <Logo>{location.pathname}</Logo>
+        <Logo>{title.split("/")}</Logo>
       </DivLogo>
       <DivButton>
         {localAuthService.isLogged() ? (
           <LogInButton onClick={logout}>LogOut</LogInButton>
-        ) : (
-          null
-        )}
+        ) : null}
       </DivButton>
     </DivNav>
   );

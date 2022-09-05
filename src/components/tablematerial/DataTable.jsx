@@ -91,7 +91,7 @@ export default function DataTable() {
   };
 
   return (
-    <div style={{ height: 600, width: "90%", marginLeft: "10%" }}>
+    <div style={{ height: 600, width: "90%", marginLeft: "10%", marginTop: "5%"}}>
       <DataGrid
         columns={columns}
         rows={candidats}

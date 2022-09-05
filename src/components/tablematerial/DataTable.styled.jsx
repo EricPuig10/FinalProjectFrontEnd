@@ -7,7 +7,7 @@ justify-content: space-evenly;
 
 
 export const TableButton = styled.button`
-
+margin-left: 50%;
 border: none;
 background-color: transparent;
 cursor: pointer;
@@ -18,4 +18,5 @@ cursor: pointer;
 
 export const I = styled.div`
 display: flex;
+justify-content: space-evenly;
 `

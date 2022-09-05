@@ -19,9 +19,9 @@ export const CtLogo = styled.div`
 position: relative;
 top: -8%;
 
-height:20%;
+/* height:10%; */
 width: 100%;
-margin-top: 5%;
+/* margin-top: 5%; */
 display: flex;
 justify-content: center;
 align-items: flex-start;
@@ -29,7 +29,7 @@ align-items: flex-start;
 
 export const Logo = styled.img`
 width: 90%;
-height:7em;
+height: 200%;
 object-fit:contain;
 `;
 
