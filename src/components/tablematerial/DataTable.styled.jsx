@@ -17,7 +17,25 @@ cursor: pointer;
 }
 `
 
-export const I = styled.div`
-display: flex;
-justify-content: space-evenly;
+// export const I = styled.div`
+// display: flex;
+// justify-content: space-evenly;
+// `
+
+export const BtnAddCandidat = styled.button`
+position: fixed;
+height: 50px;
+width: 50px;
+border-radius: 50%;
+background-color: transparent;
+top:90%;
+left:95%;
+z-index: 100;
+color: #FF4700;
+border-color: #FF4700;
+border-style: double;
+&:hover{
+    background-color: #FF4700;
+    color: white;
+}
 `

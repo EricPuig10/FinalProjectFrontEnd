@@ -3,10 +3,29 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useState } from "react";
 import { candidatsService } from "../../services/candidatsService";
 import { useEffect } from "react";
-import { CtTabBut, I, TableButton } from "./DataTable.styled";
+import { BtnAddCandidat, CtTabBut, TableButton } from "./DataTable.styled";
+import { FormCandidat } from "../formCandidat/FormCandidat";
+
+const initialCandidat = {
+  id: "",
+  name: "",
+  lastname: "",
+  secondlastname: "",
+  email: "",
+  phone: "",
+  age: "",
+  gender: "",
+  nationality: "",
+  laboralsituation: "",
+  bootcamp: "",
+  processState: "",
+};
 
 export default function DataTable() {
   const [candidats, setCandidats] = useState([]);
+  const [isShowForm, setIsShowForm] = useState(false);
+  const [candidatToEdit, setCandidatToEdit] = useState(initialCandidat);
+  const [isEditMode, setIsEditMode] = useState(false);
 
   useEffect(() => {
     getAllCandidats();
@@ -28,9 +47,9 @@ export default function DataTable() {
               <TableButton
                 variant="contained"
                 color="primary"
-                // onClick={(event) => {
-                //   handleClick(event, cellValues);
-                // }}
+                onClick={() => {
+                  editCandidat(cellValues.row.id);
+                }}
               >
                 <i className="fa-regular fa-pen-to-square fa-lg"></i>
               </TableButton>
@@ -75,6 +94,13 @@ export default function DataTable() {
     { field: "processState", headerName: "Process State", width: 130 },
   ];
 
+  const addNewCandidat = (data) => {
+    candidatsService.addCandidat(data).then((res) => {
+      setCandidats([...candidats, res]);
+    });
+    setIsShowForm(false);
+  };
+
   const deleteCandidat = (id) => {
     let candidatToDelete = candidats.filter((candidat) => candidat.id === id);
     let deleteConfirmed = window.confirm(
@@ -95,43 +121,88 @@ export default function DataTable() {
     });
   };
 
+  const showForm = () => {
+    if (isShowForm) setIsShowForm(false);
+    else setIsShowForm(true);
+    resetInputsForm();
+    setIsEditMode(false);
+  };
+
+  const resetInputsForm = () => {
+    setCandidatToEdit({
+      initialCandidat,
+    });
+  };
+
+  const editCandidat = (id) => {
+    showForm();
+    let candidatToEdit = candidats.find((candidat) => candidat.id === id);
+    setCandidatToEdit(candidatToEdit);
+    setIsEditMode(true);
+  };
+
+  const updateCandidat = (newCandidat) => {
+    candidatsService.updateCandidat(newCandidat).then((res) => {
+      if (!res) return;
+      setCandidatToEdit();
+      getAllCandidats();
+    });
+    showForm();
+    getAllCandidats();
+  };
+
   return (
-    <div
-      style={{
-        height: 500,
-        width: "90%",
-        paddingRight: "4%",
-        marginLeft: "10%",
-        marginTop: "2.5%",
-      }}
-    >
-      <DataGrid
-        columns={columns}
-        rows={candidats}
-        pageSize={10}
-        rowsPerPageOptions={[10]}
-        // actions={[
-        //   {
-        //     icon: 'edit',
-        //     tooltip: 'Editar',
-        //     onClick: (event, rowData) => alert('Editar' + rowData.name)
-        //   },
-        //   {
-        //     icon: 'delete',
-        //     tooltip: 'Eliminar Artista',
-        //     onClick: (event, rowData) => alert("Eliminar" + rowData.name)
-        //   }
-        // ]}
-        // options={{
-        //   actionsColumnIndex: 1,
-        // }}
-        // localization={{
-        //   header:{
-        //     actions: "Acciones"
-        //   }
-        // }}
-        // checkboxSelection
-      />
-    </div>
+    <>
+      {isShowForm ? (
+        <FormCandidat
+          addNewCandidat={addNewCandidat}
+          candidatToEdit={candidatToEdit}
+          updateCandidat={updateCandidat}
+          isEditMode={isEditMode}
+          isShowForm={isShowForm}
+          showForm={showForm}
+        />
+      ) : (
+        ""
+      )}
+      <div
+        style={{
+          height: 500,
+          width: "90%",
+          paddingRight: "4%",
+          marginLeft: "10%",
+          marginTop: "2.5%",
+        }}
+      >
+        <DataGrid
+          columns={columns}
+          rows={candidats}
+          pageSize={10}
+          rowsPerPageOptions={[10]}
+          // actions={[
+          //   {
+          //     icon: 'edit',
+          //     tooltip: 'Editar',
+          //     onClick: (event, rowData) => alert('Editar' + rowData.name)
+          //   },
+          //   {
+          //     icon: 'delete',
+          //     tooltip: 'Eliminar Artista',
+          //     onClick: (event, rowData) => alert("Eliminar" + rowData.name)
+          //   }
+          // ]}
+          // options={{
+          //   actionsColumnIndex: 1,
+          // }}
+          // localization={{
+          //   header:{
+          //     actions: "Acciones"
+          //   }
+          // }}
+          // checkboxSelection
+        />
+      </div>
+      <BtnAddCandidat  onClick={showForm}><i className="fa-solid fa-plus fa-2xl"></i></BtnAddCandidat>
+    </>
   );
 }

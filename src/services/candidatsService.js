@@ -1,26 +1,27 @@
-import axios from "axios"
+import axios from "axios";
 axios.defaults.baseURL = "http://localhost:8080";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.headers.post["Accept"] = "application/json";
 axios.defaults.withCredentials = false;
-axios.interceptors.request.use(function (config){
+axios.interceptors.request.use(function (config) {
   const token = localStorage.getItem("auth_token");
   config.headers.Authorization = token ? `Bearer ${token}` : "";
   return config;
-})
+});
 
-const baseURL= "http://localhost:8080";
+const baseURL = "http://localhost:8080";
 
-export const candidatsService={
-    
+export const candidatsService = {
   getAllCandidats() {
-        const candidats = axios.get(baseURL + "/candidats").then((res)=>res.data);
-        return candidats;
-    },
+    const candidats = axios.get(baseURL + "/candidats").then((res) => res.data);
+    return candidats;
+  },
 
-    getCandidatsByBootcampId(id) {
-      const candidatsByBootcamp = axios.get(baseURL + "/bootcamps/" + id + "/candidats").then((res) => res.data);
-      return candidatsByBootcamp;
+  getCandidatsByBootcampId(id) {
+    const candidatsByBootcamp = axios
+      .get(baseURL + "/bootcamps/" + id + "/candidats")
+      .then((res) => res.data);
+    return candidatsByBootcamp;
   },
 
   deleteCandidat(id) {
@@ -33,6 +34,24 @@ export const candidatsService={
         return { error: err.response.data.message };
       });
     return candidat;
-  }
+  },
 
-}
+  addCandidat(data) {
+    const candidats = axios
+      .post(baseURL + "/candidats", { ...data, userId: 1 })
+      .then((res) => res.data);
+    return candidats;
+  },
+
+  updateCandidat(candidat) {
+    const updatedCandidat = axios
+      .put(baseURL + "/candidats/" + candidat.id, candidat)
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    return updatedCandidat;
+  },
+};
