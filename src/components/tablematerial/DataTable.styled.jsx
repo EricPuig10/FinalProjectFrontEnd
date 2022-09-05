@@ -22,14 +22,14 @@ cursor: pointer;
 // justify-content: space-evenly;
 // `
 
-export const BtnAddCandidat = styled.button`
+export const BtnAdd = styled.button`
 position: fixed;
 height: 50px;
 width: 50px;
 border-radius: 50%;
 background-color: transparent;
-top:90%;
-left:95%;
+top:88.5%;
+left:92.5%;
 z-index: 100;
 color: #FF4700;
 border-color: #FF4700;

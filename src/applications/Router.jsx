@@ -29,7 +29,7 @@ export default function Router() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<AuthRoute><LoginPage /></AuthRoute>} />
         <Route path="/candidats" element={<AuthCrud><DashboardPage /></AuthCrud>} />
-
+        <Route path="/bootcamps" element={<AuthCrud><DashboardPage /></AuthCrud>} />
       </Routes>
     </BrowserRouter>
   );
