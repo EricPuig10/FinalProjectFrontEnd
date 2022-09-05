@@ -12,8 +12,15 @@ axios.interceptors.request.use(function (config){
 const baseURL= "http://localhost:8080";
 
 export const candidatsService={
-    getAllCandidats() {
+    
+  getAllCandidats() {
         const candidats = axios.get(baseURL + "/candidats").then((res)=>res.data);
         return candidats;
-    }
+    },
+
+    getCandidatsByBootcampId(id) {
+      const candidatsByBootcamp = axios.get(baseURL + "/bootcamps/" + id + "/candidats").then((res) => res.data);
+      return candidatsByBootcamp;
+  }
+
 }

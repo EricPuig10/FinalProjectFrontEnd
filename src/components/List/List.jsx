@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { bootcampsService } from "../../services/bootcampsService";
 import { candidatsService } from "../../services/candidatsService";
-import { Table, Td, Th, Tr,Button } from "./List.styled";
+import {CtTable, Table, Td, Th, Tr,Button} from "./List.styled";
 
 function List() {
   const [candidats, setCandidats] = useState([]);
@@ -30,68 +30,70 @@ function List() {
         <li key={bootcamp.id}>{bootcamp.bootcampName}</li>
       ))}
 
-      <Table>
-        <Tr>
-          <Th>Name</Th>
+      <CtTable>
+        <Table>
+          <Tr>
+            <Th>Name</Th>
 
-          <Th>Lastname</Th>
+            <Th>Lastname</Th>
 
-          <Th>Second Name</Th>
+            <Th>Second Name</Th>
 
-          <Th>Email</Th>
+            <Th>Email</Th>
 
-          <Th>Phone</Th>
+            <Th>Phone</Th>
 
-          <Th>Age</Th>
+            <Th>Age</Th>
 
-          <Th>Gender</Th>
+            <Th>Gender</Th>
 
-          <Th>Nationality</Th>
+            <Th>Nationality</Th>
 
-          <Th>Laboral situation</Th>
+            <Th>Laboral situation</Th>
 
-          <Th>Solo Learn Progress</Th>
+            <Th>Solo Learn Progress</Th>
 
-          <Th>Code Academy Progress</Th>
+            <Th>Code Academy Progress</Th>
 
-          <Th>Assisted Informative Session</Th>
+            <Th>Assisted Informative Session</Th>
 
-          <Th>Bootcamp</Th>
+            <Th>Bootcamp</Th>
 
           <Th>Process State</Th>
 
           <Th>actions</Th>
         </Tr>
-      
 
         {candidats.map((candidat, key) => (
           
           <Tr key={key}>
             <Td>{candidat.name}</Td>
 
-            <Td>{candidat.lastname}</Td>
+              <Td>{candidat.lastname}</Td>
 
-            <Td>{candidat.secondlastname}</Td>
+              <Td>{candidat.secondlastname}</Td>
 
-            <Td>{candidat.email}</Td>
+              <Td>{candidat.email}</Td>
 
-            <Td>{candidat.phone}</Td>
+              <Td>{candidat.phone}</Td>
 
-            <Td>{candidat.age}</Td>
+              <Td>{candidat.age}</Td>
 
-            <Td>{candidat.gender}</Td>
+              <Td>{candidat.gender}</Td>
 
-            <Td>{candidat.nationality}</Td>
+              <Td>{candidat.nationality}</Td>
 
-            <Td>{candidat.laboralsituation}</Td>
+              <Td>{candidat.laboralsituation}</Td>
 
-            <Td>{candidat.sololearnprogress}</Td>
+              <Td>{candidat.sololearnprogress}</Td>
 
-            <Td>{candidat.codeacademyprogress}</Td>
+              <Td>{candidat.codeacademyprogress}</Td>
 
-            <Td>{candidat.assistedtoinformativesession ? "True" : "false"}</Td>
+              <Td>
+                {candidat.assistedtoinformativesession ? "True" : "false"}
+              </Td>
 
-            <Td>{candidat.bootcamp.bootcampName}</Td>
+              <Td>{candidat.bootcamp.bootcampName}</Td>
 
             <Td>{candidat.processState.name}</Td>
 
@@ -99,6 +101,7 @@ function List() {
           </Tr>
         ))}
       </Table>
+    </CtTable>
     </div>
   );
 }
