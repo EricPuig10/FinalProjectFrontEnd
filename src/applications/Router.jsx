@@ -3,7 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import DashboardPage from "../pages/DashboardPage";
 import { HomePage } from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
-import { ProvesEric } from "../pages/ProvesEric";
+
 
 export default function Router() {
   const AuthRoute = ({ children }) => {
@@ -28,8 +28,7 @@ export default function Router() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<AuthRoute><LoginPage /></AuthRoute>} />
-        <Route path="/dashboard" element={<AuthCrud><DashboardPage /></AuthCrud>} />
-        <Route path="/proveseric" element={<AuthCrud><ProvesEric /></AuthCrud>} />
+        <Route path="/candidats" element={<AuthCrud><DashboardPage /></AuthCrud>} />
 
       </Routes>
     </BrowserRouter>

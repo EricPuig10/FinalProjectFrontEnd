@@ -45,7 +45,7 @@ width: 60%;
 height: 40%;
 background-color: transparent;
 border: none;
-color: #010101;
+color: #ffffff;
 font-size: 1em;
 font-weight: bold;
 cursor: pointer;

@@ -8,7 +8,7 @@ import {
   CtSidebar, 
   Icon, 
   Logo,
-  Txt} from './Sidebar.styled'
+  } from './Sidebar.styled'
 
 function Sidebar() {
   const logout = () => {
@@ -34,7 +34,7 @@ function Sidebar() {
 
       <CtButton>
 
-          <Link to="/">
+          <Link to="/candidats">
           <Icon><i className="fa-solid fa-user fa-xl"></i></Icon>
           {/* <Txt>Candidats</Txt> */}
           </Link>
@@ -43,7 +43,7 @@ function Sidebar() {
 
       <CtButton>
 
-          <Link to="/">
+          <Link to="/bootcamps">
           <Icon><i className="fa-solid fa-laptop-code fa-xl"></i></Icon>
           {/* <Txt>Bootcamp</Txt> */}
           </Link>
