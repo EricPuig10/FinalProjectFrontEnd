@@ -15,7 +15,7 @@ const initialBootcamp = {
   isPresential: "",
 };
 
-export default function BootcampTable() {
+export const BootcampTable = () => {
   const [bootcamps, setBootcamps] = useState([]);
   const [isShowForm, setIsShowForm] = useState(false);
   const [bootcampToEdit, setBootcampToEdit] = useState(initialBootcamp);
@@ -68,7 +68,7 @@ export default function BootcampTable() {
       },
     },
     { field: "id", headerName: "ID", width: 90 },
-    { field: "bottcampName", headerName: "Name", width: 130 },
+    { field: "bootcampName", headerName: "Name", width: 130 },
     { field: "type", headerName: "Type", width: 130 },
     { field: "duration", headerName: "Duration", width: 130 },
     { field: "characteristics", headerName: "Characteristics", width: 130 },
@@ -114,6 +114,7 @@ export default function BootcampTable() {
     });
   };
 
+  // eslint-disable-next-line
   const editBootcamp = (id) => {
     showForm();
     let bootcampToEdit = bootcamps.find((bootcamp) => bootcamp.id === id);
@@ -147,7 +148,7 @@ export default function BootcampTable() {
       )}
       <div
         style={{
-          height: 500,
+          height: 420,
           width: "90%",
           paddingRight: "4%",
           marginLeft: "10%",
@@ -159,30 +160,11 @@ export default function BootcampTable() {
           rows={bootcamps}
           pageSize={10}
           rowsPerPageOptions={[10]}
-          // actions={[
-          //   {
-          //     icon: 'edit',
-          //     tooltip: 'Editar',
-          //     onClick: (event, rowData) => alert('Editar' + rowData.name)
-          //   },
-          //   {
-          //     icon: 'delete',
-          //     tooltip: 'Eliminar Artista',
-          //     onClick: (event, rowData) => alert("Eliminar" + rowData.name)
-          //   }
-          // ]}
-          // options={{
-          //   actionsColumnIndex: 1,
-          // }}
-          // localization={{
-          //   header:{
-          //     actions: "Acciones"
-          //   }
-          // }}
-          // checkboxSelection
         />
       </div>
-      <BtnAdd  onClick={showForm}><i className="fa-solid fa-plus fa-2xl"></i></BtnAdd>
+      <BtnAdd onClick={showForm}>
+        <i className="fa-solid fa-plus fa-2xl"></i>
+      </BtnAdd>
     </>
   );
-}
+};

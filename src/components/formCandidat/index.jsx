@@ -1,3 +1,1 @@
-import { FormCandidat } from "./FormCandidat";
-
-
+export { FormCandidat } from "./FormCandidat";

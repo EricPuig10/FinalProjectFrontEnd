@@ -1,18 +1,18 @@
 import React from "react";
 import { Navbar } from "../components/navbar/Navbar";
 import { Sidebar } from "../components/sidebar/Sidebar";
-import { DataTable } from "../components/tablematerial/DataTable";
+import { BootcampTable } from "../components/tablematerial/BootcampTable";
 
-export const DashboardPage = () => {
+export const BootcampDashboardPage = () => {
   return (
     <>
       <Navbar />
       <div>
         <Sidebar />
-        <DataTable />
+        <BootcampTable />
       </div>
     </>
   );
-}
+};
 
-
+export default BootcampDashboardPage;
