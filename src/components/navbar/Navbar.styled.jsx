@@ -17,6 +17,13 @@ export const DivLogo = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 2.5%;
+  @media (max-width: 1000px) {
+    margin-left: 7%;
+  }
+  @media (max-width: 600px) {
+    margin-left: 15%;
+  }
 `;
 
 export const Logo = styled.h1`
@@ -26,7 +33,6 @@ export const Logo = styled.h1`
   justify-content: center;
   align-items: center;
   color: #ea561d;
-  padding-left: 60%;
 `;
 
 export const DivButton = styled.div`
@@ -37,6 +43,12 @@ export const DivButton = styled.div`
   justify-content: flex-end;
   align-items: center;
   margin-right: -10.5%;
+  @media (max-width: 1000px) {
+    margin-right: 0%;
+  }
+  @media (max-width: 600px) {
+    margin-right: 0%;
+  }
 `;
 export const LogInButton = styled.button`
   width: 60%;

@@ -12,24 +12,22 @@ export const CtSidebar = styled.div`
   background-color: #ff4700;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  /* justify-content: space-around; */
 `;
 
 export const CtLogo = styled.div`
-position: relative;
-top: -10%;
-
-  /* height:10%; */
+  position: relative;
+  top: 0%;
   width: 100%;
-  /* margin-top: 5%; */
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  margin-bottom: 30%;
 `;
 
 export const Logo = styled.img`
   width: 90%;
-  height: 200%;
+  height: 60px;
   object-fit: contain;
 `;
 
@@ -39,7 +37,9 @@ export const CtButton = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 2em;
+  height: 6%;
+  margin-top: 35%;
+  margin-bottom: 10%;
 `;
 
 export const Icon = styled.button`

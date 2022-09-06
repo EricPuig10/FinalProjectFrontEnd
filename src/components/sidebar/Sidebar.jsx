@@ -43,6 +43,15 @@ export const Sidebar = () => {
       </CtButton>
 
       <CtButton>
+        <Link to="/process">
+          <Icon>
+          <i className="fa-sharp fa-solid fa-ranking-star fa-xl"></i>
+          </Icon>
+          {/* <Txt>Bootcamp</Txt> */}
+        </Link>
+      </CtButton>
+
+      <CtButton>
         <Link to="/">
           <Icon>
             <i className="fa-solid fa-gear fa-xl"></i>
