@@ -21,7 +21,7 @@ const initialCandidat = {
   processState: "",
 };
 
-export default function DataTable() {
+export const DataTable = () => {
   const [candidats, setCandidats] = useState([]);
   const [isShowForm, setIsShowForm] = useState(false);
   const [candidatToEdit, setCandidatToEdit] = useState(initialCandidat);
@@ -167,7 +167,7 @@ export default function DataTable() {
       )}
       <div
         style={{
-          height: 500,
+          height: 420,
           width: "90%",
           paddingRight: "4%",
           marginLeft: "10%",
@@ -202,7 +202,9 @@ export default function DataTable() {
           // checkboxSelection
         />
       </div>
-      <BtnAdd  onClick={showForm}><i className="fa-solid fa-plus fa-2xl"></i></BtnAdd>
+      <BtnAdd onClick={showForm}>
+        <i className="fa-solid fa-plus fa-2xl"></i>
+      </BtnAdd>
     </>
   );
-}
+};

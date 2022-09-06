@@ -124,28 +124,28 @@ export const FormCandidat = (props) => {
                 name="age"
                 placeholder="Add age..."
               ></Input>
-                       <Input
+              <Input
                 onChange={onInputChange}
                 aria-label="gender"
                 value={newCandidat.gender}
                 name="gender"
                 placeholder="Add gender..."
               ></Input>
-                       <Input
+              <Input
                 onChange={onInputChange}
                 aria-label="nationality"
                 value={newCandidat.nationality}
                 name="nationality"
                 placeholder="Add nationality..."
               ></Input>
-                       <Input
+              <Input
                 onChange={onInputChange}
                 aria-label="laboralsituation"
                 value={newCandidat.laboralsituation}
                 name="laboralsituation"
                 placeholder="Add laboralsituation..."
               ></Input>
-                       {/* <Input
+              {/* <Input
                 onChange={onInputChange}
                 aria-label="bootcamp"
                 value={newCandidat.bootcamp}
@@ -159,7 +159,7 @@ export const FormCandidat = (props) => {
                 name="processState"
                 placeholder="Add processState..."
               ></Input> */}
-              
+
               {isEditMode ? (
                 <SubmitBtnForm type="submit" className="submitBtn">
                   <i className="fa-solid fa-pen-to-square fa-xl"></i>

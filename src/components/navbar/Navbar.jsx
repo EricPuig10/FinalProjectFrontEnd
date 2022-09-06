@@ -4,7 +4,7 @@ import { authService } from "../../services/authService";
 import { localAuthService } from "../../services/localAuthService";
 import { DivButton, DivLogo, DivNav, LogInButton, Logo } from "./Navbar.styled";
 
-function Navbar() {
+export const Navbar = () => {
   const logout = () => {
     authService.logout();
   };
@@ -28,6 +28,6 @@ function Navbar() {
       </DivButton>
     </DivNav>
   );
-}
+};
 
 export default Navbar;

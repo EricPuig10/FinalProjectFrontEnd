@@ -159,5 +159,3 @@ export const CloseBtn = styled.button`
     background-color: transparent;
   }
 `;
-
-

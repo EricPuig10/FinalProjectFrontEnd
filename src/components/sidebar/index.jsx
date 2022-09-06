@@ -1,1 +1,1 @@
-import Footer from "./Lateralbar";
+export { Sidebar } from "./Sidebar";
