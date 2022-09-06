@@ -51,7 +51,7 @@ export const Login = () => {
           <CtInput
             type="text"
             name="username"
-            placeholder="user name"
+            placeholder="User name"
             value={userData.username}
             onChange={onInputChange}
           />
@@ -61,7 +61,7 @@ export const Login = () => {
           <CtInput
             type="password"
             name="password"
-            placeholder="user password"
+            placeholder="User password"
             value={userData.password}
             onChange={onInputChange}
           />

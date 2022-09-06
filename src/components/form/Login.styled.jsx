@@ -22,7 +22,7 @@ export const Form = styled.form`
 
 export const Label = styled.label`
   width: 80%;
-  border-radius: 5%;
+  border-radius: none;
   font-size: 1rem;
   font-style: italic;
   display: flex;
@@ -36,7 +36,7 @@ export const Label = styled.label`
 
 export const CtInput = styled.input`
   padding: 0 2.5% 0 2.5%;
-  width: 94%;
+  width: 100%;
   height: 4rem;
 
   display: flex;
