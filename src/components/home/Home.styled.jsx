@@ -10,7 +10,7 @@ export const HomeDiv = styled.div`
 `;
 export const DivImgHome = styled.div`
   position: absolute;
-  top: 20%;
+  top: 10%;
   left: 23%;
   width: 50%;
   height: 50%;
@@ -24,6 +24,33 @@ export const ImgHome = styled.img`
 
 export const HomeText = styled.h2`
   display: flex;
-  margin-top: 5%;
+  margin-top: 2%;
   justify-content: center;
+`;
+
+export const DivButtonsHome = styled.div`
+  position: absolute;
+  /* background-color: yellow; */
+  top: 67%;
+  left: 8.5%;
+  width: 80%;
+  height: 80px;
+  display: flex;
+  justify-content: space-evenly;
+`;
+
+export const HomeButton = styled.button`
+  width: 20%;
+  font-size: 1em;
+  border-color: #ff4700;
+  border-style: solid;
+  color: #ff4700;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 1vw;
+  &:hover {
+    border-color: black;
+    color: white;
+    background-color: #ff4700;
+  }
 `;
