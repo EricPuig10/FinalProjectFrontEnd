@@ -17,7 +17,7 @@ justify-content: space-around;
 
 export const CtLogo = styled.div`
 position: relative;
-top: -8%;
+top: -10%;
 
 /* height:10%; */
 width: 100%;
