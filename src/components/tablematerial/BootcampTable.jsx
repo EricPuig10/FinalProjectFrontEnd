@@ -51,7 +51,7 @@ export const BootcampTable = () => {
               <TableButton
                 variant="contained"
                 color="primary"
-                // onClick={() => deleteCandidat(cellValues.row.id)}
+                onClick={() => deleteBootcamp(cellValues.row.id)}
               >
                 <i className="fa-regular fa-trash-can fa-lg"></i>
               </TableButton>
@@ -82,24 +82,24 @@ export const BootcampTable = () => {
     setIsShowForm(false);
   };
 
-  // const deleteBootcamp = (id) => {
-  //   let bootcampToDelete = bootcamps.filter((candidat) => bootcamp.id === id);
-  //   let deleteConfirmed = window.confirm(
-  //     `Really remove ${bootcampToDelete[0].id} from the list?`
-  //   );
-  //   if (!deleteConfirmed) return;
-  //   let filterBootcamps = bootcamps.filter((bootcamp) => bootcamp.id !== id);
+  const deleteBootcamp = (id) => {
+    let bootcampToDelete = bootcamps.filter((bootcamp) => bootcamp.id === id);
+    let deleteConfirmed = window.confirm(
+      `Really remove ${bootcampToDelete[0].id} from the list?`
+    );
+    if (!deleteConfirmed) return;
+    let filterBootcamps = bootcamps.filter((bootcamp) => bootcamp.id !== id);
 
-  //   bootcampsService.deleteBootcamp(id).then((res) => {
-  //     if (!res) return;
-  //     if (res.error) {
-  //       console.log(res.error);
+    bootcampsService.deleteBootcamp(id).then((res) => {
+      if (!res) return;
+      if (res.error) {
+        console.log(res.error);
 
-  //       return;
-  //     }
-  //     setBootcamps(filterBootcamps);
-  //   });
-  // };
+        return;
+      }
+      setBootcamps(filterBootcamps);
+    });
+  };
 
   const showForm = () => {
     if (isShowForm) setIsShowForm(false);

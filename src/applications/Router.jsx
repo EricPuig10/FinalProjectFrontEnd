@@ -15,7 +15,7 @@ export default function Router() {
 
   const AuthCrud = ({ children }) => {
     if (!localStorage.getItem("auth_token")) {
-      return <Navigate to="/auth/signin" />;
+      return <Navigate to="/login" />;
     }
     return children;
   };

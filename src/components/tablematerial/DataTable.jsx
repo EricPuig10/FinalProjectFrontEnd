@@ -17,8 +17,8 @@ const initialCandidat = {
   gender: "",
   nationality: "",
   laboralsituation: "",
-  bootcamp: "",
-  processState: "",
+  bootcamp: { bootcampName: "", id: "" },
+  processState: { name: "", id: "" },
 };
 
 export const DataTable = () => {
@@ -36,6 +36,7 @@ export const DataTable = () => {
       setCandidats(res);
     });
   };
+
 
   const columns = [
     {
@@ -90,7 +91,7 @@ export const DataTable = () => {
     // { field: 'sololearnprogress', headerName: 'Solo Learn Progress', width: 130 },
     // { field: 'codeacademyprogress', headerName: 'Code Academy Progress', width: 130 },
     // { field: 'assistedtoinformativesession', headerName: 'Assisted Informative Session', width: 130 },
-    { field: "bootcamp", headerName: "Bootcamp", width: 130 },
+    { field: "bootcamp.bootcampName", headerName: "Bootcamp", width: 130 },
     { field: "processState", headerName: "Process State", width: 130 },
   ];
 
