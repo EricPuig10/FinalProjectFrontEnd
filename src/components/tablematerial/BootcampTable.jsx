@@ -68,7 +68,7 @@ export const BootcampTable = () => {
       },
     },
     { field: "id", headerName: "ID", width: 90 },
-    { field: "bottcampName", headerName: "Name", width: 130 },
+    { field: "bootcampName", headerName: "Name", width: 130 },
     { field: "type", headerName: "Type", width: 130 },
     { field: "duration", headerName: "Duration", width: 130 },
     { field: "characteristics", headerName: "Characteristics", width: 130 },
