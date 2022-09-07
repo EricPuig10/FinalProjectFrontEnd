@@ -11,7 +11,7 @@ from {
 
 export const BackGroundForm = styled.div`
   width: 100%;
-  height: 300vh;
+  height: 100%;
   position: absolute;
   top: 0%;
   /* background-color: red; */
@@ -20,7 +20,7 @@ export const BackGroundForm = styled.div`
 `;
 
 export const FormCont = styled.div`
-  width: 80%;
+  width: 90%;
   display: flex;
   border-style: solid;
   border-color: grey;
@@ -53,6 +53,7 @@ export const InputsCont = styled.div`
   margin-left: 2.3%;
   display: flex;
   z-index: 4;
+  padding-bottom:1%;
   @media (max-width: 450px) {
     width: 95%;
     flex-direction: column;
@@ -65,7 +66,6 @@ export const InputsCont = styled.div`
 `;
 
 export const Input = styled.input`
-  padding: 1%;
   background-color: rgb(190, 190, 190);
   padding: 1.5%;
   border-radius: 1vw;
