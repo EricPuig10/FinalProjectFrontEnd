@@ -1,6 +1,8 @@
 import { Input } from "@mui/material";
 import { useEffect } from "react";
 import { useState } from "react";
+import { bootcampsService } from "../../services/bootcampsService";
+import { candidatsService } from "../../services/candidatsService";
 import {
   BackGroundForm,
   CloseBtn,
@@ -12,7 +14,32 @@ import {
 
 export const FormCandidat = (props) => {
   const [newCandidat, setNewCandidat] = useState(props.candidatToEdit);
+  const [bootcamps, setBootcamps] = useState([]);
+  const [candidats, setCandidats] = useState([]);
   const [isEditMode] = useState(props.isEditMode);
+
+  useEffect(() => {
+    getAllBootcamps();
+    getAllCandidats();
+  }, []);
+
+  const getAllBootcamps = () => {
+    bootcampsService.getAllBootcamps().then((res) => {
+      setBootcamps(res);
+    });
+  };
+
+  const getAllCandidats = () => {
+    candidatsService.getAllCandidats().then((res) => {
+      setCandidats(res);
+    });
+  };
+
+  // const getAllProcess = () => {
+  //   processService.getAllProcess().then((res) => {
+  //     setProcess(res);
+  //   });
+  // };
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
@@ -145,17 +172,22 @@ export const FormCandidat = (props) => {
                 name="laboralsituation"
                 placeholder="Add laboralsituation..."
               ></Input>
+              <select name="bootcamp" value={newCandidat.bootcamp.bootcampName} onChange={onInputChange} >
+                {bootcamps.map((bootcamp, index) => (
+                  <option key={index}>{bootcamp.bootcampName}</option>
+                ))}
+              </select>
               {/* <Input
                 onChange={onInputChange}
                 aria-label="bootcamp"
-                value={newCandidat.bootcamp}
+                value={newCandidat.bootcamp.bootcampName}
                 name="bootcamp"
                 placeholder="Add bootcamp..."
               ></Input>
-                       <Input
+              <Input
                 onChange={onInputChange}
                 aria-label="processState"
-                value={newCandidat.processState}
+                value={newCandidat.processState.name}
                 name="processState"
                 placeholder="Add processState..."
               ></Input> */}
