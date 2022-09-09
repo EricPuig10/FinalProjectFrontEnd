@@ -58,7 +58,7 @@ export function FormBootcamp ( props, {showForm, bootcamp } ) {
       bootcamp: {
         id: "",
         bootcampName: "",
-        type: "",
+        category: "",
         duration: "",
         characteristics: "",
         isPresential: "",
@@ -113,11 +113,11 @@ export function FormBootcamp ( props, {showForm, bootcamp } ) {
 
               <Input
                 onChange={onInputChange}
-                value={newBootcamp.type}
-                aria-label="type"
-                name="type"
+                value={newBootcamp.category}
+                aria-label="category"
+                name="category"
                 type="text"
-                placeholder="Type of bootcamp"
+                placeholder="Category of bootcamp"
               ></Input>
 
               <Input

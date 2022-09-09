@@ -9,7 +9,7 @@ import { FormBootcamp } from "../formCandidat/FormBootcamp";
 const initialBootcamp = {
   id: "",
   bootcampName: "",
-  type: "",
+  category: "",
   duration: "",
   characteristics: "",
   isPresential: "",
@@ -32,13 +32,13 @@ export function BootcampTable () {
     });
   };
 
-  const getBootcampById = (id) => {
-    bootcampsService.getBootcampById(id).then((res => {
-      if(res) {
-        setNewBootcamp(res);
-      }
-    }))
-  };
+  // const getBootcampById = (id) => {
+  //   bootcampsService.getBootcampById(id).then((res => {
+  //     if(res) {
+  //       setNewBootcamp(res);
+  //     }
+  //   }))
+  // };
 
   const addNewBootcamp = (data) => {
     bootcampsService.addBootcamp(data).then((res) => {
@@ -86,26 +86,29 @@ export function BootcampTable () {
     },
     { field: "id", headerName: "ID", width: 90 },
     { field: "bootcampName", headerName: "Name", width: 130 },
-    { field: "type", headerName: "Type", width: 130 },
+    { field: "category", headerName: "Category", width: 130 },
     { field: "duration", headerName: "Duration", width: 130 },
     { field: "characteristics", headerName: "Characteristics", width: 130 },
     { field: "isPresential", headerName: "is Presential", width: 130 },
   ];
  
-  // ATENCIÓ: Aquesta funció no esborra ni l'1 ni el 2 però el 3 sí!!!!
   const deleteBootcamp = (id) => {
-    // let bootcampToDelete = bootcamps.filter((bootcamp) => bootcamp.id === id);
-    // let deleteConfirmed = window.confirm(`Confirm to delete ${bootcampToDelete.name} from the list`);
-    // console.log(bootcampToDelete.name)
-    // if (!deleteConfirmed) return;
-    bootcampsService.deleteBootcamp(id)
-    .then((res) => {
-      console.log(id)
-      if (res) {
-        getAllBootcamps();
+    let bootcampToDelete = bootcamps.filter((bootcamp) => bootcamp.id === id);
+    let deleteConfirmed = window.confirm(`Confirm to delete ${bootcampToDelete[0].bootcampName} from the list`);
+    if (!deleteConfirmed) return;
+    let filterBootcamps = bootcamps.filter((bootcamp) => bootcamp.id !== id);
+   
+    bootcampsService.deleteBootcamp(id).then((res) => {
+      if (!res) return;
+      if (res.error) {
+        console.log(res.error);
+
+        return;
       }
+      setBootcamps(filterBootcamps);
     });
   };
+
 
   const showForm = () => {
     console.log("hola")
