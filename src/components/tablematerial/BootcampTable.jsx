@@ -4,19 +4,20 @@ import { useState } from "react";
 import { bootcampsService } from "../../services/bootcampsService";
 import { useEffect } from "react";
 import { BtnAdd, CtTabBut, TableButton } from "./DataTable.styled";
-import { FormCandidat } from "../formCandidat/FormCandidat";
+import { FormBootcamp } from "../formCandidat/FormBootcamp";
 
 const initialBootcamp = {
   id: "",
   bootcampName: "",
-  type: "",
+  category: "",
   duration: "",
   characteristics: "",
-  isPresential: "",
+  presential: "",
 };
 
-export const BootcampTable = () => {
+export function BootcampTable () {
   const [bootcamps, setBootcamps] = useState([]);
+  const [newBootcamp, setNewBootcamp] = useState({});
   const [isShowForm, setIsShowForm] = useState(false);
   const [bootcampToEdit, setBootcampToEdit] = useState(initialBootcamp);
   const [isEditMode, setIsEditMode] = useState(false);
@@ -31,6 +32,21 @@ export const BootcampTable = () => {
     });
   };
 
+  // const getBootcampById = (id) => {
+  //   bootcampsService.getBootcampById(id).then((res => {
+  //     if(res) {
+  //       setNewBootcamp(res);
+  //     }
+  //   }))
+  // };
+
+  const addNewBootcamp = (data) => {
+    bootcampsService.addBootcamp(data).then((res) => {
+      setBootcamps([...bootcamps, res]);
+    });
+    setIsShowForm(false);
+  };
+
   const columns = [
     {
       field: "Actions",
@@ -42,23 +58,24 @@ export const BootcampTable = () => {
                 variant="contained"
                 color="primary"
                 onClick={() => {
-                  // editCandidat(cellValues.row.id);
-                }}
-              >
-                <i className="fa-regular fa-pen-to-square fa-lg"></i>
+                  editBootcamp(cellValues.row.id);
+                }}>
+              <i className="fa-regular fa-pen-to-square fa-lg"></i>
               </TableButton>
 
               <TableButton
                 variant="contained"
                 color="primary"
-                onClick={() => deleteBootcamp(cellValues.row.id)}
-              >
+                onClick={() => {
+                  deleteBootcamp(cellValues.row.id);
+                }}>
                 <i className="fa-regular fa-trash-can fa-lg"></i>
               </TableButton>
+              
               <TableButton
                 variant="contained"
                 color="primary"
-                // onClick={() => deleteCandidat(cellValues.row.id)}
+                // onClick={() => printBootcamp(cellValues.row.id)}
               >
                 <i className="fa-regular fa-file fa-lg"></i>
               </TableButton>
@@ -69,27 +86,18 @@ export const BootcampTable = () => {
     },
     { field: "id", headerName: "ID", width: 90 },
     { field: "bootcampName", headerName: "Name", width: 130 },
-    { field: "type", headerName: "Type", width: 130 },
+    { field: "category", headerName: "Category", width: 130 },
     { field: "duration", headerName: "Duration", width: 130 },
     { field: "characteristics", headerName: "Characteristics", width: 130 },
-    { field: "isPresential", headerName: "is Presential", width: 130 },
+    { field: "presential", headerName: "is Presential", width: 130 },
   ];
-
-  const addNewBootcamp = (data) => {
-    bootcampsService.addBootcamp(data).then((res) => {
-      setBootcamps([...bootcamps, res]);
-    });
-    setIsShowForm(false);
-  };
-
+ 
   const deleteBootcamp = (id) => {
     let bootcampToDelete = bootcamps.filter((bootcamp) => bootcamp.id === id);
-    let deleteConfirmed = window.confirm(
-      `Really remove ${bootcampToDelete[0].id} from the list?`
-    );
+    let deleteConfirmed = window.confirm(`Confirm to delete ${bootcampToDelete[0].bootcampName} from the list`);
     if (!deleteConfirmed) return;
     let filterBootcamps = bootcamps.filter((bootcamp) => bootcamp.id !== id);
-
+   
     bootcampsService.deleteBootcamp(id).then((res) => {
       if (!res) return;
       if (res.error) {
@@ -101,7 +109,9 @@ export const BootcampTable = () => {
     });
   };
 
+
   const showForm = () => {
+    console.log("hola")
     if (isShowForm) setIsShowForm(false);
     else setIsShowForm(true);
     resetInputsForm();
@@ -114,7 +124,6 @@ export const BootcampTable = () => {
     });
   };
 
-  // eslint-disable-next-line
   const editBootcamp = (id) => {
     showForm();
     let bootcampToEdit = bootcamps.find((bootcamp) => bootcamp.id === id);
@@ -129,13 +138,13 @@ export const BootcampTable = () => {
       getAllBootcamps();
     });
     showForm();
-    getAllBootcamps();
+
   };
 
   return (
     <>
       {isShowForm ? (
-        <FormCandidat
+        <FormBootcamp
           addNewBootcamp={addNewBootcamp}
           bootcampToEdit={bootcampToEdit}
           updateBootcamp={updateBootcamp}
@@ -167,4 +176,7 @@ export const BootcampTable = () => {
       </BtnAdd>
     </>
   );
-};
+}
+
+export default BootcampTable;
+

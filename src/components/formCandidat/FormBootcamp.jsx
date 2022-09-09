@@ -12,8 +12,8 @@ import {
   SubmitBtnForm,
 } from "./Form.styled";
 
-export const FormCandidat = (props) => {
-  const [newCandidat, setNewCandidat] = useState(props.candidatToEdit);
+export function FormBootcamp ( props ) {
+  const [newBootcamp, setNewBootcamp] = useState(props.bootcampToEdit);
   const [bootcamps, setBootcamps] = useState([]);
   const [candidats, setCandidats] = useState([]);
   const [isEditMode] = useState(props.isEditMode);
@@ -44,30 +44,24 @@ export const FormCandidat = (props) => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
-    if (newCandidat.name.length > 0) {
+    if (newBootcamp.bootcampName.length > 0) {
       !isEditMode
-        ? props.addNewCandidat(newCandidat)
-        : props.updateCandidat(newCandidat);
+        ? props.addNewBootcamp(newBootcamp)
+        : props.updateBootcamp(newBootcamp);
     }
 
     resetInputsForm();
   };
 
   const resetInputsForm = (e) => {
-    setNewCandidat({
-      candidat: {
+    setNewBootcamp({
+      bootcamp: {
         id: "",
-        name: "",
-        lastname: "",
-        secondlastname: "",
-        email: "",
-        phone: "",
-        age: "",
-        gender: "",
-        nationality: "",
-        laboralsituation: "",
-        bootcamp: "",
-        processState: "",
+        bootcampName: "",
+        category: "",
+        duration: "",
+        characteristics: "",
+        presential: "",
       },
     });
   };
@@ -75,15 +69,17 @@ export const FormCandidat = (props) => {
   const onInputChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    setNewCandidat({ ...newCandidat, [name]: value });
+    setNewBootcamp({ ...newBootcamp, [name]: value });
   };
 
+  // funció per tancar el formulari modal amb la tecla ESC
   const closeOnEscapeKeyDown = (e) => {
     if ((e.charCode || e.keyCode) === 27) {
       props.showForm();
     }
   };
 
+  // quan es monta el dom prepara un event-listener perquè quan apretem la tecla ESC executi la funció
   useEffect(
     () => {
       document.body.addEventListener("keydown", closeOnEscapeKeyDown);
@@ -94,6 +90,7 @@ export const FormCandidat = (props) => {
     // eslint-disable-next-line
     []
   );
+
   return (
     <div>
       <BackGroundForm onClick={() => props.showForm()}></BackGroundForm>
@@ -107,76 +104,47 @@ export const FormCandidat = (props) => {
             <InputsCont>
               <Input
                 onChange={onInputChange}
-                value={newCandidat.name}
+                value={newBootcamp.bootcampName}
                 aria-label="name"
-                name="name"
+                name="bootcampName"
                 type="text"
-                placeholder="Name..."
+                placeholder="Name of bootcamp"
               ></Input>
 
               <Input
                 onChange={onInputChange}
-                value={newCandidat.lastname}
-                aria-label="lastname"
-                name="lastname"
+                value={newBootcamp.category}
+                aria-label="category"
+                name="category"
                 type="text"
-                placeholder="Lastname..."
+                placeholder="Category of bootcamp"
               ></Input>
+
               <Input
                 onChange={onInputChange}
-                value={newCandidat.secondlastname}
-                aria-label="secondlastname"
-                name="secondlastname"
+                value={newBootcamp.duration}
+                aria-label="duration"
+                name="duration"
                 type="text"
-                placeholder="Second lastname..."
+                placeholder="Duration"
               ></Input>
+              
               <Input
                 onChange={onInputChange}
-                aria-label="email"
-                value={newCandidat.email}
-                name="email"
-                placeholder="Add email..."
+                aria-label="characteristics"
+                value={newBootcamp.characteristics}
+                name="characteristics"
+                placeholder="characteristics of bootcamp"
               ></Input>
+              
               <Input
                 onChange={onInputChange}
-                aria-label="phone"
-                value={newCandidat.phone}
-                name="phone"
-                placeholder="Add phone..."
+                aria-label="isPresential"
+                value={newBootcamp.presential}
+                name="presential"
+                placeholder="is it presential?"
               ></Input>
-              <Input
-                onChange={onInputChange}
-                aria-label="age"
-                value={newCandidat.age}
-                name="age"
-                placeholder="Add age..."
-              ></Input>
-              <Input
-                onChange={onInputChange}
-                aria-label="gender"
-                value={newCandidat.gender}
-                name="gender"
-                placeholder="Add gender..."
-              ></Input>
-              <Input
-                onChange={onInputChange}
-                aria-label="nationality"
-                value={newCandidat.nationality}
-                name="nationality"
-                placeholder="Add nationality..."
-              ></Input>
-              <Input
-                onChange={onInputChange}
-                aria-label="laboralsituation"
-                value={newCandidat.laboralsituation}
-                name="laboralsituation"
-                placeholder="Add laboralsituation..."
-              ></Input>
-              <select name="bootcamp" value={newCandidat.bootcamp.bootcampName} onChange={onInputChange} >
-                {bootcamps.map((bootcamp, index) => (
-                  <option key={index}>{bootcamp.bootcampName}</option>
-                ))}
-              </select>
+
               {/* <Input
                 onChange={onInputChange}
                 aria-label="bootcamp"
@@ -214,3 +182,5 @@ export const FormCandidat = (props) => {
     </div>
   );
 };
+
+export default FormBootcamp

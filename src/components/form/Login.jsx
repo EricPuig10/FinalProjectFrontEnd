@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { authService } from "../../services/authService";
 import { localAuthService } from "../../services/localAuthService";
 import {
@@ -48,6 +48,13 @@ export const Login = () => {
     });
   };
 
+  // const logout = () =>{
+  //   authService.logout();
+  // }
+
+  // useEffect(() => {
+  //   logout();
+  // }, []);
   return (
     <CtForm>
       <Form>
