@@ -25,7 +25,6 @@ export const FormCont = styled.div`
   border-style: solid;
   border-color: grey;
   padding: 2%;
-  border-radius: 2vw;
   justify-content: center;
   position: fixed;
   left: 9%;
@@ -70,7 +69,6 @@ export const InputsCont = styled.div`
 export const Input = styled.input`
   background-color: rgb(190, 190, 190);
   padding: 0.9%;
-  border-radius: 1vw;
   border-style: solid;
   border-color: white;
   font-size: 0.9em;
