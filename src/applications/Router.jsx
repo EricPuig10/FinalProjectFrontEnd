@@ -1,7 +1,9 @@
 import React from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { Detail } from "../components/detail/Detail";
 import { BootcampDashboardPage } from "../pages/BootcampDashboardPage";
 import { DashboardPage } from "../pages/DashboardPage";
+import { DetailPage } from "../pages/DetailPage";
 import { HomePage } from "../pages/HomePage";
 import { LoginPage } from "../pages/LoginPage";
 
@@ -45,6 +47,14 @@ export default function Router() {
           element={
             <AuthCrud>
               <BootcampDashboardPage />
+            </AuthCrud>
+          }
+        />
+        <Route
+          path="/candidats/:id"
+          element={
+            <AuthCrud>
+              <DetailPage />
             </AuthCrud>
           }
         />
