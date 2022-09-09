@@ -173,25 +173,25 @@ export const FormCandidat = (props) => {
                 name="laboralsituation"
                 placeholder="Add laboralsituation..."
               ></Input>
-              <select name="bootcamp" value={newCandidat.bootcamp.bootcampName} onChange={onInputChange} >
+              {/* <select name="bootcamp" value={newCandidat.bootcamp.bootcampName} onChange={onInputChange} >
                 {bootcamps.map((bootcamp, index) => (
                   <option key={index}>{bootcamp.bootcampName}</option>
                 ))}
-              </select>
-              {/* <Input
+              </select> */}
+              <Input
                 onChange={onInputChange}
                 aria-label="bootcamp"
-                value={newCandidat.bootcamp.bootcampName}
+                value={newCandidat.bootcamp}
                 name="bootcamp"
                 placeholder="Add bootcamp..."
               ></Input>
               <Input
                 onChange={onInputChange}
                 aria-label="processState"
-                value={newCandidat.processState.name}
+                value={newCandidat.processState}
                 name="processState"
                 placeholder="Add processState..."
-              ></Input> */}
+              ></Input>
 
               {isEditMode ? (
                 <SubmitBtnForm type="submit" className="submitBtn">

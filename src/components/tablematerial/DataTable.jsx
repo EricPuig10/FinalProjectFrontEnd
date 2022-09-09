@@ -17,8 +17,8 @@ const initialCandidat = {
   gender: "",
   nationality: "",
   laboralsituation: "",
-  bootcamp: { bootcampName: "", id: "" },
-  processState: { name: "", id: "" },
+  bootcamp: "",
+  processState: "",
 };
 
 export const DataTable = () => {
