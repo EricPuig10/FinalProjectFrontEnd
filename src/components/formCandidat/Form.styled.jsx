@@ -29,7 +29,7 @@ export const FormCont = styled.div`
   justify-content: center;
   position: fixed;
   left: 9%;
-  top: 14%;
+  top: 12%;
   background-color: white;
   z-index: 300;
   animation: ${moveDivUpToDown} 2s;

@@ -1,4 +1,4 @@
-import { Input } from "@mui/material";
+
 import { useEffect } from "react";
 import { useState } from "react";
 import { bootcampsService } from "../../services/bootcampsService";
@@ -8,6 +8,7 @@ import {
   CloseBtn,
   CloseCont,
   FormCont,
+  Input,
   InputsCont,
   SubmitBtnForm,
 } from "./Form.styled";
