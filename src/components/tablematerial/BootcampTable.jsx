@@ -12,7 +12,7 @@ const initialBootcamp = {
   category: "",
   duration: "",
   characteristics: "",
-  isPresential: "",
+  presential: "",
 };
 
 export function BootcampTable () {
@@ -89,7 +89,7 @@ export function BootcampTable () {
     { field: "category", headerName: "Category", width: 130 },
     { field: "duration", headerName: "Duration", width: 130 },
     { field: "characteristics", headerName: "Characteristics", width: 130 },
-    { field: "isPresential", headerName: "is Presential", width: 130 },
+    { field: "presential", headerName: "is Presential", width: 130 },
   ];
  
   const deleteBootcamp = (id) => {
@@ -138,7 +138,7 @@ export function BootcampTable () {
       getAllBootcamps();
     });
     showForm();
-    getAllBootcamps();
+
   };
 
   return (

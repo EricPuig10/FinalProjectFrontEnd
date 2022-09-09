@@ -12,7 +12,7 @@ import {
   SubmitBtnForm,
 } from "./Form.styled";
 
-export function FormBootcamp ( props, {showForm, bootcamp } ) {
+export function FormBootcamp ( props ) {
   const [newBootcamp, setNewBootcamp] = useState(props.bootcampToEdit);
   const [bootcamps, setBootcamps] = useState([]);
   const [candidats, setCandidats] = useState([]);
@@ -44,7 +44,7 @@ export function FormBootcamp ( props, {showForm, bootcamp } ) {
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
-    if (newBootcamp.name.length > 0) {
+    if (newBootcamp.bootcampName.length > 0) {
       !isEditMode
         ? props.addNewBootcamp(newBootcamp)
         : props.updateBootcamp(newBootcamp);
@@ -61,7 +61,7 @@ export function FormBootcamp ( props, {showForm, bootcamp } ) {
         category: "",
         duration: "",
         characteristics: "",
-        isPresential: "",
+        presential: "",
       },
     });
   };
@@ -106,7 +106,7 @@ export function FormBootcamp ( props, {showForm, bootcamp } ) {
                 onChange={onInputChange}
                 value={newBootcamp.bootcampName}
                 aria-label="name"
-                name="name"
+                name="bootcampName"
                 type="text"
                 placeholder="Name of bootcamp"
               ></Input>
@@ -141,16 +141,10 @@ export function FormBootcamp ( props, {showForm, bootcamp } ) {
                 onChange={onInputChange}
                 aria-label="isPresential"
                 value={newBootcamp.presential}
-                name="isPresential"
+                name="presential"
                 placeholder="is it presential?"
               ></Input>
-                                         
 
-              <select name="bootcamp" value={newBootcamp.bootcamp.bootcampName} onChange={onInputChange} >
-                {bootcamps.map((bootcamp, index) => (
-                  <option key={index}>{bootcamp.bootcampName}</option>
-                ))}
-              </select>
               {/* <Input
                 onChange={onInputChange}
                 aria-label="bootcamp"
