@@ -5,7 +5,7 @@ export const HomeDiv = styled.div`
   position: absolute;
   left: 0%;
   width: 90%;
-  height: 100%;
+  height: 90%;
   margin-left: 10%;
 `;
 export const DivImgHome = styled.div`

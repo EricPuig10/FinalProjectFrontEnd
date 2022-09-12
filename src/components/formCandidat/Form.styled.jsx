@@ -25,10 +25,9 @@ export const FormCont = styled.div`
   border-style: solid;
   border-color: grey;
   padding: 2%;
-  border-radius: 2vw;
   justify-content: center;
   position: fixed;
-  left: 8%;
+  left: 9%;
   top: 12%;
   background-color: white;
   z-index: 300;
@@ -53,7 +52,9 @@ export const InputsCont = styled.div`
   margin-left: 2.3%;
   display: flex;
   z-index: 4;
-  padding-bottom:1%;
+  padding-top: 2.2%;
+  padding-bottom:2.2%;
+  align-items: center;
   @media (max-width: 450px) {
     width: 95%;
     flex-direction: column;
@@ -67,14 +68,13 @@ export const InputsCont = styled.div`
 
 export const Input = styled.input`
   background-color: rgb(190, 190, 190);
-  padding: 1.5%;
-  border-radius: 1vw;
+  padding: 0.9%;
   border-style: solid;
   border-color: white;
   font-size: 0.9em;
-  width: 60%;
+  width: 80%;
   color: black;
-  margin-bottom: 2%;
+  margin-bottom: 1%;
   @media (max-width: 450px) {
     padding: 3%;
     margin-bottom: 2%;
@@ -112,6 +112,7 @@ export const SubmitBtnForm = styled.button`
   position: absolute;
   top: 90%;
   left: 92%;
+  cursor: pointer;
   &:hover {
     color: grey;
   }
@@ -148,6 +149,7 @@ export const CloseBtn = styled.button`
   position: absolute;
   top: -2%;
   left: 90%;
+  cursor: pointer;
   &:hover {
     color: grey;
   }

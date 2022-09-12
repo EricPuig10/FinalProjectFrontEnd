@@ -5,6 +5,8 @@ import { candidatsService } from "../../services/candidatsService";
 import { useEffect } from "react";
 import { BtnAdd, CtTabBut, TableButton } from "./DataTable.styled";
 import { FormCandidat } from "../formCandidat/FormCandidat";
+import { Detail } from "../detail/Detail";
+import { Link, useNavigate } from "react-router-dom";
 
 const initialCandidat = {
   id: "",
@@ -17,8 +19,8 @@ const initialCandidat = {
   gender: "",
   nationality: "",
   laboralsituation: "",
-  bootcamp: { bootcampName: "", id: "" },
-  processState: { name: "", id: "" },
+  bootcamp: "",
+  processState: "",
 };
 
 export const DataTable = () => {
@@ -26,6 +28,8 @@ export const DataTable = () => {
   const [isShowForm, setIsShowForm] = useState(false);
   const [candidatToEdit, setCandidatToEdit] = useState(initialCandidat);
   const [isEditMode, setIsEditMode] = useState(false);
+
+  let navigate = useNavigate();
 
   useEffect(() => {
     getAllCandidats();
@@ -36,6 +40,7 @@ export const DataTable = () => {
       setCandidats(res);
     });
   };
+
 
   const columns = [
     {
@@ -61,6 +66,7 @@ export const DataTable = () => {
               >
                 <i className="fa-regular fa-trash-can fa-lg"></i>
               </TableButton>
+              <Link to={`/candidats/${cellValues.row.id}`}>
               <TableButton
                 variant="contained"
                 color="primary"
@@ -68,6 +74,7 @@ export const DataTable = () => {
               >
                 <i className="fa-regular fa-file fa-lg"></i>
               </TableButton>
+              </Link>
             </CtTabBut>
           </>
         );
@@ -93,7 +100,7 @@ export const DataTable = () => {
       width: 130,
       renderCell: (params) => {
         return (
-          <div className="rowitem">{params.row.bootcamp.bootcampName}</div>
+          <div className="rowitem" >{params.row.bootcamp.bootcampName}</div>
         );
       },
     },
@@ -102,9 +109,7 @@ export const DataTable = () => {
       headerName: "Process State",
       width: 130,
       renderCell: (params) => {
-        return (
-          <div className="rowitem">{params.row.processState.name}</div>
-        );
+        return <div className="rowitem">{params.row.processState.name}</div>;
       },
     },
 

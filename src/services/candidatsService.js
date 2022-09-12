@@ -17,6 +17,13 @@ export const candidatsService = {
     return candidats;
   },
 
+  getCandidatById(id) {
+    const candidat = axios
+    .get(baseURL + "/candidats/" + id)
+    .then((res) => res.data)
+    return candidat;
+  },
+
   getCandidatsByBootcampId(id) {
     const candidatsByBootcamp = axios
       .get(baseURL + "/bootcamps/" + id + "/candidats")
