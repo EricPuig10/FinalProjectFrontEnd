@@ -65,7 +65,7 @@ width: 20px;
 
 &:hover {
   position: absolute;
-  display: block;
+  display: flex;
   color: white;
   top:70%;
   left:30%;

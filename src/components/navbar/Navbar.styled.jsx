@@ -26,7 +26,7 @@ export const DivLogo = styled.div`
   }
 `;
 
-export const Logo = styled.h1`
+export const Logo = styled.h3`
   width: 100%;
   height: 100%;
   display: flex;
