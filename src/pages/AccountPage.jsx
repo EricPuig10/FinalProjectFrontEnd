@@ -15,10 +15,9 @@ export const AccountPage = () => {
         <Sidebar />
       </div>
 
-      <DetailDiv>
+      
         {/* <AccountProfile /> */}
         <AccountProfileDetails />
-      </DetailDiv>
     </>
   );
 };

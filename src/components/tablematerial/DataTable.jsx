@@ -7,6 +7,7 @@ import { BtnAdd, CtTabBut, TableButton } from "./DataTable.styled";
 import { FormCandidat } from "../formCandidat/FormCandidat";
 import { Detail } from "../detail/Detail";
 import { Link, useNavigate } from "react-router-dom";
+import { AccountProfileDetails } from "../account/account-profile-details";
 
 const initialCandidat = {
   id: "",
@@ -190,7 +191,7 @@ export const DataTable = () => {
   return (
     <>
       {isShowForm ? (
-        <FormCandidat
+        <AccountProfileDetails
           addNewCandidat={addNewCandidat}
           candidatToEdit={candidatToEdit}
           updateCandidat={updateCandidat}
