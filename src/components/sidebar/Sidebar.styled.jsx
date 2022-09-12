@@ -32,6 +32,7 @@ export const Logo = styled.img`
 `;
 
 export const CtButton = styled.div`
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -49,11 +50,30 @@ export const Icon = styled.button`
   margin-bottom: 3%;
   font-size: 0.8em;
   cursor: pointer;
+  
 
   &:hover {
     color: #cecaca;
   }
 `;
+export const Texthiden = styled.p `
+position: absolute;
+color:#ff4700;
+font-size: 10%;
+height: 10px;
+width: 20px;
+
+&:hover {
+  position: absolute;
+  display: block;
+  color: white;
+  top:70%;
+  left:30%;
+  font-size: 1em;
+  text-align: center;
+}
+`
+
 
 export const Txt = styled.p`
   color: white;
