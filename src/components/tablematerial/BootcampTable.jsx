@@ -15,7 +15,7 @@ const initialBootcamp = {
   presential: "",
 };
 
-export function BootcampTable () {
+export function BootcampTable() {
   const [bootcamps, setBootcamps] = useState([]);
   const [newBootcamp, setNewBootcamp] = useState({});
   const [isShowForm, setIsShowForm] = useState(false);
@@ -59,8 +59,9 @@ export function BootcampTable () {
                 color="primary"
                 onClick={() => {
                   editBootcamp(cellValues.row.id);
-                }}>
-              <i className="fa-regular fa-pen-to-square fa-lg"></i>
+                }}
+              >
+                <i className="fa-regular fa-pen-to-square fa-lg"></i>
               </TableButton>
 
               <TableButton
@@ -68,10 +69,11 @@ export function BootcampTable () {
                 color="primary"
                 onClick={() => {
                   deleteBootcamp(cellValues.row.id);
-                }}>
+                }}
+              >
                 <i className="fa-regular fa-trash-can fa-lg"></i>
               </TableButton>
-              
+
               <TableButton
                 variant="contained"
                 color="primary"
@@ -86,18 +88,29 @@ export function BootcampTable () {
     },
     { field: "id", headerName: "ID", width: 90 },
     { field: "bootcampName", headerName: "Name", width: 130 },
-    { field: "category", headerName: "Category", width: 130 },
+    {
+      field: "category",
+      headerName: "Category",
+      width: 130,
+      renderCell: (params) => {
+        return (
+          <div className="rowitem">{params.row.category.name}</div>
+        );
+      },
+    },
     { field: "duration", headerName: "Duration", width: 130 },
     { field: "characteristics", headerName: "Characteristics", width: 130 },
     { field: "presential", headerName: "is Presential", width: 130 },
   ];
- 
+
   const deleteBootcamp = (id) => {
     let bootcampToDelete = bootcamps.filter((bootcamp) => bootcamp.id === id);
-    let deleteConfirmed = window.confirm(`Confirm to delete ${bootcampToDelete[0].bootcampName} from the list`);
+    let deleteConfirmed = window.confirm(
+      `Confirm to delete ${bootcampToDelete[0].bootcampName} from the list`
+    );
     if (!deleteConfirmed) return;
     let filterBootcamps = bootcamps.filter((bootcamp) => bootcamp.id !== id);
-   
+
     bootcampsService.deleteBootcamp(id).then((res) => {
       if (!res) return;
       if (res.error) {
@@ -109,9 +122,7 @@ export function BootcampTable () {
     });
   };
 
-
   const showForm = () => {
-    console.log("hola")
     if (isShowForm) setIsShowForm(false);
     else setIsShowForm(true);
     resetInputsForm();
@@ -138,7 +149,6 @@ export function BootcampTable () {
       getAllBootcamps();
     });
     showForm();
-
   };
 
   return (
@@ -179,4 +189,3 @@ export function BootcampTable () {
 }
 
 export default BootcampTable;
-

@@ -161,9 +161,9 @@ export const Detail = () => {
               <i className="fa-solid fa-print fa-2xl"></i>
             </DetailButton>
 
-            <DetailButton>
+            {/* <DetailButton>
               <i className="fa-solid fa-share-nodes fa-2xl"></i>
-            </DetailButton>
+            </DetailButton> */}
           </DivButtonsDetail>
         </BasicInfoDiv>
       </Div>

@@ -27,6 +27,7 @@ export function FormBootcamp ( props ) {
   const getAllBootcamps = () => {
     bootcampsService.getAllBootcamps().then((res) => {
       setBootcamps(res);
+      
     });
   };
 
@@ -66,6 +67,7 @@ export function FormBootcamp ( props ) {
       },
     });
   };
+  console.log(newBootcamp.category)
 
   const onInputChange = (e) => {
     const name = e.target.name;
@@ -114,7 +116,7 @@ export function FormBootcamp ( props ) {
 
               <Input
                 onChange={onInputChange}
-                value={newBootcamp.category}
+                value={newBootcamp.category.name}
                 aria-label="category"
                 name="category"
                 type="text"
