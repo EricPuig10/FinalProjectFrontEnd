@@ -116,7 +116,7 @@ export function FormBootcamp ( props ) {
 
               <Input
                 onChange={onInputChange}
-                value={newBootcamp.category.name}
+                value={newBootcamp.category}
                 aria-label="category"
                 name="category"
                 type="text"

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const CtSidebar = styled.div`
   box-sizing: border-box;
-  position: absolute;
+  position: fixed;
   top: 0%;
   left: 0%;
   z-index: 0;

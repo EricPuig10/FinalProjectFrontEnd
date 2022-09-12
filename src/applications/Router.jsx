@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Detail } from "../components/detail/Detail";
+import {AccountPage} from "../pages/AccountPage";
 import { BootcampDashboardPage } from "../pages/BootcampDashboardPage";
 import { DashboardPage } from "../pages/DashboardPage";
 import { DetailPage } from "../pages/DetailPage";
@@ -54,7 +55,7 @@ export default function Router() {
           path="/candidats/:id"
           element={
             <AuthCrud>
-              <DetailPage />
+              <AccountPage />
             </AuthCrud>
           }
         />

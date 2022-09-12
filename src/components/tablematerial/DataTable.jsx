@@ -16,11 +16,24 @@ const initialCandidat = {
   email: "",
   phone: "",
   age: "",
+  degree: "",
+  date: "",
+  superpower: "",
+  direction: "",
+  english: "",
+  formation: "",
+  reached: "",
+  spirit: "",
+  motivation: "",
   gender: "",
   nationality: "",
   laboralsituation: "",
   bootcamp: "",
   processState: "",
+  sololearnprogress: "",
+  codeacademyprogress: "",
+  assistedtoinformativesession: "",
+  img: "",
 };
 
 export const DataTable = () => {
@@ -40,7 +53,6 @@ export const DataTable = () => {
       setCandidats(res);
     });
   };
-
 
   const columns = [
     {
@@ -67,13 +79,13 @@ export const DataTable = () => {
                 <i className="fa-regular fa-trash-can fa-lg"></i>
               </TableButton>
               <Link to={`/candidats/${cellValues.row.id}`}>
-              <TableButton
-                variant="contained"
-                color="primary"
-                // onClick={() => deleteCandidat(cellValues.row.id)}
-              >
-                <i className="fa-regular fa-file fa-lg"></i>
-              </TableButton>
+                <TableButton
+                  variant="contained"
+                  color="primary"
+                  // onClick={() => deleteCandidat(cellValues.row.id)}
+                >
+                  <i className="fa-regular fa-file fa-lg"></i>
+                </TableButton>
               </Link>
             </CtTabBut>
           </>
@@ -100,7 +112,7 @@ export const DataTable = () => {
       width: 130,
       renderCell: (params) => {
         return (
-          <div className="rowitem" >{params.row.bootcamp.bootcampName}</div>
+          <div className="rowitem">{params.row.bootcamp.bootcampName}</div>
         );
       },
     },
@@ -128,7 +140,7 @@ export const DataTable = () => {
   const deleteCandidat = (id) => {
     let candidatToDelete = candidats.filter((candidat) => candidat.id === id);
     let deleteConfirmed = window.confirm(
-      `Really remove ${candidatToDelete[0].id} from the list?`
+      `Really remove ${candidatToDelete[0].name} from the list?`
     );
     if (!deleteConfirmed) return;
     let filterCandidats = candidats.filter((candidat) => candidat.id !== id);

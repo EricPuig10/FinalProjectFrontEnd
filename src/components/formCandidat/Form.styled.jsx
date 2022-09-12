@@ -24,14 +24,15 @@ export const FormCont = styled.div`
   display: flex;
   border-style: solid;
   border-color: grey;
-  padding: 2%;
+  padding: 1%;
   justify-content: center;
   position: fixed;
-  left: 9%;
-  top: 12%;
+  left: 8.5%;
+  top: 2%;
   background-color: white;
   z-index: 300;
   animation: ${moveDivUpToDown} 2s;
+  display: flex;
 
   @media (max-width: 450px) {
     width: 94%;
@@ -48,13 +49,13 @@ export const FormCont = styled.div`
 
 export const InputsCont = styled.div`
   width: 100%;
-  flex-direction: column;
   margin-left: 2.3%;
   display: flex;
   z-index: 4;
-  padding-top: 2.2%;
-  padding-bottom:2.2%;
+  /* padding-top: 2.2%;
+  padding-bottom:2.2%; */
   align-items: center;
+  position: relative;
   @media (max-width: 450px) {
     width: 95%;
     flex-direction: column;
@@ -87,13 +88,12 @@ export const Input = styled.input`
 export const TextArea = styled.textarea`
   background-color: rgb(190, 190, 190);
   padding: 2%;
-  border-radius: 1vw;
   border-style: solid;
   border-color: white;
   font-size: 1.2em;
-  max-width: 1000px;
+  max-width: 415px;
   color: black;
-  max-height: 200px;
+  max-height: 70px;
   @media (max-width: 450px) {
     padding: 5%;
     margin-bottom: 5%;
@@ -110,8 +110,8 @@ export const SubmitBtnForm = styled.button`
   border: none;
   border-radius: 50%;
   position: absolute;
-  top: 90%;
-  left: 92%;
+  top: 96%;
+  left: 104%;
   cursor: pointer;
   &:hover {
     color: grey;
@@ -161,3 +161,21 @@ export const CloseBtn = styled.button`
     background-color: transparent;
   }
 `;
+
+export const DivLeft = styled.div`
+width: 50%;
+`
+
+
+export const DivRight = styled.div`
+width: 50%;
+`
+
+export const DivInput = styled.div`
+display:flex;
+flex-direction: column;
+`
+
+export const Label = styled.label`
+font-size: 0.9em;
+`
