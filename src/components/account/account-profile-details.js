@@ -46,15 +46,8 @@ const initialCandidat = {
 
 export const AccountProfileDetails = (props) => {
   const [isEditMode, setIsEditMode] = useState(false);
-  const [values, setValues] = useState({
-    firstName: "Katarina",
-    lastName: "Smith",
-    email: "demo@devias.io",
-    phone: "",
-    state: "Alabama",
-    country: "USA",
-  });
-  const [candidat, setCandidat] = useState(props.candidatToEdit);
+  const [candidat, setCandidat] = useState(initialCandidat);
+  const [candidats, setCandidats] = useState([])
   const [bootcamps, setBootcamps] = useState([
     {
       bootcampName: "",
@@ -64,7 +57,6 @@ export const AccountProfileDetails = (props) => {
       id: "",
     },
   ]);
-  // const [bootcamp, setBootcamp] = useState()
   const [process, setProcess] = useState([{ name: "", id: "" }]);
 
   const { id } = useParams();
@@ -74,9 +66,11 @@ export const AccountProfileDetails = (props) => {
     getById(id);
     getAllBootcamps();
     getAllProcess();
+    editMode();
   }, []);
 
   const getById = (id) => {
+    if (!id) return;
     candidatsService.getCandidatById(id).then((res) => {
       console.log(res);
       setCandidat(res);
@@ -84,10 +78,23 @@ export const AccountProfileDetails = (props) => {
     });
   };
 
+  const editMode = () =>{
+    if (!id) setIsEditMode(false);
+    if (id) setIsEditMode(true)
+  }
+
   const getAllBootcamps = () => {
     bootcampsService.getAllBootcamps().then((res) => {
       console.log(res);
       setBootcamps(res);
+    });
+  };
+
+  
+  const getAllCandidats = () => {
+    candidatsService.getAllCandidats().then((res) => {
+      console.log(res);
+      setCandidats(res);
     });
   };
 
@@ -97,8 +104,6 @@ export const AccountProfileDetails = (props) => {
       setProcess(res);
     });
   };
-
-
 
   const handleChange = (event) => {
     setCandidat({
@@ -112,8 +117,8 @@ export const AccountProfileDetails = (props) => {
 
     if (candidat.name.length > 0) {
       !isEditMode
-        ? props.addNewCandidat(candidat)
-        : props.updateCandidat(candidat);
+        ? addNewCandidat(candidat)
+        : updateCandidat(candidat);
     }
 
     resetInputsForm();
@@ -123,9 +128,26 @@ export const AccountProfileDetails = (props) => {
     setCandidat(initialCandidat);
   };
 
+  const addNewCandidat = (data) => {
+    candidatsService.addCandidat(data).then((res) => {
+      setCandidats([...candidats, res]);
+      navigate("/candidats")
+    });
+  };
+
+  const updateCandidat = (newCandidat) => {
+    candidatsService.updateCandidat(newCandidat).then((res) => {
+      if (!res) return;
+      setCandidat(res);
+      getById(id);
+    });
+    //navigate(("/candidats"))
+    getById(id);
+  };
+
   return (
     <DetailDiv>
-      <form autoComplete="off" noValidate {...props} onSubmit={onSubmitHandler}>
+      <form autoComplete="off" noValidate onSubmit={onSubmitHandler}>
         <Card>
           <CardHeader
             subheader="The information can be edited"
