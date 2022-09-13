@@ -1,23 +1,30 @@
 import styled from "styled-components";
 
-export const DetailDiv = styled.div`
-background-color: white;
-width: 93%;
-/* border: 1px solid red; */
+
+export const CtProfile = styled.div`
+display: flex;
+justify-content: center;
+align-items: center; 
+width: 130%;
 position: absolute;
-top: 9.9%;
-left:7%;
-z-index: 1000;
+top: 15%;
+/* border: 5px solid red; */
+z-index: 100;
+`
+
+export const DetailProfile = styled.div`
+width: 80%;
+align-items: center;
+/* border: 2px solid red; */
 display: flex;
 `
 
-
 export const Div = styled.div`
-
 `
 
 export const BasicInfoDiv = styled.div`
 display: flex;
+width: 100%;
 `
 export const LeftDiv = styled.div`
 display: flex;

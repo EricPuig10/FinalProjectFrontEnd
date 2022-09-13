@@ -9,8 +9,13 @@ function ProfileBootcampPage() {
     <>
 
     <Navbar/>
+    <div>
     <Sidebar/>
+
     <ProfileBootcamp/>
+    </div>
+
+
 
 </>
   )

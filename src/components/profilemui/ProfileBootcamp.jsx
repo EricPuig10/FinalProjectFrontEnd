@@ -1,26 +1,7 @@
 import { Box, Button, Card, CardContent, CardHeader, Divider, Grid, TextField } from '@mui/material'
 import React, { useState } from 'react'
-import { BasicInfoDiv, DetailDiv } from '../detail/Detail.styled'
+import { BasicInfoDiv, DetailProfile, CtProfile } from '../profilemui/Profile.styled'
 
-// const theme = createTheme({
-//     palette: {
-//       primary: {
-//         light: '#ef875e',
-//         main: '#ef875e',
-//         dark: '#ea561d',
-//         contrastText: '#fff',
-//       },
-//       secondary: {
-//         light: '#ff7961',
-//         main: '#f44336',
-//         dark: '#ba000d',
-//         contrastText: '#000',
-//       },
-//     },
-//   });
-  
-//   import { createTheme } from '@mui/material'
-//   import { createTheme } from '@material-ui/core/styles';
 
 const categories = [
     {
@@ -30,10 +11,6 @@ const categories = [
     {
       value: 'Frontend',
       label: 'Front-End'
-    },
-    {
-      value: 'Backend',
-      label: 'Back-End'
     },
     {
       value: 'Blockchain',
@@ -70,7 +47,8 @@ function ProfileBootcamp(props) {
 
 
   return (
-    <DetailDiv>
+    <CtProfile>
+    <DetailProfile>
     <form
       autoComplete="off"
       noValidate
@@ -78,8 +56,8 @@ function ProfileBootcamp(props) {
     >
       <Card>
         <CardHeader
-          subheader="The information can be edited"
-          title="Profile"
+          subheader="La información se puede editar"
+          title="Datos del Bootcamp"
         />
         <Divider />
         <BasicInfoDiv>
@@ -90,7 +68,7 @@ function ProfileBootcamp(props) {
           >
             <Grid
               item
-              md={3}
+              md={4}
               xs={6}
             >
               <TextField
@@ -106,11 +84,12 @@ function ProfileBootcamp(props) {
             </Grid>
             <Grid
               item
-              md={6}
+              md={4}
               xs={12}
             >
               <TextField
                 fullWidth
+                helperText="Introduzca la duración en horas"
                 label="Duración / horas"
                 name="duration"
                 onChange={handleChange}
@@ -121,11 +100,12 @@ function ProfileBootcamp(props) {
             </Grid>
             <Grid
               item
-              md={6}
+              md={4}
               xs={12}
             >
             <TextField
                 fullWidth
+                helperText="Escoja el tipo de bootcamp"
                 label="Categoría"
                 name="category"
                 onChange={handleChange}
@@ -144,6 +124,7 @@ function ProfileBootcamp(props) {
                   </option>
                 ))}
               </TextField>
+
             </Grid>
             
             
@@ -154,6 +135,7 @@ function ProfileBootcamp(props) {
             >
               <TextField
                 fullWidth
+                helperText="Introduzca el formador"
                 label="Formador"
                 name="former"
                 onChange={handleChange}
@@ -169,6 +151,7 @@ function ProfileBootcamp(props) {
             >
               <TextField
                 fullWidth
+                helperText="Introduzca el coformador"
                 label="Co-formador"
                 name="coformer"
                 onChange={handleChange}
@@ -184,7 +167,8 @@ function ProfileBootcamp(props) {
             >
               <TextField
                 fullWidth
-                label="Fecha de inicio"
+                // label="Fecha de inicio"
+                helperText="Indique la fecha de inicio"
                 name="initialDate"
                 onChange={handleChange}
                 type="date"
@@ -199,7 +183,8 @@ function ProfileBootcamp(props) {
             >
               <TextField
                 fullWidth
-                label="Fecha de finalización"
+                // label="Fecha de finalización"
+                helperText="Indique la fecha de finalización"
                 name="finalDate"
                 onChange={handleChange}
                 type="date"
@@ -227,7 +212,8 @@ function ProfileBootcamp(props) {
         </Box>
       </Card>
     </form>
-    </DetailDiv>
+    </DetailProfile>
+    </CtProfile>
   )
 }
 

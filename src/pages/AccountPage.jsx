@@ -15,7 +15,6 @@ export const AccountPage = () => {
         <Sidebar />
       </div>
 
-      
         {/* <AccountProfile /> */}
         <AccountProfileDetails />
     </>
