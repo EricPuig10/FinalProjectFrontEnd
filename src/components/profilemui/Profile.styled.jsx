@@ -5,15 +5,15 @@ export const CtProfile = styled.div`
 display: flex;
 justify-content: center;
 align-items: center; 
-width: 130%;
 position: absolute;
+margin-left: 12%;
 top: 15%;
 /* border: 5px solid red; */
 z-index: 100;
 `
 
 export const DetailProfile = styled.div`
-width: 80%;
+width: 100%;
 align-items: center;
 /* border: 2px solid red; */
 display: flex;
