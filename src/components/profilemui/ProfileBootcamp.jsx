@@ -1,5 +1,7 @@
 import { Box, Button, Card, CardContent, CardHeader, Divider, Grid, TextField } from '@mui/material'
+import { sizing } from '@mui/system';
 import React, { useState } from 'react'
+
 import { BasicInfoDiv, DetailProfile, CtProfile } from '../profilemui/Profile.styled'
 
 
@@ -33,17 +35,33 @@ const initialBootcamp = {
     finalDate: "",
 }
 
-function ProfileBootcamp(props) {
+function ProfileBootcamp(props, updateBootcamp) {
 
     const [bootcamps, setBootcamps] = useState({ initialBootcamp });
+    const [isEditMode, setIsEditMode] = useState(false);
+
+    const handleChange = (event) => {
+      setBootcamps({
+        ...bootcamps,
+        [event.target.name]: event.target.value
+      });
+    };
     
-      const handleChange = (event) => {
-        setBootcamps({
-          ...bootcamps,
-          [event.target.name]: event.target.value
-        });
-      };
-    
+    const onSubmitHandler = (e) => {
+      e.preventDefault();
+
+      if (bootcamps.bootcampName.length > 0) {
+        !isEditMode
+        ? props.addNewBootcamp(bootcamps)
+        : props.updateBootcamp(bootcamps);
+      }
+      resetInputsForm();
+    }
+
+    const resetInputsForm = () => {
+      setBootcamps(initialBootcamp)
+    };
+
 
 
   return (
@@ -53,10 +71,11 @@ function ProfileBootcamp(props) {
       autoComplete="off"
       noValidate
       {...props}
+      onSubmit={onSubmitHandler}
     >
       <Card>
         <CardHeader
-          subheader="La información se puede editar"
+          subheader=""
           title="Datos del Bootcamp"
         />
         <Divider />
@@ -69,7 +88,7 @@ function ProfileBootcamp(props) {
             <Grid
               item
               md={4}
-              xs={6}
+              xs={12}
             >
               <TextField
                 fullWidth
@@ -192,6 +211,38 @@ function ProfileBootcamp(props) {
                 variant="outlined"
               />
             </Grid>
+            <Grid
+              item
+              md={6}
+              xs={12}
+            >
+              <TextField
+                fullWidth
+                label="Características"
+                helperText="Características del bootcamp"
+                name="characteristics"
+                onChange={handleChange}
+                required
+                value={bootcamps.others}
+                variant="outlined"
+              />
+            </Grid>
+            <Grid
+              item
+              md={6}
+              xs={12}
+            >
+              <TextField
+                fullWidth
+                label="Comentarios"
+                helperText="Comentarios y otros datos de interés"
+                name="others"
+                onChange={handleChange}
+                type="text"
+                value={bootcamps.others}
+                variant="outlined"
+              />
+            </Grid>
           </Grid>
         </CardContent>
         </BasicInfoDiv>
@@ -206,6 +257,7 @@ function ProfileBootcamp(props) {
           <Button
             color="primary"
             variant="contained"
+            // onClick={updateBootcamp()}
           >
             Guardar
           </Button>

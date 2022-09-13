@@ -92,10 +92,11 @@ export function BootcampTable() {
       },
     },
     { field: "id", headerName: "ID", width: 90 },
-    { field: "bootcampName", headerName: "Name", width: 130 },
+    { field: "bootcampName", headerName: "Nombre", width: 130 },
+    { field: "duration", headerName: "Duración", width: 130 },
     {
       field: "category",
-      headerName: "Category",
+      headerName: "Categoría",
       width: 130,
       renderCell: (params) => {
         return (
@@ -103,9 +104,12 @@ export function BootcampTable() {
         );
       },
     },
-    { field: "duration", headerName: "Duration", width: 130 },
-    { field: "characteristics", headerName: "Characteristics", width: 130 },
-    { field: "presential", headerName: "is Presential", width: 130 },
+    { field: "characteristics", headerName: "Características", width: 130 },
+    { field: "former", headerName: "Formador", width: 130 },
+    { field: "coformer", headerName: "Co-formador", width: 130 },
+    { field: "initialDate", headerName: "Fecha de inicio", width: 130 },
+    { field: "finalDate", headerName: "Fecha de finalización", width: 130 },
+    { field: "others", headerName: "Otros", width: 130 },
   ];
 
   const deleteBootcamp = (id) => {
