@@ -7,6 +7,8 @@ import { DashboardPage } from "../pages/DashboardPage";
 import { DetailPage } from "../pages/DetailPage";
 import { HomePage } from "../pages/HomePage";
 import { LoginPage } from "../pages/LoginPage";
+import ProfileBootcampPage from "../pages/ProfileBootcampPage";
+
 
 export default function Router() {
   const AuthRoute = ({ children }) => {
@@ -59,6 +61,15 @@ export default function Router() {
             </AuthCrud>
           }
         />
+        <Route
+          path="/bootcamps/:id"
+          element={
+            <AuthCrud>
+              <ProfileBootcampPage/>
+            </AuthCrud>
+        }
+        />
+
       </Routes>
     </BrowserRouter>
   );

@@ -5,14 +5,18 @@ import { bootcampsService } from "../../services/bootcampsService";
 import { useEffect } from "react";
 import { BtnAdd, CtTabBut, TableButton } from "./DataTable.styled";
 import { FormBootcamp } from "../formCandidat/FormBootcamp";
+import { Link } from "react-router-dom";
 
 const initialBootcamp = {
   id: "",
   bootcampName: "",
-  category: "",
   duration: "",
+  category: "",
   characteristics: "",
-  presential: "",
+  former: "",
+  coformer: "",
+  initialData: "",
+  finalData: "",
 };
 
 export function BootcampTable() {
@@ -32,13 +36,13 @@ export function BootcampTable() {
     });
   };
 
-  // const getBootcampById = (id) => {
-  //   bootcampsService.getBootcampById(id).then((res => {
-  //     if(res) {
-  //       setNewBootcamp(res);
-  //     }
-  //   }))
-  // };
+  const getBootcampById = (id) => {
+    bootcampsService.getBootcampById(id).then((res => {
+      if(res) {
+        setNewBootcamp(res);
+      }
+    }))
+  };
 
   const addNewBootcamp = (data) => {
     bootcampsService.addBootcamp(data).then((res) => {
@@ -77,9 +81,10 @@ export function BootcampTable() {
               <TableButton
                 variant="contained"
                 color="primary"
-                // onClick={() => printBootcamp(cellValues.row.id)}
               >
+                <Link to={`/bootcamps/${bootcamps.id}`}>
                 <i className="fa-regular fa-file fa-lg"></i>
+                </Link>
               </TableButton>
             </CtTabBut>
           </>

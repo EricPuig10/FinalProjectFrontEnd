@@ -63,9 +63,15 @@ export function FormBootcamp ( props ) {
         category: "",
         duration: "",
         characteristics: "",
-        presential: "",
+        former: "",
+        coformer: "",
+        initialDate: "",
+        finalDate: "",
       },
     });
+
+    //pendiente de cambiar en las funciones
+    
   };
   console.log(newBootcamp.category)
 

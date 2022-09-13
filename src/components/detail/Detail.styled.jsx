@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const DetailDiv = styled.div`
 background-color: white;
 width: 93%;
-/* border: 1px solid red; */
+border: 1px solid red;
 position: absolute;
 top: 9.9%;
 left:7%;
