@@ -141,7 +141,8 @@ export const AccountProfileDetails = (props) => {
       setCandidat(res);
       getById(id);
     });
-  
+
+    navigate(("/candidats"))
     getById(id);
   };
 
