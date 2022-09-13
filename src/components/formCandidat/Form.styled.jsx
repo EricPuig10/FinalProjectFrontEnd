@@ -127,10 +127,11 @@ export const SubmitBtnForm = styled.button`
 export const CloseCont = styled.div`
   position: relative;
   width: 10%;
+  border: 2px solid grey;
   @media (max-width: 450px) {
     position: absolute;
     padding-top: 10%;
-    top: 0.5%;
+    top: 0%;
     left: 90%;
   }
 `;
@@ -147,8 +148,8 @@ export const CloseBtn = styled.button`
   padding-right: 1%;
   border-radius: 1.2vw;
   position: absolute;
-  top: -2%;
-  left: 90%;
+  top: 2%;
+  right: 2%;
   cursor: pointer;
   &:hover {
     color: grey;

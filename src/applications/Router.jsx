@@ -59,6 +59,14 @@ export default function Router() {
             </AuthCrud>
           }
         />
+        <Route
+          path="/create"
+          element={
+            <AuthCrud>
+              <AccountPage />
+            </AuthCrud>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

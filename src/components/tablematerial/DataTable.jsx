@@ -4,8 +4,6 @@ import { useState } from "react";
 import { candidatsService } from "../../services/candidatsService";
 import { useEffect } from "react";
 import { BtnAdd, CtTabBut, TableButton } from "./DataTable.styled";
-import { FormCandidat } from "../formCandidat/FormCandidat";
-import { Detail } from "../detail/Detail";
 import { Link, useNavigate } from "react-router-dom";
 import { AccountProfileDetails } from "../account/account-profile-details";
 
@@ -190,7 +188,7 @@ export const DataTable = () => {
 
   return (
     <>
-      {isShowForm ? (
+      {/* {isShowForm ? (
         <AccountProfileDetails
           addNewCandidat={addNewCandidat}
           candidatToEdit={candidatToEdit}
@@ -201,7 +199,7 @@ export const DataTable = () => {
         />
       ) : (
         ""
-      )}
+      )} */}
       <div
         style={{
           height: 420,
@@ -239,9 +237,11 @@ export const DataTable = () => {
           // checkboxSelection
         />
       </div>
-      <BtnAdd onClick={showForm}>
+      <Link to="/create">
+      <BtnAdd>
         <i className="fa-solid fa-plus fa-2xl"></i>
       </BtnAdd>
+      </Link>
     </>
   );
 };
