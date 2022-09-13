@@ -3,7 +3,15 @@ import { sizing } from '@mui/system';
 import React, { useState } from 'react'
 
 import { BasicInfoDiv, DetailProfile, CtProfile } from '../profilemui/Profile.styled'
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+const theme = createTheme({
+  palette: {
+    primary: {
+    main: '#ea561d',
+    }
+  },
+});
 
 const categories = [
     {
@@ -254,6 +262,7 @@ function ProfileBootcamp(props, updateBootcamp) {
             p: 2
           }}
         >
+          <ThemeProvider theme={theme}>
           <Button
             color="primary"
             variant="contained"
@@ -261,6 +270,8 @@ function ProfileBootcamp(props, updateBootcamp) {
           >
             Guardar
           </Button>
+          </ThemeProvider>
+
         </Box>
       </Card>
     </form>
