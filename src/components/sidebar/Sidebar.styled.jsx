@@ -34,13 +34,25 @@ export const Logo = styled.img`
 export const CtButton = styled.div`
   position: relative;
   display: flex;
-  flex-direction: row;
+  flex-direction:column;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 6%;
   margin-top: 35%;
   margin-bottom: 10%;
+
+  &:hover p {
+  justify-content: center;
+  display:flex;
+  height: 10px;
+  width: 100%;
+  color: white;
+  font-size: 80%;
+  text-align: center;
+  opacity: 1;
+
+  }
 `;
 
 export const Icon = styled.button`
@@ -57,20 +69,10 @@ export const Icon = styled.button`
   }
 `;
 export const Texthiden = styled.p `
-position: absolute;
-color:#ff4700;
-font-size: 10%;
-height: 10px;
-width: 20px;
+opacity: 0;
 
 &:hover {
-  position: absolute;
-  display: flex;
-  color: white;
-  top:70%;
-  left:30%;
-  font-size: 1em;
-  text-align: center;
+  
 }
 `
 
