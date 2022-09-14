@@ -1,21 +1,15 @@
 import styled from "styled-components";
 
 
-export const CtProfile = styled.div`
-display: flex;
-justify-content: center;
-align-items: center; 
-position: absolute;
-margin-left: 12%;
-top: 15%;
-/* border: 5px solid red; */
-z-index: 100;
-`
 
 export const DetailProfile = styled.div`
-width: 100%;
-align-items: center;
-/* border: 2px solid red; */
+background-color: white;
+width: 93%;
+/* border: 1px solid red; */
+position: absolute;
+top: 9.9%;
+left:7%;
+z-index: 1000;
 display: flex;
 `
 

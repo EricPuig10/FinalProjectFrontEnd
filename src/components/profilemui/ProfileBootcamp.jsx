@@ -1,17 +1,8 @@
 import { Box, Button, Card, CardContent, CardHeader, Divider, Grid, TextField } from '@mui/material'
-import { sizing } from '@mui/system';
 import React, { useState } from 'react'
+import { useTheme } from '@mui/material/styles'
+import { BasicInfoDiv, DetailProfile } from '../profilemui/Profile.styled'
 
-import { BasicInfoDiv, DetailProfile, CtProfile } from '../profilemui/Profile.styled'
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-const theme = createTheme({
-  palette: {
-    primary: {
-    main: '#ea561d',
-    }
-  },
-});
 
 const categories = [
     {
@@ -47,6 +38,7 @@ function ProfileBootcamp(props, updateBootcamp) {
 
     const [bootcamps, setBootcamps] = useState({ initialBootcamp });
     const [isEditMode, setIsEditMode] = useState(false);
+    const theme = useTheme();
 
     const handleChange = (event) => {
       setBootcamps({
@@ -73,7 +65,6 @@ function ProfileBootcamp(props, updateBootcamp) {
 
 
   return (
-    <CtProfile>
     <DetailProfile>
     <form
       autoComplete="off"
@@ -113,6 +104,7 @@ function ProfileBootcamp(props, updateBootcamp) {
               item
               md={4}
               xs={12}
+
             >
               <TextField
                 fullWidth
@@ -262,7 +254,6 @@ function ProfileBootcamp(props, updateBootcamp) {
             p: 2
           }}
         >
-          <ThemeProvider theme={theme}>
           <Button
             color="primary"
             variant="contained"
@@ -270,13 +261,11 @@ function ProfileBootcamp(props, updateBootcamp) {
           >
             Guardar
           </Button>
-          </ThemeProvider>
 
         </Box>
       </Card>
     </form>
     </DetailProfile>
-    </CtProfile>
   )
 }
 

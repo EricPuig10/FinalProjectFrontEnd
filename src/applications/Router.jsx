@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Detail } from "../components/detail/Detail";
 import {AccountPage} from "../pages/AccountPage";
 import { BootcampDashboardPage } from "../pages/BootcampDashboardPage";
@@ -8,6 +9,7 @@ import { DetailPage } from "../pages/DetailPage";
 import { HomePage } from "../pages/HomePage";
 import { LoginPage } from "../pages/LoginPage";
 import ProfileBootcampPage from "../pages/ProfileBootcampPage";
+
 
 
 export default function Router() {
@@ -25,7 +27,21 @@ export default function Router() {
     return children;
   };
 
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#ea561d'
+      },
+      // secondary: {
+      //   main: '#f44336',
+      // },
+    },
+  });
+
+
+
   return (
+    <ThemeProvider theme={theme}>
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -72,5 +88,7 @@ export default function Router() {
 
       </Routes>
     </BrowserRouter>
+    </ThemeProvider>
+
   );
 }
