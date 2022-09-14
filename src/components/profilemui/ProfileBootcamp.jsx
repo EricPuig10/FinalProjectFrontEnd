@@ -7,15 +7,15 @@ import { BasicInfoDiv, DetailProfile } from '../profilemui/Profile.styled'
 const categories = [
     {
       value: 'fullstack',
-      label: 'Full-Stack'
+      label: 'Full Stack'
     },
     {
       value: 'Frontend',
-      label: 'Front-End'
+      label: 'Front End'
     },
     {
       value: 'Blockchain',
-      label: 'Block-Chain'
+      label: 'Block Chain'
     },
     {
       value: 'AI',
@@ -32,6 +32,7 @@ const initialBootcamp = {
     coformer: "",
     initialDate: "",
     finalDate: "",
+    others: ""
 }
 
 function ProfileBootcamp(props, updateBootcamp) {

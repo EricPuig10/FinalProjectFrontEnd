@@ -85,6 +85,14 @@ export default function Router() {
             </AuthCrud>
         }
         />
+        <Route
+          path="/bootcamps/create"
+          element={
+            <AuthCrud>
+              <ProfileBootcampPage/>
+            </AuthCrud>
+        }
+        />
 
       </Routes>
     </BrowserRouter>

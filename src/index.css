@@ -20,6 +20,7 @@ body {
   font-family: "Nunito", sans-serif;
   font-family: "Quicksand", sans-serif;
   font-family: "Roboto", sans-serif;
+  font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -42,7 +43,7 @@ a {
   --main-bg-color: #d8d8d8;
 
   /* FONTS */
-  --font-family-title: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+  --font-family-title: "Poppins", "Quicksand", "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   --font-family-main: "Source Sans Pro", sans-serif;
   --title-font-size: large;

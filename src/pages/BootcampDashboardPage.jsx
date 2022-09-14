@@ -7,7 +7,9 @@ export const BootcampDashboardPage = () => {
   return (
     <>
       <Navbar />
+      <div>
         <Sidebar />
+      </div>
         <BootcampTable />
     </>
   );

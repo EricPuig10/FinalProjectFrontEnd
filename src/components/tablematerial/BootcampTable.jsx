@@ -5,7 +5,7 @@ import { bootcampsService } from "../../services/bootcampsService";
 import { useEffect } from "react";
 import { BtnAdd, CtTabBut, TableButton } from "./DataTable.styled";
 import { FormBootcamp } from "../formCandidat/FormBootcamp";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 const initialBootcamp = {
   id: "",
@@ -181,6 +181,8 @@ export function BootcampTable() {
           paddingRight: "4%",
           marginLeft: "10%",
           marginTop: "2.5%",
+          backgroundColor: "#fbfbfb",
+          headerName: "#9d4848",
         }}
       >
         <DataGrid
@@ -188,11 +190,13 @@ export function BootcampTable() {
           rows={bootcamps}
           pageSize={10}
           rowsPerPageOptions={[10]}
+          
         />
       </div>
-      <BtnAdd onClick={showForm}>
+      <Link to="/bootcamps/create">
+      <BtnAdd>
         <i className="fa-solid fa-plus fa-2xl"></i>
-      </BtnAdd>
+      </BtnAdd></Link>
     </>
   );
 }
