@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Kanit:wght@100;400&family=Orbitron:wght@400;700;900&family=Stick+No+Bills:wght@200;400;700&family=Syncopate:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Changa:wght@300;500;700&family=Mulish:wght@200;300;500;700&family=Nunito:wght@300;500;700;900&family=Quicksand:wght@400;700&family=Roboto:wght@100;400;700&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800;900&family=Oswald:wght@500&family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap');
 
 * {
   margin: 0;
@@ -20,6 +20,7 @@ body {
   font-family: "Nunito", sans-serif;
   font-family: "Quicksand", sans-serif;
   font-family: "Roboto", sans-serif;
+  font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -42,7 +43,7 @@ a {
   --main-bg-color: #d8d8d8;
 
   /* FONTS */
-  --font-family-title: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+  --font-family-title: "Poppins", "Quicksand", "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   --font-family-main: "Source Sans Pro", sans-serif;
   --title-font-size: large;
