@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CtForm = styled.div`
-  height: 100vh;
+  /* height: 100vh; */
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -12,7 +12,7 @@ export const CtForm = styled.div`
 export const Form = styled.form`
   height: 40vh;
   width: 50vw;
-  background-color: #fbf3f0;
+  background-color: #fcf7f6;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -29,7 +29,6 @@ export const Label = styled.label`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   border: none;
   background: #dce0f0;
 `;
@@ -38,7 +37,6 @@ export const CtInput = styled.input`
   padding: 0 2.5% 0 2.5%;
   width: 100%;
   height: 4rem;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -67,10 +65,29 @@ export const BtLogin = styled.button`
   height: 2.5rem;
   border: none;
   text-align: center;
-  background-color: #ff4700;
+  background-color:#ea561d;
+
   color: white;
   cursor: pointer;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 1rem;
   font-weight: bolder;
+`;
+
+export const CtImg = styled.div`
+  /* height: 100vh; */
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Img = styled.img`
+  height: 45vh;
+  /* width: 30vw; */
+  /* border: 2px solid red; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
