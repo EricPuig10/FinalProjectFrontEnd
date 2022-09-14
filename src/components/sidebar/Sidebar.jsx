@@ -29,7 +29,7 @@ export const Sidebar = () => {
           <Icon>
             <i className="fa-solid fa-user fa-xl"></i>
           </Icon>
-          <Texthiden>Candidats</Texthiden>
+          <Texthiden>Candidatos</Texthiden>
         </Link>
       </CtButton>
 
@@ -47,7 +47,7 @@ export const Sidebar = () => {
           <Icon>
           <i className="fa-sharp fa-solid fa-ranking-star fa-xl"></i>
           </Icon>
-          <Texthiden>Process</Texthiden>
+          <Texthiden>Procesos</Texthiden>
         </Link>
       </CtButton>
 
@@ -56,7 +56,7 @@ export const Sidebar = () => {
           <Icon>
             <i className="fa-solid fa-gear fa-xl"></i>
           </Icon>
-          <Texthiden>Settings</Texthiden>
+          <Texthiden>Config</Texthiden>
         </Link>
       </CtButton>
 

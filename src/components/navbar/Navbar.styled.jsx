@@ -33,6 +33,7 @@ export const Logo = styled.h3`
   justify-content: center;
   align-items: center;
   color: #ea561d;
+  font-family: "Poppins";
 `;
 
 export const DivButton = styled.div`
@@ -56,8 +57,9 @@ export const LogInButton = styled.button`
   background-color: transparent;
   border: none;
   color: #ea561d;
+  font-family: "Poppins";
   font-size: 1em;
-  font-weight: bold;
+  font-weight: 300;
   cursor: pointer;
   &:hover {
     color: #ea561d;

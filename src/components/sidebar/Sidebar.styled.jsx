@@ -23,6 +23,7 @@ export const CtLogo = styled.div`
   justify-content: center;
   align-items: flex-start;
   margin-bottom: 30%;
+  margin-top: 5%;
 `;
 
 export const Logo = styled.img`
@@ -70,6 +71,8 @@ export const Icon = styled.button`
 `;
 export const Texthiden = styled.p `
 opacity: 0;
+font-family: "Poppins";
+font-weight: 300;
 
 &:hover {
   
