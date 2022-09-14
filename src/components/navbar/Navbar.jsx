@@ -19,7 +19,7 @@ export const Navbar = () => {
   return (
     <DivNav>
       <DivLogo>
-        <Logo>{title.split("/")}</Logo>
+        <Logo>{title.split("/1")}</Logo>
       </DivLogo>
       <DivButton>
         {localAuthService.isLogged() ? (

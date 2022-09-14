@@ -17,6 +17,7 @@ export const Div = styled.div`
 
 export const BasicInfoDiv = styled.div`
 display: flex;
+position: relative;
 `
 export const LeftDiv = styled.div`
 display: flex;
