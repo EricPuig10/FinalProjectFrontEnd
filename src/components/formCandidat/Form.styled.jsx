@@ -164,19 +164,18 @@ export const CloseBtn = styled.button`
 `;
 
 export const DivLeft = styled.div`
-width: 50%;
-`
-
+  width: 50%;
+`;
 
 export const DivRight = styled.div`
-width: 50%;
-`
+  width: 50%;
+`;
 
 export const DivInput = styled.div`
-display:flex;
-flex-direction: column;
-`
+  display: flex;
+  flex-direction: column;
+`;
 
 export const Label = styled.label`
-font-size: 0.9em;
-`
+  font-size: 0.9em;
+`;

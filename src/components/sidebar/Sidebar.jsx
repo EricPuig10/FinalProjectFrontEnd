@@ -2,7 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { authService } from "../../services/authService";
 import { localAuthService } from "../../services/localAuthService";
-import { CtButton, CtLogo, CtSidebar, Icon, Logo, Texthiden } from "./Sidebar.styled";
+import {
+  CtButton,
+  CtLogo,
+  CtSidebar,
+  Icon,
+  Logo,
+  Texthiden,
+} from "./Sidebar.styled";
 
 export const Sidebar = () => {
   const logout = () => {
@@ -45,7 +52,7 @@ export const Sidebar = () => {
       <CtButton>
         <Link to="/process">
           <Icon>
-          <i className="fa-sharp fa-solid fa-ranking-star fa-xl"></i>
+            <i className="fa-sharp fa-solid fa-ranking-star fa-xl"></i>
           </Icon>
           <Texthiden>Procesos</Texthiden>
         </Link>
@@ -66,7 +73,7 @@ export const Sidebar = () => {
             <i className="fa-solid fa-arrow-right-from-bracket fa-xl"></i>
           </Icon>
         ) : null}
-        <Texthiden>Logout</Texthiden> 
+        <Texthiden>Logout</Texthiden>
       </CtButton>
     </CtSidebar>
   );

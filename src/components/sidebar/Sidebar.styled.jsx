@@ -35,7 +35,7 @@ export const Logo = styled.img`
 export const CtButton = styled.div`
   position: relative;
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -44,15 +44,14 @@ export const CtButton = styled.div`
   margin-bottom: 10%;
 
   &:hover p {
-  justify-content: center;
-  display:flex;
-  height: 10px;
-  width: 100%;
-  color: white;
-  font-size: 80%;
-  text-align: center;
-  opacity: 1;
-
+    justify-content: center;
+    display: flex;
+    height: 10px;
+    width: 100%;
+    color: white;
+    font-size: 80%;
+    text-align: center;
+    opacity: 1;
   }
 `;
 
@@ -63,22 +62,19 @@ export const Icon = styled.button`
   margin-bottom: 3%;
   font-size: 0.8em;
   cursor: pointer;
-  
 
   &:hover {
     color: #cecaca;
   }
 `;
-export const Texthiden = styled.p `
-opacity: 0;
-font-family: "Poppins";
-font-weight: 300;
+export const Texthiden = styled.p`
+  opacity: 0;
+  font-family: "Poppins";
+  font-weight: 300;
 
-&:hover {
-  
-}
-`
-
+  &:hover {
+  }
+`;
 
 export const Txt = styled.p`
   color: white;

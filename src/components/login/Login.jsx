@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { authService } from "../../services/authService";
 import { localAuthService } from "../../services/localAuthService";
 import {
@@ -10,7 +10,6 @@ import {
   Label,
 } from "./Login.styled";
 import { useNavigate } from "react-router-dom";
-
 
 export const Login = () => {
   const [userData, setUserData] = useState({
@@ -26,9 +25,6 @@ export const Login = () => {
     let value = e.target.value;
     setUserData({ ...userData, [name]: value });
   };
-
-
- 
 
   const signin = () => {
     authService.signin(userData).then((res) => {

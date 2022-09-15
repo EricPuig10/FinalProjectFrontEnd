@@ -1,11 +1,9 @@
 import React from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { Detail } from "../components/detail/Detail";
-import { AccountPage } from "../pages/AccountPage";
+import { ProfilePage } from "../pages/ProfilePage";
 import { BootcampDashboardPage } from "../pages/BootcampDashboardPage";
 import { CandidatsByBootcampPage } from "../pages/CandidatsByBootcampPage";
 import { DashboardPage } from "../pages/DashboardPage";
-import { DetailPage } from "../pages/DetailPage";
 import { HomePage } from "../pages/HomePage";
 import { LoginPage } from "../pages/LoginPage";
 
@@ -56,7 +54,7 @@ export default function Router() {
           path="/candidats/:id"
           element={
             <AuthCrud>
-              <AccountPage />
+              <ProfilePage />
             </AuthCrud>
           }
         />
@@ -64,7 +62,7 @@ export default function Router() {
           path="/create"
           element={
             <AuthCrud>
-              <AccountPage />
+              <ProfilePage />
             </AuthCrud>
           }
         />

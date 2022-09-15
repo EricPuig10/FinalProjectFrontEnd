@@ -4,7 +4,7 @@ export const HomeDiv = styled.div`
   background-color: #ffffff;
   position: absolute;
   left: 0%;
-  top:12%;
+  top: 12%;
   width: 90%;
   height: 88%;
   margin-left: 10%;

@@ -18,6 +18,7 @@ const initialBootcamp = {
 
 export function BootcampTable() {
   const [bootcamps, setBootcamps] = useState([]);
+  //eslint-disable-next-line
   const [newBootcamp, setNewBootcamp] = useState({});
   const [isShowForm, setIsShowForm] = useState(false);
   const [bootcampToEdit, setBootcampToEdit] = useState(initialBootcamp);

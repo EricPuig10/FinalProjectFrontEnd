@@ -4,6 +4,7 @@ import {
   Box,
   Button,
   Card,
+  CardActions,
   CardContent,
   CardHeader,
   Divider,
@@ -12,10 +13,9 @@ import {
 } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import { candidatsService } from "../../services/candidatsService";
-import { BasicInfoDiv, DetailDiv } from "../detail/Detail.styled";
+import { BasicInfoDiv, DetailDiv } from "./Profile.styled";
 import { bootcampsService } from "../../services/bootcampsService";
 import { processService } from "../../services/processService";
-import { TableButton } from "../tablematerial/DataTable.styled";
 import { CloseBtn } from "../formCandidat/Form.styled";
 
 const initialCandidat = {
@@ -38,7 +38,7 @@ const initialCandidat = {
   gender: "",
   nationality: "",
   laboralsituation: "",
-  bootcamp:"",
+  bootcamp: "",
   processState: "",
   sololearnprogress: "",
   codeacademyprogress: "",
@@ -46,10 +46,10 @@ const initialCandidat = {
   img: "",
 };
 
-export const AccountProfileDetails = () => {
+export const Profile = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [candidat, setCandidat] = useState(initialCandidat);
-  const [candidats, setCandidats] = useState([]);
+  //eslint-disable-next-line
   const [candidatObjects, setCandidatObjects] = useState([]);
   const [bootcamps, setBootcamps] = useState([]);
   const [process, setProcess] = useState([]);
@@ -62,7 +62,7 @@ export const AccountProfileDetails = () => {
     getAllBootcamps();
     getAllProcess();
     editMode();
-  }, []);
+  });
 
   const getById = (id) => {
     if (!id) return;
@@ -73,14 +73,8 @@ export const AccountProfileDetails = () => {
         bootcamp: res.bootcamp.bootcampName,
         processState: res.processState.name,
       });
-
-      // candidat.bootcamp = res.bootcamp.bootcampName;
-      // candidat.processState = res.processState.name;
     });
-    
   };
-  console.log(candidatObjects);
-  console.log(candidat);
 
   const editMode = () => {
     if (!id) setIsEditMode(false);
@@ -90,13 +84,6 @@ export const AccountProfileDetails = () => {
   const getAllBootcamps = () => {
     bootcampsService.getAllBootcamps().then((res) => {
       setBootcamps(res.map((bootcamp) => bootcamp.bootcampName));
-    });
-  };
-
-  const getAllCandidats = () => {
-    candidatsService.getAllCandidats().then((res) => {
-      console.log(res);
-      setCandidats(res);
     });
   };
 
@@ -129,7 +116,6 @@ export const AccountProfileDetails = () => {
 
   const addNewCandidat = (data) => {
     candidatsService.addCandidat(data).then((res) => {
-      setCandidats([...candidats, res]);
       navigate("/candidats");
     });
   };
@@ -189,6 +175,16 @@ export const AccountProfileDetails = () => {
                     borderRadius: 0,
                   }}
                 />
+                <CardActions>
+                  <Button
+                    color="primary"
+                    fullWidth
+                    variant="text"
+                    sx={{ mb: 2 }}
+                  >
+                    Upload picture
+                  </Button>
+                </CardActions>
                 <Grid item md={6} xs={12} mb={2}>
                   <TextField
                     fullWidth

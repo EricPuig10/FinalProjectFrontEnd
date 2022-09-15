@@ -4,44 +4,13 @@ import { useState } from "react";
 import { candidatsService } from "../../services/candidatsService";
 import { useEffect } from "react";
 import { BtnAdd, CtTabBut, TableButton } from "./DataTable.styled";
-import { Link, useNavigate } from "react-router-dom";
-import { alpha, gridClasses, styled } from "@mui/material";
+import { Link } from "react-router-dom";
 
-const initialCandidat = {
-  id: "",
-  name: "",
-  lastname: "",
-  secondlastname: "",
-  email: "",
-  phone: "",
-  age: "",
-  degree: "",
-  date: "",
-  superpower: "",
-  direction: "",
-  english: "",
-  formation: "",
-  reached: "",
-  spirit: "",
-  motivation: "",
-  gender: "",
-  nationality: "",
-  laboralsituation: "",
-  bootcamp: "",
-  processState: "",
-  sololearnprogress: "",
-  codeacademyprogress: "",
-  assistedtoinformativesession: "",
-  img: "",
-};
+
+
 
 export const DataTable = () => {
   const [candidats, setCandidats] = useState([]);
-  const [isShowForm, setIsShowForm] = useState(false);
-  const [candidatToEdit, setCandidatToEdit] = useState(initialCandidat);
-  const [isEditMode, setIsEditMode] = useState(false);
-
-  let navigate = useNavigate();
 
   useEffect(() => {
     getAllCandidats();
@@ -56,11 +25,13 @@ export const DataTable = () => {
   const columns = [
     {
       field: "Actions",
+      headerName: "Acciones",
+
       renderCell: (cellValues) => {
         return (
           <>
             <CtTabBut>
-              <TableButton
+              {/* <TableButton
                 variant="contained"
                 color="primary"
                 onClick={() => {
@@ -68,7 +39,7 @@ export const DataTable = () => {
                 }}
               >
                 <i className="fa-regular fa-pen-to-square fa-lg"></i>
-              </TableButton>
+              </TableButton> */}
 
               <TableButton
                 variant="contained"
@@ -99,32 +70,32 @@ export const DataTable = () => {
     },
     {
       field: "name",
-      headerName: "Name",
+      headerName: "Nombre",
       width: 130,
       headerClassName: "super-app-theme--header",
     },
     {
       field: "lastname",
-      headerName: "Last name",
+      headerName: "Apellido",
       width: 130,
       headerClassName: "super-app-theme--header",
     },
     {
       field: "secondlastname",
-      headerName: "Second last name",
+      headerName: "2º apellido",
       width: 130,
       headerClassName: "super-app-theme--header",
     },
     {
       field: "age",
-      headerName: "Age",
+      headerName: "Edad",
       width: 90,
     },
     { field: "email", headerName: "Email", width: 130 },
-    { field: "phone", headerName: "Phone", width: 130 },
-    { field: "gender", headerName: "Gender", width: 130 },
-    { field: "nationality", headerName: "Nationality", width: 130 },
-    { field: "laboralsituation", headerName: "Laboral Situation", width: 130 },
+    { field: "phone", headerName: "Teléfono", width: 130 },
+    { field: "gender", headerName: "Género", width: 130 },
+    { field: "nationality", headerName: "Nacionalidad", width: 130 },
+    { field: "laboralsituation", headerName: "Situación laboral", width: 130 },
     {
       field: "bootcamp",
       headerName: "Bootcamp",
@@ -139,7 +110,7 @@ export const DataTable = () => {
     },
     {
       field: "process",
-      headerName: "Process State",
+      headerName: "Proceso",
       width: 130,
       renderCell: (params) => {
         return <div className="rowitem">{params.row.processState.name}</div>;
@@ -150,13 +121,6 @@ export const DataTable = () => {
     // { field: 'codeacademyprogress', headerName: 'Code Academy Progress', width: 130 },
     // { field: 'assistedtoinformativesession', headerName: 'Assisted Informative Session', width: 130 },
   ];
-
-  const addNewCandidat = (data) => {
-    candidatsService.addCandidat(data).then((res) => {
-      setCandidats([...candidats, res]);
-    });
-    setIsShowForm(false);
-  };
 
   const deleteCandidat = (id) => {
     let candidatToDelete = candidats.filter((candidat) => candidat.id === id);
@@ -176,36 +140,6 @@ export const DataTable = () => {
       }
       setCandidats(filterCandidats);
     });
-  };
-
-  const showForm = () => {
-    if (isShowForm) setIsShowForm(false);
-    else setIsShowForm(true);
-    resetInputsForm();
-    setIsEditMode(false);
-  };
-
-  const resetInputsForm = () => {
-    setCandidatToEdit({
-      initialCandidat,
-    });
-  };
-
-  const editCandidat = (id) => {
-    showForm();
-    let candidatToEdit = candidats.find((candidat) => candidat.id === id);
-    setCandidatToEdit(candidatToEdit);
-    setIsEditMode(true);
-  };
-
-  const updateCandidat = (newCandidat) => {
-    candidatsService.updateCandidat(newCandidat).then((res) => {
-      if (!res) return;
-      setCandidatToEdit();
-      getAllCandidats();
-    });
-    showForm();
-    getAllCandidats();
   };
 
   return (
