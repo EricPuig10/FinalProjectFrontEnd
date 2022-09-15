@@ -19,8 +19,8 @@ export const candidatsService = {
 
   getCandidatById(id) {
     const candidat = axios
-    .get(baseURL + "/candidats/" + id)
-    .then((res) => res.data)
+      .get(baseURL + "/candidats/" + id)
+      .then((res) => res.data);
     return candidat;
   },
 

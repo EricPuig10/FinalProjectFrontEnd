@@ -127,10 +127,11 @@ export const SubmitBtnForm = styled.button`
 export const CloseCont = styled.div`
   position: relative;
   width: 10%;
+  border: 2px solid grey;
   @media (max-width: 450px) {
     position: absolute;
     padding-top: 10%;
-    top: 0.5%;
+    top: 0%;
     left: 90%;
   }
 `;
@@ -147,8 +148,8 @@ export const CloseBtn = styled.button`
   padding-right: 1%;
   border-radius: 1.2vw;
   position: absolute;
-  top: -2%;
-  left: 90%;
+  top: 2%;
+  right: 2%;
   cursor: pointer;
   &:hover {
     color: grey;
@@ -163,19 +164,18 @@ export const CloseBtn = styled.button`
 `;
 
 export const DivLeft = styled.div`
-width: 50%;
-`
-
+  width: 50%;
+`;
 
 export const DivRight = styled.div`
-width: 50%;
-`
+  width: 50%;
+`;
 
 export const DivInput = styled.div`
-display:flex;
-flex-direction: column;
-`
+  display: flex;
+  flex-direction: column;
+`;
 
 export const Label = styled.label`
-font-size: 0.9em;
-`
+  font-size: 0.9em;
+`;

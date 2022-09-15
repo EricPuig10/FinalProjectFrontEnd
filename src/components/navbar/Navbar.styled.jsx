@@ -5,7 +5,9 @@ export const DivNav = styled.div`
   padding-left: 10%;
   padding-right: 10%;
   height: 70px;
-  background-color: #ece6e5;
+  background-color: #ffffff;
+  border-bottom: 1px solid grey;
+  box-shadow: 1px 1px 15px #d0d0d0;
   display: flex;
   justify-content: space-between;
 `;
@@ -33,6 +35,7 @@ export const Logo = styled.h3`
   justify-content: center;
   align-items: center;
   color: #ea561d;
+  font-family: "Poppins";
 `;
 
 export const DivButton = styled.div`
@@ -56,8 +59,9 @@ export const LogInButton = styled.button`
   background-color: transparent;
   border: none;
   color: #ea561d;
+  font-family: "Poppins";
   font-size: 1em;
-  font-weight: bold;
+  font-weight: 300;
   cursor: pointer;
   &:hover {
     color: #ea561d;

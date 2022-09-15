@@ -4,6 +4,7 @@ import {
   Box,
   Button,
   Card,
+  CardActions,
   CardContent,
   CardHeader,
   Divider,
@@ -12,9 +13,10 @@ import {
 } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import { candidatsService } from "../../services/candidatsService";
-import { BasicInfoDiv, DetailDiv } from "../detail/Detail.styled";
+import { BasicInfoDiv, DetailDiv } from "./Profile.styled";
 import { bootcampsService } from "../../services/bootcampsService";
 import { processService } from "../../services/processService";
+import { CloseBtn } from "../formCandidat/Form.styled";
 
 const initialCandidat = {
   id: "",
@@ -44,28 +46,13 @@ const initialCandidat = {
   img: "",
 };
 
-export const AccountProfileDetails = (props) => {
+export const Profile = () => {
   const [isEditMode, setIsEditMode] = useState(false);
-  const [values, setValues] = useState({
-    firstName: "Katarina",
-    lastName: "Smith",
-    email: "demo@devias.io",
-    phone: "",
-    state: "Alabama",
-    country: "USA",
-  });
-  const [candidat, setCandidat] = useState(props.candidatToEdit);
-  const [bootcamps, setBootcamps] = useState([
-    {
-      bootcampName: "",
-      category: { id: "", name: "" },
-      characteristics: "",
-      duration: "",
-      id: "",
-    },
-  ]);
-  // const [bootcamp, setBootcamp] = useState()
-  const [process, setProcess] = useState([{ name: "", id: "" }]);
+  const [candidat, setCandidat] = useState(initialCandidat);
+  //eslint-disable-next-line
+  const [candidatObjects, setCandidatObjects] = useState([]);
+  const [bootcamps, setBootcamps] = useState([]);
+  const [process, setProcess] = useState([]);
 
   const { id } = useParams();
   let navigate = useNavigate();
@@ -74,31 +61,37 @@ export const AccountProfileDetails = (props) => {
     getById(id);
     getAllBootcamps();
     getAllProcess();
-  }, []);
+    editMode();
+  });
 
   const getById = (id) => {
+    if (!id) return;
     candidatsService.getCandidatById(id).then((res) => {
-      console.log(res);
-      setCandidat(res);
-      // setBootcamp(res.bootcamp)
+      setCandidatObjects(res);
+      setCandidat({
+        ...res,
+        bootcamp: res.bootcamp.bootcampName,
+        processState: res.processState.name,
+      });
     });
+  };
+
+  const editMode = () => {
+    if (!id) setIsEditMode(false);
+    if (id) setIsEditMode(true);
   };
 
   const getAllBootcamps = () => {
     bootcampsService.getAllBootcamps().then((res) => {
-      console.log(res);
-      setBootcamps(res);
+      setBootcamps(res.map((bootcamp) => bootcamp.bootcampName));
     });
   };
 
   const getAllProcess = () => {
     processService.getAllProcess().then((res) => {
-      console.log(res);
-      setProcess(res);
+      setProcess(res.map((processState) => processState.name));
     });
   };
-
-
 
   const handleChange = (event) => {
     setCandidat({
@@ -111,9 +104,7 @@ export const AccountProfileDetails = (props) => {
     e.preventDefault();
 
     if (candidat.name.length > 0) {
-      !isEditMode
-        ? props.addNewCandidat(candidat)
-        : props.updateCandidat(candidat);
+      !isEditMode ? addNewCandidat(candidat) : updateCandidat(candidat);
     }
 
     resetInputsForm();
@@ -123,14 +114,48 @@ export const AccountProfileDetails = (props) => {
     setCandidat(initialCandidat);
   };
 
+  const addNewCandidat = (data) => {
+    candidatsService.addCandidat(data).then((res) => {
+      navigate("/candidats");
+    });
+  };
+
+  const updateCandidat = (newCandidat) => {
+    candidatsService.updateCandidat(newCandidat).then((res) => {
+      if (!res) return;
+      setCandidat(res);
+      getById(id);
+    });
+    getById(id);
+  };
+
+  const deleteCandidat = (id) => {
+    candidatsService.deleteCandidat(id).then((res) => {
+      if (!res) return;
+      if (res.error) {
+        console.log(res.error);
+
+        return;
+      }
+      navigate("/candidats");
+    });
+  };
+
   return (
     <DetailDiv>
-      <form autoComplete="off" noValidate {...props} onSubmit={onSubmitHandler}>
+      <form autoComplete="off" noValidate onSubmit={onSubmitHandler}>
         <Card>
           <CardHeader
             subheader="The information can be edited"
             title="Profile"
           />
+          <CloseBtn
+            variant="contained"
+            color="primary"
+            onClick={() => deleteCandidat(candidat.id)}
+          >
+            <i className="fa-regular fa-trash-can fa-xl"></i>
+          </CloseBtn>
           <Divider />
           <BasicInfoDiv>
             <CardContent>
@@ -150,6 +175,16 @@ export const AccountProfileDetails = (props) => {
                     borderRadius: 0,
                   }}
                 />
+                <CardActions>
+                  <Button
+                    color="primary"
+                    fullWidth
+                    variant="text"
+                    sx={{ mb: 2 }}
+                  >
+                    Upload picture
+                  </Button>
+                </CardActions>
                 <Grid item md={6} xs={12} mb={2}>
                   <TextField
                     fullWidth
@@ -188,6 +223,7 @@ export const AccountProfileDetails = (props) => {
                     fullWidth
                     label="Age"
                     name="age"
+                    type="number"
                     onChange={handleChange}
                     value={candidat.age}
                     variant="outlined"
@@ -195,6 +231,7 @@ export const AccountProfileDetails = (props) => {
                 </Grid>
               </Box>
             </CardContent>
+
             <CardContent>
               <Grid container spacing={3}>
                 <Grid item md={6} xs={12}>
@@ -204,6 +241,7 @@ export const AccountProfileDetails = (props) => {
                     name="email"
                     onChange={handleChange}
                     required
+                    type="email"
                     value={candidat.email}
                     variant="outlined"
                   />
@@ -214,7 +252,7 @@ export const AccountProfileDetails = (props) => {
                     label="Phone Number"
                     name="phone"
                     onChange={handleChange}
-                    type="number"
+                    type="tel"
                     value={candidat.phone}
                     variant="outlined"
                   />
@@ -312,9 +350,9 @@ export const AccountProfileDetails = (props) => {
                     value={candidat.bootcamp}
                     variant="outlined"
                   >
-                    {bootcamps.map((bootcamp) => (
-                      <option key={bootcamp.id} value={bootcamp.bootcampName}>
-                        {bootcamp.bootcampName}
+                    {bootcamps.map((bootcamp, index) => (
+                      <option key={index} value={bootcamp}>
+                        {bootcamp}
                       </option>
                     ))}
                   </TextField>
@@ -330,9 +368,9 @@ export const AccountProfileDetails = (props) => {
                     value={candidat.processState}
                     variant="outlined"
                   >
-                    {process.map((option) => (
-                      <option key={option.id} value={option.name}>
-                        {option.name}
+                    {process.map((option, index) => (
+                      <option key={index} value={option}>
+                        {option}
                       </option>
                     ))}
                   </TextField>

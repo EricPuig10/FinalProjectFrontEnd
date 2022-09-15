@@ -1,11 +1,10 @@
 import React from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { Detail } from "../components/detail/Detail";
-import {AccountPage} from "../pages/AccountPage";
+import { ProfilePage } from "../pages/ProfilePage";
 import { BootcampDashboardPage } from "../pages/BootcampDashboardPage";
+import { CandidatsByBootcampPage } from "../pages/CandidatsByBootcampPage";
 import { DashboardPage } from "../pages/DashboardPage";
-import { DetailPage } from "../pages/DetailPage";
 import { HomePage } from "../pages/HomePage";
 import { LoginPage } from "../pages/LoginPage";
 import ProfileBootcampPage from "../pages/ProfileBootcampPage";
@@ -73,7 +72,23 @@ export default function Router() {
           path="/candidats/:id"
           element={
             <AuthCrud>
-              <AccountPage />
+              <ProfilePage />
+            </AuthCrud>
+          }
+        />
+        <Route
+          path="/create"
+          element={
+            <AuthCrud>
+              <ProfilePage />
+            </AuthCrud>
+          }
+        />
+        <Route
+          path="/bootcamps/:id/candidats"
+          element={
+            <AuthCrud>
+              <CandidatsByBootcampPage />
             </AuthCrud>
           }
         />

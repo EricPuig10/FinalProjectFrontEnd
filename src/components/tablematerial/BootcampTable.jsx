@@ -5,7 +5,7 @@ import { bootcampsService } from "../../services/bootcampsService";
 import { useEffect } from "react";
 import { BtnAdd, CtTabBut, TableButton } from "./DataTable.styled";
 import { FormBootcamp } from "../formCandidat/FormBootcamp";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const initialBootcamp = {
   id: "",
@@ -21,6 +21,7 @@ const initialBootcamp = {
 
 export function BootcampTable() {
   const [bootcamps, setBootcamps] = useState([]);
+  //eslint-disable-next-line
   const [newBootcamp, setNewBootcamp] = useState({});
   const [isShowForm, setIsShowForm] = useState(false);
   const [bootcampToEdit, setBootcampToEdit] = useState(initialBootcamp);
@@ -36,13 +37,13 @@ export function BootcampTable() {
     });
   };
 
-  const getBootcampById = (id) => {
-    bootcampsService.getBootcampById(id).then((res => {
-      if(res) {
-        setNewBootcamp(res);
-      }
-    }))
-  };
+  // const getBootcampById = (id) => {
+  //   bootcampsService.getBootcampById(id).then((res => {
+  //     if(res) {
+  //       setNewBootcamp(res);
+  //     }
+  //   }))
+  // };
 
   const addNewBootcamp = (data) => {
     bootcampsService.addBootcamp(data).then((res) => {
@@ -92,16 +93,24 @@ export function BootcampTable() {
       },
     },
     { field: "id", headerName: "ID", width: 90 },
-    { field: "bootcampName", headerName: "Nombre", width: 130 },
-    { field: "duration", headerName: "Duración", width: 130 },
+    {
+      field: "bootcampName",
+      headerName: "Nombre",
+      width: 130,
+      renderCell: (params) => {
+        return (
+          <Link to={`/bootcamps/${params.row.id}/candidats`}>
+            <div className="rowitem">{params.row.bootcampName}</div>
+          </Link>
+        );
+      },
+    },
     {
       field: "category",
       headerName: "Categoría",
       width: 130,
       renderCell: (params) => {
-        return (
-          <div className="rowitem">{params.row.category.name}</div>
-        );
+        return <div className="rowitem">{params.row.category.name}</div>;
       },
     },
     { field: "characteristics", headerName: "Características", width: 130 },

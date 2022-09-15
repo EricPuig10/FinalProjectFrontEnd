@@ -4,43 +4,30 @@ import { useState } from "react";
 import { candidatsService } from "../../services/candidatsService";
 import { useEffect } from "react";
 import { BtnAdd, CtTabBut, TableButton } from "./DataTable.styled";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-
-
-
-export const DataTable = () => {
+export const CandidatsByBootcampTable = () => {
   const [candidats, setCandidats] = useState([]);
 
-  useEffect(() => {
-    getAllCandidats();
-  }, []);
+  const { id } = useParams();
 
-  const getAllCandidats = () => {
-    candidatsService.getAllCandidats().then((res) => {
+  useEffect(() => {
+    getCandidatsByBootcampId(id);
+  });
+
+  const getCandidatsByBootcampId = (id) => {
+    candidatsService.getCandidatsByBootcampId(id).then((res) => {
       setCandidats(res);
     });
   };
 
   const columns = [
     {
-      field: "Actions",
-      headerName: "Acciones",
-
+      field: "Acciones",
       renderCell: (cellValues) => {
         return (
           <>
             <CtTabBut>
-              {/* <TableButton
-                variant="contained"
-                color="primary"
-                onClick={() => {
-                  editCandidat(cellValues.row.id);
-                }}
-              >
-                <i className="fa-regular fa-pen-to-square fa-lg"></i>
-              </TableButton> */}
-
               <TableButton
                 variant="contained"
                 color="primary"
@@ -62,30 +49,10 @@ export const DataTable = () => {
         );
       },
     },
-    {
-      field: "id",
-      headerName: "ID",
-      width: 90,
-      cellClassName: "super-app-theme--header",
-    },
-    {
-      field: "name",
-      headerName: "Nombre",
-      width: 130,
-      headerClassName: "super-app-theme--header",
-    },
-    {
-      field: "lastname",
-      headerName: "Apellido",
-      width: 130,
-      headerClassName: "super-app-theme--header",
-    },
-    {
-      field: "secondlastname",
-      headerName: "2º apellido",
-      width: 130,
-      headerClassName: "super-app-theme--header",
-    },
+    { field: "id", headerName: "ID", width: 90 },
+    { field: "name", headerName: "Nombre", width: 130 },
+    { field: "lastname", headerName: "Apellido", width: 130 },
+    { field: "secondlastname", headerName: "2º apellido", width: 130 },
     {
       field: "age",
       headerName: "Edad",
@@ -158,14 +125,6 @@ export const DataTable = () => {
           rows={candidats}
           pageSize={10}
           rowsPerPageOptions={[10]}
-          // sx={{
-          //   boxShadow: 2,
-          //   border: 2,
-          //   borderColor: "tertiary.light",
-          //   "& .MuiDataGrid-cell:hover": {
-          //     color: "primary",
-          //   },
-          // }}
         />
       </div>
       <Link to="/create">
