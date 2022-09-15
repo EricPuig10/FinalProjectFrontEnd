@@ -12,8 +12,8 @@ export const CtForm = styled.div`
 export const Form = styled.form`
   height: 40vh;
   width: 50vw;
-  background-color: #fcf7f6;
   display: flex;
+  background-color: #f8f5f4;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
@@ -66,7 +66,6 @@ export const BtLogin = styled.button`
   border: none;
   text-align: center;
   background-color:#ea561d;
-
   color: white;
   cursor: pointer;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -84,7 +83,7 @@ export const CtImg = styled.div`
 `;
 
 export const Img = styled.img`
-  height: 45vh;
+  height: 50vh;
   /* width: 30vw; */
   /* border: 2px solid red; */
   display: flex;

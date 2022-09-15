@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { authService } from "../../services/authService";
-import  img  from '../../assets/img/img_grande.png';
+import  imglogin  from '../../assets/img/imglogin.png';
 import { localAuthService } from "../../services/localAuthService";
 import {
   BtLogin,
@@ -62,7 +62,7 @@ export const Login = () => {
     <>
 
     <CtImg>
-      <Img src={img}></Img>
+      <Img src={imglogin}></Img>
     </CtImg>
 
     <CtForm>
