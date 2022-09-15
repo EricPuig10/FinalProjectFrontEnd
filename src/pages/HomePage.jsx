@@ -7,8 +7,10 @@ export const HomePage = () => {
   return (
     <>
       <Navbar />
-      <Sidebar />
-      <Home />
+      <div>
+        <Sidebar />
+        <Home />
+      </div>
     </>
   );
 };

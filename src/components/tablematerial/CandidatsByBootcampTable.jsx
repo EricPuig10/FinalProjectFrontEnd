@@ -4,8 +4,8 @@ import { useState } from "react";
 import { candidatsService } from "../../services/candidatsService";
 import { useEffect } from "react";
 import { BtnAdd, CtTabBut, TableButton } from "./DataTable.styled";
-import { Link, useNavigate } from "react-router-dom";
-import { alpha, gridClasses, styled } from "@mui/material";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { AccountProfileDetails } from "../account/account-profile-details";
 
 const initialCandidat = {
   id: "",
@@ -35,7 +35,7 @@ const initialCandidat = {
   img: "",
 };
 
-export const DataTable = () => {
+export const CandidatsByBootcampTable = () => {
   const [candidats, setCandidats] = useState([]);
   const [isShowForm, setIsShowForm] = useState(false);
   const [candidatToEdit, setCandidatToEdit] = useState(initialCandidat);
@@ -43,12 +43,14 @@ export const DataTable = () => {
 
   let navigate = useNavigate();
 
+  const { id } = useParams();
+
   useEffect(() => {
-    getAllCandidats();
+    getCandidatsByBootcampId(id);
   }, []);
 
-  const getAllCandidats = () => {
-    candidatsService.getAllCandidats().then((res) => {
+  const getCandidatsByBootcampId = (id) => {
+    candidatsService.getCandidatsByBootcampId(id).then((res) => {
       setCandidats(res);
     });
   };
@@ -91,30 +93,10 @@ export const DataTable = () => {
         );
       },
     },
-    {
-      field: "id",
-      headerName: "ID",
-      width: 90,
-      cellClassName: "super-app-theme--header",
-    },
-    {
-      field: "name",
-      headerName: "Name",
-      width: 130,
-      headerClassName: "super-app-theme--header",
-    },
-    {
-      field: "lastname",
-      headerName: "Last name",
-      width: 130,
-      headerClassName: "super-app-theme--header",
-    },
-    {
-      field: "secondlastname",
-      headerName: "Second last name",
-      width: 130,
-      headerClassName: "super-app-theme--header",
-    },
+    { field: "id", headerName: "ID", width: 90 },
+    { field: "name", headerName: "Name", width: 130 },
+    { field: "lastname", headerName: "Last name", width: 130 },
+    { field: "secondlastname", headerName: "Second last name", width: 130 },
     {
       field: "age",
       headerName: "Age",
@@ -134,7 +116,7 @@ export const DataTable = () => {
           <Link to={`/bootcamps/${params.row.bootcamp.id}/candidats`}>
             <div className="rowitem">{params.row.bootcamp.bootcampName}</div>
           </Link>
-        );
+        )
       },
     },
     {
@@ -202,10 +184,10 @@ export const DataTable = () => {
     candidatsService.updateCandidat(newCandidat).then((res) => {
       if (!res) return;
       setCandidatToEdit();
-      getAllCandidats();
+      getCandidatsByBootcampId(id);
     });
     showForm();
-    getAllCandidats();
+    getCandidatsByBootcampId(id);
   };
 
   return (
@@ -224,14 +206,6 @@ export const DataTable = () => {
           rows={candidats}
           pageSize={10}
           rowsPerPageOptions={[10]}
-          // sx={{
-          //   boxShadow: 2,
-          //   border: 2,
-          //   borderColor: "tertiary.light",
-          //   "& .MuiDataGrid-cell:hover": {
-          //     color: "primary",
-          //   },
-          // }}
         />
       </div>
       <Link to="/create">

@@ -5,6 +5,7 @@ import { bootcampsService } from "../../services/bootcampsService";
 import { useEffect } from "react";
 import { BtnAdd, CtTabBut, TableButton } from "./DataTable.styled";
 import { FormBootcamp } from "../formCandidat/FormBootcamp";
+import { Link } from "react-router-dom";
 
 const initialBootcamp = {
   id: "",
@@ -87,15 +88,24 @@ export function BootcampTable() {
       },
     },
     { field: "id", headerName: "ID", width: 90 },
-    { field: "bootcampName", headerName: "Name", width: 130 },
+    {
+      field: "bootcampName",
+      headerName: "Name",
+      width: 130,
+      renderCell: (params) => {
+        return (
+          <Link to={`/bootcamps/${params.row.id}/candidats`}>
+            <div className="rowitem">{params.row.bootcampName}</div>
+          </Link>
+        );
+      },
+    },
     {
       field: "category",
       headerName: "Category",
       width: 130,
       renderCell: (params) => {
-        return (
-          <div className="rowitem">{params.row.category.name}</div>
-        );
+        return <div className="rowitem">{params.row.category.name}</div>;
       },
     },
     { field: "duration", headerName: "Duration", width: 130 },

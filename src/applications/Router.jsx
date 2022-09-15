@@ -1,8 +1,9 @@
 import React from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Detail } from "../components/detail/Detail";
-import {AccountPage} from "../pages/AccountPage";
+import { AccountPage } from "../pages/AccountPage";
 import { BootcampDashboardPage } from "../pages/BootcampDashboardPage";
+import { CandidatsByBootcampPage } from "../pages/CandidatsByBootcampPage";
 import { DashboardPage } from "../pages/DashboardPage";
 import { DetailPage } from "../pages/DetailPage";
 import { HomePage } from "../pages/HomePage";
@@ -64,6 +65,14 @@ export default function Router() {
           element={
             <AuthCrud>
               <AccountPage />
+            </AuthCrud>
+          }
+        />
+        <Route
+          path="/bootcamps/:id/candidats"
+          element={
+            <AuthCrud>
+              <CandidatsByBootcampPage />
             </AuthCrud>
           }
         />

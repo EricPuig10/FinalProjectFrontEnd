@@ -5,7 +5,9 @@ export const DivNav = styled.div`
   padding-left: 10%;
   padding-right: 10%;
   height: 70px;
-  background-color: #ece6e5;
+  background-color: #ffffff;
+  border-bottom: 1px solid grey;
+  box-shadow: 1px 1px 15px #d0d0d0;
   display: flex;
   justify-content: space-between;
 `;

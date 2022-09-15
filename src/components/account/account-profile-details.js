@@ -38,7 +38,7 @@ const initialCandidat = {
   gender: "",
   nationality: "",
   laboralsituation: "",
-  bootcamp: "",
+  bootcamp:"",
   processState: "",
   sololearnprogress: "",
   codeacademyprogress: "",
@@ -77,6 +77,7 @@ export const AccountProfileDetails = () => {
       // candidat.bootcamp = res.bootcamp.bootcampName;
       // candidat.processState = res.processState.name;
     });
+    
   };
   console.log(candidatObjects);
   console.log(candidat);
