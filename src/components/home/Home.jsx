@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import imgHome from '../../assets/img/imgHome.png'
+
 import {
   DivButtonsHome,
   DivImgHome,
@@ -12,8 +14,9 @@ export const Home = () => {
   return (
     <HomeDiv>
       <HomeText>Hola Admin, ¿qué quieres comprobar hoy?</HomeText>
+
       <DivImgHome>
-        <ImgHome src="https://developer.visa.com/images2/platform/homepage/homepage-06-2021-update/vdp-home-morewaystowork-illo.png" />
+        <ImgHome src={imgHome} />
       </DivImgHome>
       <DivButtonsHome>
         <Link to="/candidats">

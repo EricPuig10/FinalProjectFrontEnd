@@ -13,8 +13,8 @@ export const DivImgHome = styled.div`
   position: absolute;
   top: 10%;
   left: 23%;
-  width: 50%;
-  height: 50%;
+  width: 55%;
+  height: 55%;
 `;
 
 export const ImgHome = styled.img`
@@ -44,9 +44,9 @@ export const DivButtonsHome = styled.div`
 export const HomeButton = styled.button`
   width: 20%;
   font-size: 1.2em;
-  border-color: #ff4700;
+  border-color: #ea561d;
   border-style: solid;
-  color: #ff4700;
+  color: #ea561d;
   background-color: transparent;
   font-family: "Poppins";
   font-weight: 400;
