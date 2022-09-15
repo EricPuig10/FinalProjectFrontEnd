@@ -1,12 +1,15 @@
 import React, {  useState } from "react";
+import imgLogin from '../../assets/img/imgLogin.png'
 import { authService } from "../../services/authService";
 import { localAuthService } from "../../services/localAuthService";
 import {
   BtLogin,
   CtButton,
   CtForm,
+  CtImg,
   CtInput,
   Form,
+  Img,
   Label,
 } from "./Login.styled";
 import { useNavigate } from "react-router-dom";
@@ -52,6 +55,12 @@ export const Login = () => {
   //   logout();
   // }, []);
   return (
+
+<>
+<CtImg>
+  <Img src={imgLogin}></Img>
+</CtImg>
+
     <CtForm>
       <Form>
         <Label htmlFor="title">
@@ -81,5 +90,6 @@ export const Login = () => {
         </CtButton>
       </Form>
     </CtForm>
+    </>
   );
 };
