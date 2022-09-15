@@ -137,7 +137,7 @@ function ProfileBootcamp() {
                   <TextField
                     fullWidth
                     helperText="Escoja el tipo de bootcamp"
-                    label="Categoría"
+                    //label="Categoría"
                     name="category"
                     onChange={handleChange}
                     required

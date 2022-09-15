@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+  Autocomplete,
   Avatar,
   Box,
   Button,
@@ -9,6 +10,7 @@ import {
   CardHeader,
   Divider,
   Grid,
+  MenuItem,
   TextField,
 } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
@@ -53,6 +55,7 @@ export const Profile = () => {
   const [candidatObjects, setCandidatObjects] = useState([]);
   const [bootcamps, setBootcamps] = useState([]);
   const [process, setProcess] = useState([]);
+  const [inputValue, setInputValue] = useState("");
 
   const { id } = useParams();
   let navigate = useNavigate();
@@ -62,7 +65,7 @@ export const Profile = () => {
     getAllBootcamps();
     getAllProcess();
     editMode();
-  });
+  }, []);
 
   const getById = (id) => {
     if (!id) return;
@@ -123,7 +126,7 @@ export const Profile = () => {
   const updateCandidat = (newCandidat) => {
     candidatsService.updateCandidat(newCandidat).then((res) => {
       if (!res) return;
-      setCandidat(res);
+      // setCandidat(res);
       getById(id);
     });
     getById(id);
@@ -342,7 +345,7 @@ export const Profile = () => {
                 <Grid item md={6} xs={12}>
                   <TextField
                     fullWidth
-                    label="Select bootcamp"
+                    //label="Select bootcamp"
                     name="bootcamp"
                     onChange={handleChange}
                     select
@@ -360,7 +363,7 @@ export const Profile = () => {
                 <Grid item md={6} xs={12}>
                   <TextField
                     fullWidth
-                    label="Select process"
+                    //label="Select process"
                     name="processState"
                     onChange={handleChange}
                     select
@@ -384,6 +387,7 @@ export const Profile = () => {
                     onChange={handleChange}
                     value={candidat.spirit}
                     variant="outlined"
+                    multiline
                   />
                 </Grid>
                 <Grid item md={12} xs={12}>
@@ -394,6 +398,7 @@ export const Profile = () => {
                     onChange={handleChange}
                     value={candidat.motivation}
                     variant="outlined"
+                    multiline
                   />
                 </Grid>
               </Grid>

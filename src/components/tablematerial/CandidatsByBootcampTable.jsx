@@ -13,7 +13,7 @@ export const CandidatsByBootcampTable = () => {
 
   useEffect(() => {
     getCandidatsByBootcampId(id);
-  });
+  }, []);
 
   const getCandidatsByBootcampId = (id) => {
     candidatsService.getCandidatsByBootcampId(id).then((res) => {
