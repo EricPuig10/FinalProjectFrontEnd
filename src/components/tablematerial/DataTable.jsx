@@ -6,9 +6,6 @@ import { useEffect } from "react";
 import { BtnAdd, CtTabBut, TableButton } from "./DataTable.styled";
 import { Link } from "react-router-dom";
 
-
-
-
 export const DataTable = () => {
   const [candidats, setCandidats] = useState([]);
 
@@ -26,6 +23,7 @@ export const DataTable = () => {
     {
       field: "Actions",
       headerName: "Acciones",
+      headerClassName: "super-app-theme--header",
 
       renderCell: (cellValues) => {
         return (
@@ -66,7 +64,7 @@ export const DataTable = () => {
       field: "id",
       headerName: "ID",
       width: 90,
-      cellClassName: "super-app-theme--header",
+      headerClassName: "super-app-theme--header",
     },
     {
       field: "name",
@@ -90,16 +88,43 @@ export const DataTable = () => {
       field: "age",
       headerName: "Edad",
       width: 90,
+      headerClassName: "super-app-theme--header",
     },
-    { field: "email", headerName: "Email", width: 130 },
-    { field: "phone", headerName: "Teléfono", width: 130 },
-    { field: "gender", headerName: "Género", width: 130 },
-    { field: "nationality", headerName: "Nacionalidad", width: 130 },
-    { field: "laboralsituation", headerName: "Situación laboral", width: 130 },
+    {
+      field: "email",
+      headerName: "Email",
+      width: 130,
+      headerClassName: "super-app-theme--header",
+    },
+    {
+      field: "phone",
+      headerName: "Teléfono",
+      width: 130,
+      headerClassName: "super-app-theme--header",
+    },
+    {
+      field: "gender",
+      headerName: "Género",
+      width: 130,
+      headerClassName: "super-app-theme--header",
+    },
+    {
+      field: "nationality",
+      headerName: "Nacionalidad",
+      width: 130,
+      headerClassName: "super-app-theme--header",
+    },
+    {
+      field: "laboralsituation",
+      headerName: "Situación laboral",
+      width: 130,
+      headerClassName: "super-app-theme--header",
+    },
     {
       field: "bootcamp",
       headerName: "Bootcamp",
       width: 130,
+      headerClassName: "super-app-theme--header",
       renderCell: (params) => {
         return (
           <Link to={`/bootcamps/${params.row.bootcamp.id}/candidats`}>
@@ -115,6 +140,7 @@ export const DataTable = () => {
       renderCell: (params) => {
         return <div className="rowitem">{params.row.processState.name}</div>;
       },
+      headerClassName: "super-app-theme--header",
     },
 
     // { field: 'sololearnprogress', headerName: 'Solo Learn Progress', width: 130 },
@@ -156,16 +182,15 @@ export const DataTable = () => {
         <DataGrid
           columns={columns}
           rows={candidats}
-          pageSize={10}
-          rowsPerPageOptions={[10]}
-          // sx={{
-          //   boxShadow: 2,
-          //   border: 2,
-          //   borderColor: "tertiary.light",
-          //   "& .MuiDataGrid-cell:hover": {
-          //     color: "primary",
-          //   },
-          // }}
+          pageSize={8}
+          rowsPerPageOptions={[8]}
+          sx={{
+            overflowY: "hidden",
+            height: 545,
+            "& .super-app-theme--header": {
+              backgroundColor: "rgba(225, 225, 225, 0.55)",
+            },
+          }}
         />
       </div>
       <Link to="/create">
