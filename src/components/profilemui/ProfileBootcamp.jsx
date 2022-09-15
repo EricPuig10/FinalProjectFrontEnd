@@ -114,6 +114,7 @@ function ProfileBootcamp(props, updateBootcamp) {
                 name="duration"
                 onChange={handleChange}
                 required
+                type="number"
                 value={bootcamps.duration}
                 variant="outlined"
               />
