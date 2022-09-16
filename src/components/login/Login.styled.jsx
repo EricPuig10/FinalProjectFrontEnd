@@ -10,7 +10,7 @@ export const CtForm = styled.div`
 `;
 
 export const Form = styled.form`
-  height: 40vh;
+  height: 35vh;
   width: 50vw;
   display: flex;
   background-color: #f8f5f4;
@@ -36,7 +36,7 @@ export const Label = styled.label`
 export const CtInput = styled.input`
   padding: 0 2.5% 0 2.5%;
   width: 100%;
-  height: 4rem;
+  height: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -83,7 +83,7 @@ export const CtImg = styled.div`
 `;
 
 export const Img = styled.img`
-  height: 50vh;
+  height: 45vh;
   /* width: 30vw; */
   /* border: 2px solid red; */
   display: flex;

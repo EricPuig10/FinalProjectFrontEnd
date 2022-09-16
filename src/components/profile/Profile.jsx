@@ -149,8 +149,8 @@ export const Profile = () => {
       <form autoComplete="off" noValidate onSubmit={onSubmitHandler}>
         <Card>
           <CardHeader
-            subheader="The information can be edited"
-            title="Profile"
+            subheader="La información se puede editar"
+            title="Perfil del candidato"
           />
           <CloseBtn
             variant="contained"
@@ -192,7 +192,7 @@ export const Profile = () => {
                   <TextField
                     fullWidth
                     helperText="Please specify the first name"
-                    label="First name"
+                    label="Nombre"
                     name="name"
                     onChange={handleChange}
                     required
@@ -203,7 +203,7 @@ export const Profile = () => {
                 <Grid item md={6} xs={12} mb={2}>
                   <TextField
                     fullWidth
-                    label="Last name"
+                    label="Apellido"
                     name="lastname"
                     onChange={handleChange}
                     required
@@ -214,7 +214,7 @@ export const Profile = () => {
                 <Grid item md={6} xs={12} mb={2}>
                   <TextField
                     fullWidth
-                    label="2n Last Name"
+                    label="2º apellido"
                     name="secondlastname"
                     onChange={handleChange}
                     value={candidat.secondlastname}
@@ -224,7 +224,7 @@ export const Profile = () => {
                 <Grid item md={6} xs={12}>
                   <TextField
                     fullWidth
-                    label="Age"
+                    label="Edad"
                     name="age"
                     type="number"
                     onChange={handleChange}
@@ -240,7 +240,7 @@ export const Profile = () => {
                 <Grid item md={6} xs={12}>
                   <TextField
                     fullWidth
-                    label="Email Address"
+                    label="Email"
                     name="email"
                     onChange={handleChange}
                     required
@@ -252,7 +252,7 @@ export const Profile = () => {
                 <Grid item md={6} xs={12}>
                   <TextField
                     fullWidth
-                    label="Phone Number"
+                    label="Número de teléfono"
                     name="phone"
                     onChange={handleChange}
                     type="tel"
@@ -263,7 +263,7 @@ export const Profile = () => {
                 <Grid item md={6} xs={12}>
                   <TextField
                     fullWidth
-                    label="Country"
+                    label="Comunidad Autónoma"
                     name="nationality"
                     onChange={handleChange}
                     required
@@ -274,7 +274,7 @@ export const Profile = () => {
                 <Grid item md={6} xs={12}>
                   <TextField
                     fullWidth
-                    label="Direction"
+                    label="Dirección"
                     name="direction"
                     onChange={handleChange}
                     value={candidat.direction}
@@ -285,7 +285,7 @@ export const Profile = () => {
                 <Grid item md={6} xs={12}>
                   <TextField
                     fullWidth
-                    label="Gender"
+                    label="Género"
                     name="gender"
                     onChange={handleChange}
                     value={candidat.gender}
@@ -295,7 +295,7 @@ export const Profile = () => {
                 <Grid item md={6} xs={12}>
                   <TextField
                     fullWidth
-                    label="Degree"
+                    label="Últimos estudios"
                     name="degree"
                     onChange={handleChange}
                     value={candidat.degree}
@@ -305,7 +305,7 @@ export const Profile = () => {
                 <Grid item md={6} xs={12}>
                   <TextField
                     fullWidth
-                    label="Superpower"
+                    label="Superpoder"
                     name="superpower"
                     onChange={handleChange}
                     value={candidat.superpower}
@@ -315,7 +315,7 @@ export const Profile = () => {
                 <Grid item md={6} xs={12}>
                   <TextField
                     fullWidth
-                    label="Formation"
+                    label="Ha cursado otra formación?"
                     name="formation"
                     onChange={handleChange}
                     value={candidat.formation}
@@ -325,7 +325,7 @@ export const Profile = () => {
                 <Grid item md={6} xs={12}>
                   <TextField
                     fullWidth
-                    label="Reached"
+                    label="Cómo nos conoció?"
                     name="reached"
                     onChange={handleChange}
                     value={candidat.reached}
@@ -335,7 +335,7 @@ export const Profile = () => {
                 <Grid item md={6} xs={12}>
                   <TextField
                     fullWidth
-                    label="Laboral situation"
+                    label="Situación laboral"
                     name="laboralsituation"
                     onChange={handleChange}
                     value={candidat.laboralsituation}
@@ -382,7 +382,7 @@ export const Profile = () => {
                 <Grid item md={12} xs={12}>
                   <TextField
                     fullWidth
-                    label="Spirit"
+                    label="Definición del espiritu hacker"
                     name="spirit"
                     onChange={handleChange}
                     value={candidat.spirit}
@@ -393,7 +393,7 @@ export const Profile = () => {
                 <Grid item md={12} xs={12}>
                   <TextField
                     fullWidth
-                    label="Motivation"
+                    label="Motivacion para formar parte del curso"
                     name="motivation"
                     onChange={handleChange}
                     value={candidat.motivation}

@@ -8,6 +8,7 @@ import { DashboardPage } from "../pages/DashboardPage";
 import { HomePage } from "../pages/HomePage";
 import { LoginPage } from "../pages/LoginPage";
 import ProfileBootcampPage from "../pages/ProfileBootcampPage";
+import { Error404 } from "../pages/Error404";
 
 
 
@@ -108,6 +109,7 @@ export default function Router() {
             </AuthCrud>
         }
         />
+        <Route path="*" element={<Error404 />} />
 
       </Routes>
     </BrowserRouter>
