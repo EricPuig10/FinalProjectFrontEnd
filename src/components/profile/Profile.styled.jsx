@@ -11,11 +11,19 @@ export const DetailDiv = styled.div`
   display: flex;
 `;
 
+export const CtProfile = styled.div`
+background-color: white;
+width: 93%;
+margin-left:7%;
+z-index: 1000;
+`
+
 export const Div = styled.div``;
 
 export const BasicInfoDiv = styled.div`
   display: flex;
   position: relative;
+  width: 100%;
 `;
 export const LeftDiv = styled.div`
   display: flex;
