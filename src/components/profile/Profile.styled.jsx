@@ -11,11 +11,19 @@ export const DetailDiv = styled.div`
   display: flex;
 `;
 
+export const CtProfile = styled.div`
+background-color: white;
+width: 93%;
+margin-left:7%;
+z-index: 1000;
+`
+
 export const Div = styled.div``;
 
 export const BasicInfoDiv = styled.div`
   display: flex;
   position: relative;
+  width: 100%;
 `;
 export const LeftDiv = styled.div`
   display: flex;
@@ -102,4 +110,16 @@ export const TextArea = styled.div`
   font-size: 1em;
   color: #272727;
   display: flex;
+`;
+
+export const ButtonUploadImg = styled.label`
+  border: 1px solid #ff4700;
+  padding: 6px 12px;
+  cursor: pointer;
+  margin-bottom: 4%;
+  border-radius: 0.5vw;
+  &:hover {
+    color: #ff4700;
+    border: 1px solid #ff4700;
+  }
 `;

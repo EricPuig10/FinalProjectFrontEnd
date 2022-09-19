@@ -181,6 +181,8 @@ export const DataTable = () => {
       >
         <DataGrid
           columns={columns}
+          type= "text"
+          aria-label= "name"
           rows={candidats}
           pageSize={8}
           rowsPerPageOptions={[8]}
@@ -194,7 +196,7 @@ export const DataTable = () => {
         />
       </div>
       <Link to="/create">
-        <BtnAdd>
+        <BtnAdd type="button" aria-label="addbutton">
           <i className="fa-solid fa-plus fa-2xl"></i>
         </BtnAdd>
       </Link>

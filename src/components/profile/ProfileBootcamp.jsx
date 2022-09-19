@@ -10,11 +10,10 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useTheme } from "@mui/material/styles";
-import { BasicInfoDiv, DetailProfile } from "../profilemui/Profile.styled";
+import { BasicInfoDiv, CtProfile } from "../profile/Profile.styled";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { bootcampsService } from "../../services/bootcampsService";
 import { categoryService } from "../../services/categoryService";
-import BootcampTable from "../tablematerial/BootcampTable";
 import { CandidatsByBootcampTable } from "../tablematerial/CandidatsByBootcampTable";
 
 const initialBootcamp = {
@@ -105,7 +104,7 @@ function ProfileBootcamp() {
 
   return (
     <>
-      <DetailProfile>
+      <CtProfile>
         <form autoComplete="off" noValidate onSubmit={onSubmitHandler}>
           <Card>
           {bootcamp.bootcampName === "" ? (
@@ -259,7 +258,7 @@ function ProfileBootcamp() {
             </Box>
           </Card>
         </form>
-      </DetailProfile>
+      </CtProfile>
       {!isEditMode ? null : (
         <div
         // style={{
