@@ -6,11 +6,9 @@ export const DetailProfile = styled.div`
 background-color: white;
 width: 93%;
 /* border: 1px solid red; */
-position: absolute;
-top: 9.9%;
-left:7%;
+margin-left:7%;
 z-index: 1000;
-display: flex;
+/* display: flex; */
 `
 
 export const Div = styled.div`

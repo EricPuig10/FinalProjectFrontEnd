@@ -148,10 +148,18 @@ export const Profile = () => {
     <DetailDiv>
       <form autoComplete="off" noValidate onSubmit={onSubmitHandler}>
         <Card>
-          <CardHeader
-            subheader="La información se puede editar"
-            title="Perfil del candidato"
-          />
+          {candidat.name === "" ? (
+            <CardHeader
+              subheader="La información se puede editar"
+              title="Perfil del candidato"
+            />
+          ) : (
+            <CardHeader
+              subheader="La información se puede editar"
+              title={candidat.name + " " + candidat.lastname}
+            />
+          )}
+
           <CloseBtn
             variant="contained"
             color="primary"

@@ -5,7 +5,7 @@ import { bootcampsService } from "../../services/bootcampsService";
 import { useEffect } from "react";
 import { BtnAdd, CtTabBut, TableButton } from "./DataTable.styled";
 import { FormBootcamp } from "../formCandidat/FormBootcamp";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export function BootcampTable() {
   const [bootcamps, setBootcamps] = useState([]);
@@ -19,6 +19,7 @@ export function BootcampTable() {
       setBootcamps(res);
     });
   };
+  const location = useLocation();
 
   const columns = [
     {
@@ -116,11 +117,13 @@ export function BootcampTable() {
           rowsPerPageOptions={[10]}
         />
       </div>
-      <Link to="/bootcamps/create">
-        <BtnAdd>
-          <i className="fa-solid fa-plus fa-2xl"></i>
-        </BtnAdd>
-      </Link>
+      {location.pathname === "/bootcamps/create" ? null : (
+        <Link to="/bootcamps/create">
+          <BtnAdd>
+            <i className="fa-solid fa-plus fa-2xl"></i>
+          </BtnAdd>
+        </Link>
+      )}
     </>
   );
 }

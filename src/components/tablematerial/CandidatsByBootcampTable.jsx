@@ -4,13 +4,14 @@ import { useState } from "react";
 import { candidatsService } from "../../services/candidatsService";
 import { useEffect } from "react";
 import { BtnAdd, CtTabBut, TableButton } from "./DataTable.styled";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 
 export const CandidatsByBootcampTable = () => {
   const [candidats, setCandidats] = useState([]);
 
   const { id } = useParams();
 
+  const location = useLocation();
   useEffect(() => {
     getCandidatsByBootcampId(id);
   }, []);
@@ -127,11 +128,13 @@ export const CandidatsByBootcampTable = () => {
           rowsPerPageOptions={[10]}
         />
       </div>
-      <Link to="/create">
-        <BtnAdd>
-          <i className="fa-solid fa-plus fa-2xl"></i>
-        </BtnAdd>
-      </Link>
+      {location.pathname === "/bootcamps/create" || "/bootcamps/:id" ? null : (
+        <Link to="/bootcamps/create">
+          <BtnAdd>
+            <i className="fa-solid fa-plus fa-2xl"></i>
+          </BtnAdd>
+        </Link>
+      )}
     </>
   );
 };
