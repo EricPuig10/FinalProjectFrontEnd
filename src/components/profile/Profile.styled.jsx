@@ -12,11 +12,11 @@ export const DetailDiv = styled.div`
 `;
 
 export const CtProfile = styled.div`
-background-color: white;
-width: 93%;
-margin-left:7%;
-z-index: 1000;
-`
+  background-color: white;
+  width: 93%;
+  margin-left: 7%;
+  z-index: 1000;
+`;
 
 export const Div = styled.div``;
 
@@ -122,4 +122,11 @@ export const ButtonUploadImg = styled.label`
     color: #ff4700;
     border: 1px solid #ff4700;
   }
+`;
+
+export const Modal = styled.div`
+  position: fixed;
+  z-index: 10000;
+  top: 13%;
+  left: 45%;
 `;

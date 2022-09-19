@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+  Alert,
   Autocomplete,
   Avatar,
   Box,
@@ -15,7 +16,12 @@ import {
 } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import { candidatsService } from "../../services/candidatsService";
-import { BasicInfoDiv, ButtonUploadImg, DetailDiv } from "./Profile.styled";
+import {
+  BasicInfoDiv,
+  ButtonUploadImg,
+  DetailDiv,
+  Modal,
+} from "./Profile.styled";
 import { bootcampsService } from "../../services/bootcampsService";
 import { processService } from "../../services/processService";
 import { CloseBtn, Input } from "../formCandidat/Form.styled";
@@ -56,7 +62,7 @@ export const Profile = () => {
   const [candidatObjects, setCandidatObjects] = useState([]);
   const [bootcamps, setBootcamps] = useState([]);
   const [process, setProcess] = useState([]);
-  const [inputValue, setInputValue] = useState("");
+  const [msg, setMsg] = useState();
 
   const { id } = useParams();
   let navigate = useNavigate();
@@ -67,6 +73,13 @@ export const Profile = () => {
     getAllProcess();
     editMode();
   }, []);
+
+  const alertTimed = (msg) => {
+    setMsg(msg);
+    setTimeout(function () {
+      setMsg(undefined);
+    }, 2500);
+  };
 
   const getById = (id) => {
     if (!id) return;
@@ -129,6 +142,7 @@ export const Profile = () => {
       if (!res) return;
       // setCandidat(res);
       getById(id);
+      alertTimed("Candidato actualizado!");
     });
     getById(id);
   };
@@ -161,79 +175,87 @@ export const Profile = () => {
   };
 
   return (
-    <DetailDiv>
-      <form
-        autoComplete="off"
-        noValidate
-        encType="multipart/form-data"
-        onSubmit={onSubmitHandler}
-      >
-        <Card>
-          {candidat.name === "" ? (
-            <CardHeader
-              subheader="La información se puede editar"
-              title="Perfil del candidato"
-            />
-          ) : (
-            <CardHeader
-              subheader="La información se puede editar"
-              title={candidat.name + " " + candidat.lastname}
-            />
-          )}
+    <>
+      <Modal>
+        {msg !== undefined ? (
+          <Alert severity="success" msg={msg} color="primary">
+            {msg}
+          </Alert>
+        ) : null}
+      </Modal>
+      <DetailDiv>
+        <form
+          autoComplete="off"
+          noValidate
+          encType="multipart/form-data"
+          onSubmit={onSubmitHandler}
+        >
+          <Card>
+            {candidat.name === "" ? (
+              <CardHeader
+                subheader="La información se puede editar"
+                title="Perfil del candidato"
+              />
+            ) : (
+              <CardHeader
+                subheader="La información se puede editar"
+                title={candidat.name + " " + candidat.lastname}
+              />
+            )}
 
-          <CloseBtn
-            variant="contained"
-            color="primary"
-            onClick={() => deleteCandidat(candidat.id)}
-          >
-            <i className="fa-regular fa-trash-can fa-xl"></i>
-          </CloseBtn>
-          <Divider />
-          <BasicInfoDiv>
-            <CardContent>
-              <Box
-                sx={{
-                  alignItems: "center",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <Avatar
-                  src={candidat.img}
+            <CloseBtn
+              variant="contained"
+              color="primary"
+              onClick={() => deleteCandidat(candidat.id)}
+            >
+              <i className="fa-regular fa-trash-can fa-xl"></i>
+            </CloseBtn>
+            <Divider />
+            <BasicInfoDiv>
+              <CardContent>
+                <Box
                   sx={{
-                    height: 200,
-                    m: 2,
-                    width: 200,
-                    borderRadius: 0,
+                    alignItems: "center",
+                    display: "flex",
+                    flexDirection: "column",
                   }}
-                />
-                <CardActions>
-                  <Input
-                    onChange={handleChange}
-                    value={candidat.img}
-                    aria-label="img"
-                    name="img"
-                    type="url"
-                    placeholder="Paste img here..."
-                    style={{ display: "none" }}
-                  ></Input>
-                  <ButtonUploadImg
-                    for="file-upload"
-                    className="custom-file-upload"
-                  >
-                    <i class="fa fa-cloud-upload"></i> Subir imagen
-                  </ButtonUploadImg>
-                  <input
-                    onChange={onFileChangeHandler}
-                    aria-label="img"
-                    className="custom-file-upload"
-                    name="img"
-                    type="file"
-                    id="file-upload"
-                    accept="image/png, image/jpeg, image/gif"
-                    placeholder="Search in your pc..."
-                  ></input>
-                  {/* <Button
+                >
+                  <Avatar
+                    src={candidat.img}
+                    sx={{
+                      height: 200,
+                      m: 2,
+                      width: 200,
+                      borderRadius: 0,
+                    }}
+                  />
+                  <CardActions>
+                    <Input
+                      onChange={handleChange}
+                      value={candidat.img}
+                      aria-label="img"
+                      name="img"
+                      type="url"
+                      placeholder="Paste img here..."
+                      style={{ display: "none" }}
+                    ></Input>
+                    <ButtonUploadImg
+                      for="file-upload"
+                      className="custom-file-upload"
+                    >
+                      <i class="fa fa-cloud-upload"></i> Subir imagen
+                    </ButtonUploadImg>
+                    <input
+                      onChange={onFileChangeHandler}
+                      aria-label="img"
+                      className="custom-file-upload"
+                      name="img"
+                      type="file"
+                      id="file-upload"
+                      accept="image/png, image/jpeg, image/gif"
+                      placeholder="Search in your pc..."
+                    ></input>
+                    {/* <Button
                     color="primary"
                     fullWidth
                     variant="text"
@@ -241,237 +263,238 @@ export const Profile = () => {
                   >
                     Upload picture
                   </Button> */}
-                </CardActions>
-                <Grid item md={6} xs={12} mb={2}>
-                  <TextField
-                    fullWidth
-                    helperText="Please specify the first name"
-                    label="Nombre"
-                    name="name"
-                    onChange={handleChange}
-                    required
-                    value={candidat.name}
-                    variant="outlined"
-                  />
-                </Grid>
-                <Grid item md={6} xs={12} mb={2}>
-                  <TextField
-                    fullWidth
-                    label="Apellido"
-                    name="lastname"
-                    onChange={handleChange}
-                    required
-                    value={candidat.lastname}
-                    variant="outlined"
-                  />
-                </Grid>
-                <Grid item md={6} xs={12} mb={2}>
-                  <TextField
-                    fullWidth
-                    label="2º apellido"
-                    name="secondlastname"
-                    onChange={handleChange}
-                    value={candidat.secondlastname}
-                    variant="outlined"
-                  />
-                </Grid>
-                <Grid item md={6} xs={12}>
-                  <TextField
-                    fullWidth
-                    label="Edad"
-                    name="age"
-                    type="number"
-                    onChange={handleChange}
-                    value={candidat.age}
-                    variant="outlined"
-                  />
-                </Grid>
-              </Box>
-            </CardContent>
+                  </CardActions>
+                  <Grid item md={6} xs={12} mb={2}>
+                    <TextField
+                      fullWidth
+                      helperText="Please specify the first name"
+                      label="Nombre"
+                      name="name"
+                      onChange={handleChange}
+                      required
+                      value={candidat.name}
+                      variant="outlined"
+                    />
+                  </Grid>
+                  <Grid item md={6} xs={12} mb={2}>
+                    <TextField
+                      fullWidth
+                      label="Apellido"
+                      name="lastname"
+                      onChange={handleChange}
+                      required
+                      value={candidat.lastname}
+                      variant="outlined"
+                    />
+                  </Grid>
+                  <Grid item md={6} xs={12} mb={2}>
+                    <TextField
+                      fullWidth
+                      label="2º apellido"
+                      name="secondlastname"
+                      onChange={handleChange}
+                      value={candidat.secondlastname}
+                      variant="outlined"
+                    />
+                  </Grid>
+                  <Grid item md={6} xs={12}>
+                    <TextField
+                      fullWidth
+                      label="Edad"
+                      name="age"
+                      type="number"
+                      onChange={handleChange}
+                      value={candidat.age}
+                      variant="outlined"
+                    />
+                  </Grid>
+                </Box>
+              </CardContent>
 
-            <CardContent>
-              <Grid container spacing={3}>
-                <Grid item md={6} xs={12}>
-                  <TextField
-                    fullWidth
-                    label="Email"
-                    name="email"
-                    onChange={handleChange}
-                    required
-                    type="email"
-                    value={candidat.email}
-                    variant="outlined"
-                  />
-                </Grid>
-                <Grid item md={6} xs={12}>
-                  <TextField
-                    fullWidth
-                    label="Número de teléfono"
-                    name="phone"
-                    onChange={handleChange}
-                    type="tel"
-                    value={candidat.phone}
-                    variant="outlined"
-                  />
-                </Grid>
-                <Grid item md={6} xs={12}>
-                  <TextField
-                    fullWidth
-                    label="Comunidad Autónoma"
-                    name="nationality"
-                    onChange={handleChange}
-                    required
-                    value={candidat.nationality}
-                    variant="outlined"
-                  />
-                </Grid>
-                <Grid item md={6} xs={12}>
-                  <TextField
-                    fullWidth
-                    label="Dirección"
-                    name="direction"
-                    onChange={handleChange}
-                    value={candidat.direction}
-                    variant="outlined"
-                  />
-                </Grid>
+              <CardContent>
+                <Grid container spacing={3}>
+                  <Grid item md={6} xs={12}>
+                    <TextField
+                      fullWidth
+                      label="Email"
+                      name="email"
+                      onChange={handleChange}
+                      required
+                      type="email"
+                      value={candidat.email}
+                      variant="outlined"
+                    />
+                  </Grid>
+                  <Grid item md={6} xs={12}>
+                    <TextField
+                      fullWidth
+                      label="Número de teléfono"
+                      name="phone"
+                      onChange={handleChange}
+                      type="tel"
+                      value={candidat.phone}
+                      variant="outlined"
+                    />
+                  </Grid>
+                  <Grid item md={6} xs={12}>
+                    <TextField
+                      fullWidth
+                      label="Comunidad Autónoma"
+                      name="nationality"
+                      onChange={handleChange}
+                      required
+                      value={candidat.nationality}
+                      variant="outlined"
+                    />
+                  </Grid>
+                  <Grid item md={6} xs={12}>
+                    <TextField
+                      fullWidth
+                      label="Dirección"
+                      name="direction"
+                      onChange={handleChange}
+                      value={candidat.direction}
+                      variant="outlined"
+                    />
+                  </Grid>
 
-                <Grid item md={6} xs={12}>
-                  <TextField
-                    fullWidth
-                    label="Género"
-                    name="gender"
-                    onChange={handleChange}
-                    value={candidat.gender}
-                    variant="outlined"
-                  />
-                </Grid>
-                <Grid item md={6} xs={12}>
-                  <TextField
-                    fullWidth
-                    label="Últimos estudios"
-                    name="degree"
-                    onChange={handleChange}
-                    value={candidat.degree}
-                    variant="outlined"
-                  />
-                </Grid>
-                <Grid item md={6} xs={12}>
-                  <TextField
-                    fullWidth
-                    label="Superpoder"
-                    name="superpower"
-                    onChange={handleChange}
-                    value={candidat.superpower}
-                    variant="outlined"
-                  />
-                </Grid>
-                <Grid item md={6} xs={12}>
-                  <TextField
-                    fullWidth
-                    label="Ha cursado otra formación?"
-                    name="formation"
-                    onChange={handleChange}
-                    value={candidat.formation}
-                    variant="outlined"
-                  />
-                </Grid>
-                <Grid item md={6} xs={12}>
-                  <TextField
-                    fullWidth
-                    label="Cómo nos conoció?"
-                    name="reached"
-                    onChange={handleChange}
-                    value={candidat.reached}
-                    variant="outlined"
-                  />
-                </Grid>
-                <Grid item md={6} xs={12}>
-                  <TextField
-                    fullWidth
-                    label="Situación laboral"
-                    name="laboralsituation"
-                    onChange={handleChange}
-                    value={candidat.laboralsituation}
-                    variant="outlined"
-                  />
-                </Grid>
-                <Grid item md={6} xs={12}>
-                  <TextField
-                    fullWidth
-                    //label="Select bootcamp"
-                    name="bootcamp"
-                    onChange={handleChange}
-                    select
-                    SelectProps={{ native: true }}
-                    value={candidat.bootcamp}
-                    variant="outlined"
-                  >
-                    {bootcamps.map((bootcamp, index) => (
-                      <option key={index} value={bootcamp}>
-                        {bootcamp}
-                      </option>
-                    ))}
-                  </TextField>
-                </Grid>
-                <Grid item md={6} xs={12}>
-                  <TextField
-                    fullWidth
-                    //label="Select process"
-                    name="processState"
-                    onChange={handleChange}
-                    select
-                    SelectProps={{ native: true }}
-                    value={candidat.processState}
-                    variant="outlined"
-                  >
-                    {process.map((option, index) => (
-                      <option key={index} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </TextField>
-                </Grid>
+                  <Grid item md={6} xs={12}>
+                    <TextField
+                      fullWidth
+                      label="Género"
+                      name="gender"
+                      onChange={handleChange}
+                      value={candidat.gender}
+                      variant="outlined"
+                    />
+                  </Grid>
+                  <Grid item md={6} xs={12}>
+                    <TextField
+                      fullWidth
+                      label="Últimos estudios"
+                      name="degree"
+                      onChange={handleChange}
+                      value={candidat.degree}
+                      variant="outlined"
+                    />
+                  </Grid>
+                  <Grid item md={6} xs={12}>
+                    <TextField
+                      fullWidth
+                      label="Superpoder"
+                      name="superpower"
+                      onChange={handleChange}
+                      value={candidat.superpower}
+                      variant="outlined"
+                    />
+                  </Grid>
+                  <Grid item md={6} xs={12}>
+                    <TextField
+                      fullWidth
+                      label="Ha cursado otra formación?"
+                      name="formation"
+                      onChange={handleChange}
+                      value={candidat.formation}
+                      variant="outlined"
+                    />
+                  </Grid>
+                  <Grid item md={6} xs={12}>
+                    <TextField
+                      fullWidth
+                      label="Cómo nos conoció?"
+                      name="reached"
+                      onChange={handleChange}
+                      value={candidat.reached}
+                      variant="outlined"
+                    />
+                  </Grid>
+                  <Grid item md={6} xs={12}>
+                    <TextField
+                      fullWidth
+                      label="Situación laboral"
+                      name="laboralsituation"
+                      onChange={handleChange}
+                      value={candidat.laboralsituation}
+                      variant="outlined"
+                    />
+                  </Grid>
+                  <Grid item md={6} xs={12}>
+                    <TextField
+                      fullWidth
+                      //label="Select bootcamp"
+                      name="bootcamp"
+                      onChange={handleChange}
+                      select
+                      SelectProps={{ native: true }}
+                      value={candidat.bootcamp}
+                      variant="outlined"
+                    >
+                      {bootcamps.map((bootcamp, index) => (
+                        <option key={index} value={bootcamp}>
+                          {bootcamp}
+                        </option>
+                      ))}
+                    </TextField>
+                  </Grid>
+                  <Grid item md={6} xs={12}>
+                    <TextField
+                      fullWidth
+                      //label="Select process"
+                      name="processState"
+                      onChange={handleChange}
+                      select
+                      SelectProps={{ native: true }}
+                      value={candidat.processState}
+                      variant="outlined"
+                    >
+                      {process.map((option, index) => (
+                        <option key={index} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </TextField>
+                  </Grid>
 
-                <Grid item md={12} xs={12}>
-                  <TextField
-                    fullWidth
-                    label="Definición del espiritu hacker"
-                    name="spirit"
-                    onChange={handleChange}
-                    value={candidat.spirit}
-                    variant="outlined"
-                    multiline
-                  />
+                  <Grid item md={12} xs={12}>
+                    <TextField
+                      fullWidth
+                      label="Definición del espiritu hacker"
+                      name="spirit"
+                      onChange={handleChange}
+                      value={candidat.spirit}
+                      variant="outlined"
+                      multiline
+                    />
+                  </Grid>
+                  <Grid item md={12} xs={12}>
+                    <TextField
+                      fullWidth
+                      label="Motivacion para formar parte del curso"
+                      name="motivation"
+                      onChange={handleChange}
+                      value={candidat.motivation}
+                      variant="outlined"
+                      multiline
+                    />
+                  </Grid>
                 </Grid>
-                <Grid item md={12} xs={12}>
-                  <TextField
-                    fullWidth
-                    label="Motivacion para formar parte del curso"
-                    name="motivation"
-                    onChange={handleChange}
-                    value={candidat.motivation}
-                    variant="outlined"
-                    multiline
-                  />
-                </Grid>
-              </Grid>
-            </CardContent>
-          </BasicInfoDiv>
-          <Divider />
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "flex-end",
-              p: 2,
-            }}
-          >
-            <Button type="submit" color="primary" variant="contained">
-              Save details
-            </Button>
-          </Box>
-        </Card>
-      </form>
-    </DetailDiv>
+              </CardContent>
+            </BasicInfoDiv>
+            <Divider />
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "flex-end",
+                p: 2,
+              }}
+            >
+              <Button type="submit" color="primary" variant="contained">
+                Save details
+              </Button>
+            </Box>
+          </Card>
+        </form>
+      </DetailDiv>
+    </>
   );
 };

@@ -109,6 +109,7 @@ export const CandidatsByBootcampTable = () => {
       setCandidats(filterCandidats);
     });
   };
+  console.log(candidats.bootcamp)
 
   return (
     <>
@@ -121,6 +122,7 @@ export const CandidatsByBootcampTable = () => {
           marginTop: "2.5%",
         }}
       >
+        <h1>{candidats.bootcamp}</h1>
         <DataGrid
           columns={columns}
           rows={candidats}
