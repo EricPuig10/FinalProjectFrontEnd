@@ -11,9 +11,11 @@ import {
 import React, { useEffect, useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import { BasicInfoDiv, DetailProfile } from "../profilemui/Profile.styled";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { bootcampsService } from "../../services/bootcampsService";
 import { categoryService } from "../../services/categoryService";
+import BootcampTable from "../tablematerial/BootcampTable";
+import { CandidatsByBootcampTable } from "../tablematerial/CandidatsByBootcampTable";
 
 const initialBootcamp = {
   bootcampName: "",
@@ -35,6 +37,8 @@ function ProfileBootcamp() {
   const theme = useTheme();
 
   let navigate = useNavigate();
+
+  const location = useLocation();
 
   useEffect(() => {
     getBootcampById(id);
@@ -69,7 +73,7 @@ function ProfileBootcamp() {
 
   const addNewBootcamp = (data) => {
     bootcampsService.addBootcamp(data).then((res) => {
-      navigate("/bootcamps");
+      // navigate("/bootcamps");
     });
   };
 
@@ -100,121 +104,133 @@ function ProfileBootcamp() {
   };
 
   return (
-    <DetailProfile>
-      <form autoComplete="off" noValidate onSubmit={onSubmitHandler}>
-        <Card>
-          <CardHeader subheader="" title="Datos del Bootcamp" />
-          <Divider />
-          <BasicInfoDiv>
-            <CardContent>
-              <Grid container spacing={3}>
-                <Grid item md={4} xs={12}>
-                  <TextField
-                    fullWidth
-                    helperText="Especifique el nombre del Bootcamp"
-                    label="Nombre del Bootcamp"
-                    name="bootcampName"
-                    onChange={handleChange}
-                    required
-                    value={bootcamp.bootcampName}
-                    variant="outlined"
-                  />
-                </Grid>
-                <Grid item md={4} xs={12}>
-                  <TextField
-                    fullWidth
-                    helperText="Introduzca la duración en horas"
-                    label="Duración / horas"
-                    name="duration"
-                    onChange={handleChange}
-                    required
-                    type="number"
-                    value={bootcamp.duration}
-                    variant="outlined"
-                  />
-                </Grid>
-                <Grid item md={4} xs={12}>
-                  <TextField
-                    fullWidth
-                    helperText="Escoja el tipo de bootcamp"
-                    //label="Categoría"
-                    name="category"
-                    onChange={handleChange}
-                    required
-                    select
-                    SelectProps={{ native: true }}
-                    value={bootcamp.category}
-                    variant="outlined"
-                  >
-                    {categories.map((option) => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </TextField>
-                </Grid>
+    <>
+      <DetailProfile>
+        <form autoComplete="off" noValidate onSubmit={onSubmitHandler}>
+          <Card>
+          {bootcamp.bootcampName === "" ? (
+            <CardHeader
+              subheader=""
+              title="Crear un bootcamp"
+            />
+          ) : (
+            <CardHeader
+              subheader=""
+              title={bootcamp.bootcampName}
+            />
+          )}
 
-                <Grid item md={6} xs={12}>
-                  <TextField
-                    fullWidth
-                    helperText="Introduzca el formador"
-                    label="Formador"
-                    name="former"
-                    onChange={handleChange}
-                    required
-                    value={bootcamp.former}
-                    variant="outlined"
-                  />
-                </Grid>
-                <Grid item md={6} xs={12}>
-                  <TextField
-                    fullWidth
-                    helperText="Introduzca el coformador"
-                    label="Co-formador"
-                    name="coformer"
-                    onChange={handleChange}
-                    required
-                    value={bootcamp.coformer}
-                    variant="outlined"
-                  />
-                </Grid>
-                <Grid item md={6} xs={12}>
-                  <TextField
-                    fullWidth
-                    // label="Fecha de inicio"
-                    helperText="Indique la fecha de inicio"
-                    name="initialDate"
-                    onChange={handleChange}
-                    type="date"
-                    value={bootcamp.initialDate}
-                    variant="outlined"
-                  />
-                </Grid>
-                <Grid item md={6} xs={12}>
-                  <TextField
-                    fullWidth
-                    // label="Fecha de finalización"
-                    helperText="Indique la fecha de finalización"
-                    name="finalDate"
-                    onChange={handleChange}
-                    type="date"
-                    value={bootcamp.finalDate}
-                    variant="outlined"
-                  />
-                </Grid>
-                <Grid item md={6} xs={12}>
-                  <TextField
-                    fullWidth
-                    label="Características"
-                    helperText="Características del bootcamp"
-                    name="characteristics"
-                    onChange={handleChange}
-                    required
-                    value={bootcamp.characteristics}
-                    variant="outlined"
-                  />
-                </Grid>
-                {/* <Grid item md={6} xs={12}>
+            <Divider />
+            <BasicInfoDiv>
+              <CardContent>
+                <Grid container spacing={3}>
+                  <Grid item md={4} xs={12}>
+                    <TextField
+                      fullWidth
+                      helperText="Especifique el nombre del Bootcamp"
+                      label="Nombre del Bootcamp"
+                      name="bootcampName"
+                      onChange={handleChange}
+                      required
+                      value={bootcamp.bootcampName}
+                      variant="outlined"
+                    />
+                  </Grid>
+                  <Grid item md={4} xs={12}>
+                    <TextField
+                      fullWidth
+                      helperText="Introduzca la duración en horas"
+                      label="Duración / horas"
+                      name="duration"
+                      onChange={handleChange}
+                      required
+                      type="number"
+                      value={bootcamp.duration}
+                      variant="outlined"
+                    />
+                  </Grid>
+                  <Grid item md={4} xs={12}>
+                    <TextField
+                      fullWidth
+                      helperText="Escoja el tipo de bootcamp"
+                      //label="Categoría"
+                      name="category"
+                      onChange={handleChange}
+                      required
+                      select
+                      SelectProps={{ native: true }}
+                      value={bootcamp.category}
+                      variant="outlined"
+                    >
+                      {categories.map((option) => (
+                        <option key={option} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </TextField>
+                  </Grid>
+
+                  <Grid item md={6} xs={12}>
+                    <TextField
+                      fullWidth
+                      helperText="Introduzca el formador"
+                      label="Formador"
+                      name="former"
+                      onChange={handleChange}
+                      required
+                      value={bootcamp.former}
+                      variant="outlined"
+                    />
+                  </Grid>
+                  <Grid item md={6} xs={12}>
+                    <TextField
+                      fullWidth
+                      helperText="Introduzca el coformador"
+                      label="Co-formador"
+                      name="coformer"
+                      onChange={handleChange}
+                      required
+                      value={bootcamp.coformer}
+                      variant="outlined"
+                    />
+                  </Grid>
+                  <Grid item md={6} xs={12}>
+                    <TextField
+                      fullWidth
+                      // label="Fecha de inicio"
+                      helperText="Indique la fecha de inicio"
+                      name="initialDate"
+                      onChange={handleChange}
+                      type="date"
+                      value={bootcamp.initialDate}
+                      variant="outlined"
+                    />
+                  </Grid>
+                  <Grid item md={6} xs={12}>
+                    <TextField
+                      fullWidth
+                      // label="Fecha de finalización"
+                      helperText="Indique la fecha de finalización"
+                      name="finalDate"
+                      onChange={handleChange}
+                      type="date"
+                      value={bootcamp.finalDate}
+                      variant="outlined"
+                    />
+                  </Grid>
+                  <Grid item md={6} xs={12}>
+                    <TextField
+                      fullWidth
+                      label="Características"
+                      helperText="Características del bootcamp"
+                      name="characteristics"
+                      onChange={handleChange}
+                      required
+                      value={bootcamp.characteristics}
+                      variant="outlined"
+                    />
+                  </Grid>
+                  {/* <Grid item md={6} xs={12}>
                   <TextField
                     fullWidth
                     label="Comentarios"
@@ -226,24 +242,41 @@ function ProfileBootcamp() {
                     variant="outlined"
                   />
                 </Grid> */}
-              </Grid>
-            </CardContent>
-          </BasicInfoDiv>
-          <Divider />
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "flex-end",
-              p: 2,
-            }}
-          >
-            <Button type="submit" color="primary" variant="contained">
-              Guardar
-            </Button>
-          </Box>
-        </Card>
-      </form>
-    </DetailProfile>
+                </Grid>
+              </CardContent>
+            </BasicInfoDiv>
+            <Divider />
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "flex-end",
+                p: 2,
+              }}
+            >
+              <Button type="submit" color="primary" variant="contained">
+                Guardar
+              </Button>
+            </Box>
+          </Card>
+        </form>
+      </DetailProfile>
+      {!isEditMode ? null : (
+        <div
+        // style={{
+        //   height: 420,
+        //   width: "100%",
+        //   marginLeft: "0%",
+        //   paddingLeft: "0%",
+        //   marginTop: "1.5%",
+        //   marginBottom: "1.5%",
+        //   backgroundColor: "#ff0000",
+        //   headerName: "#9d4848",
+        // }}
+        >
+          <CandidatsByBootcampTable />
+        </div>
+      )}
+    </>
   );
 }
 

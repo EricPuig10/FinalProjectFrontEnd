@@ -59,7 +59,7 @@ export const Sidebar = () => {
       </CtButton>
 
       <CtButton>
-        <Link to="/">
+        <Link to="/settings">
           <Icon>
             <i className="fa-solid fa-gear fa-xl"></i>
           </Icon>
@@ -79,4 +79,4 @@ export const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+

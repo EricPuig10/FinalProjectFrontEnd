@@ -1,6 +1,7 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
 import { authService } from "../../services/authService";
+import { bootcampsService } from "../../services/bootcampsService";
 import { localAuthService } from "../../services/localAuthService";
 import { DivButton, DivLogo, DivNav, LogInButton, Logo } from "./Navbar.styled";
 
@@ -19,7 +20,7 @@ export const Navbar = () => {
   return (
     <DivNav>
       <DivLogo>
-        <Logo>{title.split("/1")}</Logo>
+        <Logo>{title.split("/", 1)}</Logo>
       </DivLogo>
       <DivButton>
         {localAuthService.isLogged() ? (

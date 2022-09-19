@@ -1,24 +1,19 @@
-import React from 'react'
-import Navbar from '../components/navbar/Navbar'
-import ProfileBootcamp from '../components/profilemui/ProfileBootcamp'
+import React from "react";
+import Navbar from "../components/navbar/Navbar";
+import ProfileBootcamp from "../components/profilemui/ProfileBootcamp";
 
-import Sidebar from '../components/sidebar/Sidebar'
+import { Sidebar } from "../components/sidebar/Sidebar";
 
 function ProfileBootcampPage() {
   return (
     <>
-
-    <Navbar/>
-    <div>
-    <Sidebar/>
-    </div>
-    <ProfileBootcamp/>
-    
-
-
-
-</>
-  )
+      <Navbar />
+      <div>
+        <Sidebar />
+      </div>
+      <ProfileBootcamp />
+    </>
+  );
 }
 
-export default ProfileBootcampPage
+export default ProfileBootcampPage;
