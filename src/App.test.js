@@ -15,25 +15,15 @@ test('renders candidatos button', () => {
     expect(button).toBeInTheDocument();
 });
 
-// test('renderizar tabla', async () => {
-//   const tableElemtn = screen.getByRole('table', {name: /name/i});
-//   const tableCellElemnt = await screen.findAllByRole('cell', {name: /name/});
-
-//   expect(tableElemtn).toBeInTheDocument()
-//   expect(tableCellElemnt).toBeTruthy()
-
-// })
-
 test('renders bootcamp button', () => {
   const button = screen.getByRole("button", {name:/bootcamp/i});
   expect(button).toBeInTheDocument();
 });
 
-
-test("Render title", () => {
-  const h2 = screen.getByText(/admin/i);
-  expect(h2).toBeInTheDocument();
-});
+// test("Render title", () => {
+//   const h2 = screen.getByText(/admin/i);
+//   expect(h2).toBeInTheDocument();
+// });
 
 // test('Renderizar un botón', () => {
 //     const botonCualquiera = screen.getByRole('button', {name: /boton cualquiera/i})
