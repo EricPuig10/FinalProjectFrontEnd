@@ -1,10 +1,19 @@
-// import { render, screen } from "@testing-library/react";
-// import { Home } from "../src/components/home/Home";
+import {  render, screen } from "@testing-library/react";
+import Router from '../src/applications/Router';
 
-// beforeEach(() => {
-//   //eslint-disable-next-line testing-library/no-render-in-setup
-//   render(<Home />);
-// });
+beforeEach(() => {
+  render(<Router />);
+});
+
+test('renders "logout"', () => {
+    const logout = screen.getByText(/logout/i);
+    expect(logout).toBeInTheDocument();
+});
+
+test('renders candidatos button', () => {
+    const button = screen.getByRole("button", {name:/candidatos/i});
+    expect(button).toBeInTheDocument();
+});
 
 // test("Render title", () => {
 //   const h2 = screen.getByText(/admin/i);
