@@ -18,4 +18,11 @@ export const authService = {
 
     window.location = "/login";
   },
+
+  getAuthUser() {
+    const authJson = localStorage.getItem("auth")
+      ? localStorage.getItem("auth")
+      : false;
+    return JSON.parse(authJson);
+  },
 };

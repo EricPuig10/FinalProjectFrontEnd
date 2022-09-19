@@ -15,10 +15,11 @@ import {
 } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import { candidatsService } from "../../services/candidatsService";
-import { BasicInfoDiv, DetailDiv } from "./Profile.styled";
+import { BasicInfoDiv, ButtonUploadImg, DetailDiv } from "./Profile.styled";
 import { bootcampsService } from "../../services/bootcampsService";
 import { processService } from "../../services/processService";
-import { CloseBtn } from "../formCandidat/Form.styled";
+import { CloseBtn, Input } from "../formCandidat/Form.styled";
+import { cloudinaryService } from "../../services/imageService";
 
 const initialCandidat = {
   id: "",
@@ -144,9 +145,29 @@ export const Profile = () => {
     });
   };
 
+  const onFileChangeHandler = (e) => {
+    console.log(e.target.name, e.target.files[0]);
+    let data = { ...candidat, file: e.target.files[0] };
+    uploadImg(data);
+  };
+
+  const uploadImg = (data) => {
+    let { file, ...inputsData } = data;
+    console.log(inputsData);
+    cloudinaryService.uploadImage(file).then((res) => {
+      console.log(res);
+      setCandidat({ ...inputsData, img: res.url });
+    });
+  };
+
   return (
     <DetailDiv>
-      <form autoComplete="off" noValidate onSubmit={onSubmitHandler}>
+      <form
+        autoComplete="off"
+        noValidate
+        encType="multipart/form-data"
+        onSubmit={onSubmitHandler}
+      >
         <Card>
           {candidat.name === "" ? (
             <CardHeader
@@ -187,14 +208,39 @@ export const Profile = () => {
                   }}
                 />
                 <CardActions>
-                  <Button
+                  <Input
+                    onChange={handleChange}
+                    value={candidat.img}
+                    aria-label="img"
+                    name="img"
+                    type="url"
+                    placeholder="Paste img here..."
+                    style={{ display: "none" }}
+                  ></Input>
+                  <ButtonUploadImg
+                    for="file-upload"
+                    className="custom-file-upload"
+                  >
+                    <i class="fa fa-cloud-upload"></i> Subir imagen
+                  </ButtonUploadImg>
+                  <input
+                    onChange={onFileChangeHandler}
+                    aria-label="img"
+                    className="custom-file-upload"
+                    name="img"
+                    type="file"
+                    id="file-upload"
+                    accept="image/png, image/jpeg, image/gif"
+                    placeholder="Search in your pc..."
+                  ></input>
+                  {/* <Button
                     color="primary"
                     fullWidth
                     variant="text"
                     sx={{ mb: 2 }}
                   >
                     Upload picture
-                  </Button>
+                  </Button> */}
                 </CardActions>
                 <Grid item md={6} xs={12} mb={2}>
                   <TextField
