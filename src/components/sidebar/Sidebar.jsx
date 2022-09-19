@@ -59,7 +59,7 @@ export const Sidebar = () => {
       </CtButton>
 
       <CtButton>
-        <Link to="/settings">
+        <Link to="/signup">
           <Icon>
             <i className="fa-solid fa-gear fa-xl"></i>
           </Icon>

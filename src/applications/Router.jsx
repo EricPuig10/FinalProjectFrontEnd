@@ -20,11 +20,18 @@ export default function Router() {
   };
 
   const AuthCrud = ({ children }) => {
-    if (!localStorage.getItem("auth_token")) {
+    if (!localStorage.getItem("auth_user")) {
       return <Navigate to="/login" />;
     }
     return children;
   };
+
+  const AuthAdmin = ({ children }) => {
+    if (!localStorage.getItem("auth_admin")) {
+      return <Navigate to="/" />;
+    }
+    return children;
+  }
 
   const theme = createTheme({
     palette: {
@@ -112,6 +119,15 @@ export default function Router() {
               <AuthCrud>
                 <ProcessPage />
               </AuthCrud>
+            }
+          />
+          {/* protegir ruta només per admin master */}
+          <Route
+            path="/signup"
+            element={
+              <AuthAdmin>
+                <LoginPage />
+              </AuthAdmin>
             }
           />
           <Route path="*" element={<Error404 />} />

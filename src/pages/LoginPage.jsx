@@ -1,13 +1,16 @@
 import React from "react";
-import { Login } from "../components/login/Login";
+import { LoginSignup } from "../components/login/LoginSignup";
 import { Navbar } from "../components/navbar/Navbar";
+import { Sidebar } from "../components/sidebar/Sidebar";
 
-export const LoginPage = () => {
+export const LoginPage = (location) => {
   return (
     <>
       <Navbar />
-      <Login />
+
+      {location === "/signup" && <Sidebar />}
+
+      <LoginSignup />
     </>
   );
 };
-

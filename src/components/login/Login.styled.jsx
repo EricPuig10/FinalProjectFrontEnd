@@ -60,6 +60,7 @@ export const CtButton = styled.div`
   display: flex;
   justify-content: center;
 `;
+
 export const BtLogin = styled.button`
   width: 80%; /* o 100% */
   height: 2.5rem;
