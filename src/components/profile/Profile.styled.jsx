@@ -103,3 +103,15 @@ export const TextArea = styled.div`
   color: #272727;
   display: flex;
 `;
+
+export const ButtonUploadImg = styled.label`
+  border: 1px solid #ff4700;
+  padding: 6px 12px;
+  cursor: pointer;
+  margin-bottom: 4%;
+  border-radius: 0.5vw;
+  &:hover {
+    color: #ff4700;
+    border: 1px solid #ff4700;
+  }
+`;
