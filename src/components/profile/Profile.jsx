@@ -16,6 +16,7 @@ import {
   DialogTitle,
   Divider,
   Grid,
+  InputAdornment,
   MenuItem,
   TextField,
 } from "@mui/material";
@@ -31,8 +32,9 @@ import { bootcampsService } from "../../services/bootcampsService";
 import { processService } from "../../services/processService";
 import { CloseBtn, Input } from "../formCandidat/Form.styled";
 import { cloudinaryService } from "../../services/imageService";
-import AlertDialogSlide from "../modals/AlertDialogSlide";
-import AlertDialog from "../modals/AlertDialogSlide";
+import imgCode from "../../assets/img/codeacademy.png";
+import sololearn from "../../assets/img/sololearn.webp";
+import gmail from "../../assets/img/gmail.png";
 
 const initialCandidat = {
   id: "",
@@ -54,8 +56,8 @@ const initialCandidat = {
   gender: "",
   nationality: "",
   laboralsituation: "",
-  bootcamp: "",
-  processState: "",
+  bootcamp: "Osona",
+  processState: "First process",
   sololearnprogress: "",
   codeacademyprogress: "",
   assistedtoinformativesession: "",
@@ -195,6 +197,9 @@ export const Profile = () => {
   const handleClose = () => {
     setOpen(false);
   };
+  console.log(candidat.bootcamp);
+
+  let mailMessage = `mailto:${candidat.email}?Subject=Has sido seleccionado!`;
 
   return (
     <>
@@ -213,9 +218,7 @@ export const Profile = () => {
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
           >
-            <DialogTitle id="alert-dialog-title">
-              {"Atención"}
-            </DialogTitle>
+            <DialogTitle id="alert-dialog-title">{"Atención"}</DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
                 {text}
@@ -255,7 +258,9 @@ export const Profile = () => {
               color="primary"
               type="button"
               onClick={() =>
-                reallyDelete("Seguro que quieres eliminar a " + candidat.name + " ?")
+                reallyDelete(
+                  "Seguro que quieres eliminar a " + candidat.name + " ?"
+                )
               }
             >
               <i className="fa-regular fa-trash-can fa-xl"></i>
@@ -342,6 +347,7 @@ export const Profile = () => {
                       fullWidth
                       label="2º apellido"
                       name="secondlastname"
+                      required
                       onChange={handleChange}
                       value={candidat.secondlastname}
                       variant="outlined"
@@ -373,6 +379,19 @@ export const Profile = () => {
                       type="email"
                       value={candidat.email}
                       variant="outlined"
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <a href={mailMessage}>
+                              <img
+                                src={gmail}
+                                style={{ width: 20, height: 18 }}
+                                alt="sololearn"
+                              />
+                            </a>
+                          </InputAdornment>
+                        ),
+                      }}
                     />
                   </Grid>
                   <Grid item md={6} xs={12}>
@@ -380,6 +399,7 @@ export const Profile = () => {
                       fullWidth
                       label="Número de teléfono"
                       name="phone"
+                      required
                       onChange={handleChange}
                       type="tel"
                       value={candidat.phone}
@@ -468,6 +488,53 @@ export const Profile = () => {
                       variant="outlined"
                     />
                   </Grid>
+                  <Grid item md={6} xs={12}>
+                    <TextField
+                      fullWidth
+                      label="SoloLearn"
+                      name="sololearnprogress"
+                      onChange={handleChange}
+                      value={candidat.sololearnprogress}
+                      variant="outlined"
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <a href={candidat.sololearnprogress}>
+                              <img
+                                src={sololearn}
+                                style={{ width: 25, height: 25 }}
+                                alt="sololearn"
+                              />
+                            </a>
+                          </InputAdornment>
+                        ),
+                      }}
+                    />
+                  </Grid>
+                  <Grid item md={6} xs={12}>
+                    <TextField
+                      fullWidth
+                      label="CodeAcademy"
+                      name="codeacademyprogress"
+                      onChange={handleChange}
+                      value={candidat.codeacademyprogress}
+                      variant="outlined"
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <a href={candidat.codeacademyprogress}>
+                              <img
+                                src={imgCode}
+                                style={{ width: 25, height: 25 }}
+                                alt="codeacademy"
+                              />
+                            </a>
+                          </InputAdornment>
+                        ),
+                      }}
+                    />
+                  </Grid>
+
                   <Grid item md={6} xs={12}>
                     <TextField
                       fullWidth

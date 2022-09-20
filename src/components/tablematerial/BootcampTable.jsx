@@ -16,7 +16,6 @@ import {
   DialogTitle,
 } from "@mui/material";
 
-
 export function BootcampTable() {
   const [bootcamps, setBootcamps] = useState([]);
   const [open, setOpen] = useState(false);

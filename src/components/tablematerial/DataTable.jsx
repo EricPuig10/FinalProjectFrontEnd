@@ -15,6 +15,8 @@ import {
   formLabelClasses,
 } from "@mui/material";
 import { Modal } from "../profile/Profile.styled";
+import imgCode from "../../assets/img/codeacademy.png";
+import sololearn from "../../assets/img/sololearn.webp";
 
 export const DataTable = () => {
   const [candidats, setCandidats] = useState([]);
@@ -56,7 +58,10 @@ export const DataTable = () => {
                 variant="contained"
                 color="primary"
                 onClick={() =>
-                  reallyDelete(`Quieres eliminar a ${cellValues.row.name}?`, cellValues.row.id)
+                  reallyDelete(
+                    `Quieres eliminar a ${cellValues.row.name}?`,
+                    cellValues.row.id
+                  )
                 }
               >
                 <i className="fa-regular fa-trash-can fa-lg"></i>
@@ -158,8 +163,50 @@ export const DataTable = () => {
       headerClassName: "super-app-theme--header",
     },
 
-    // { field: 'sololearnprogress', headerName: 'Solo Learn Progress', width: 130 },
-    // { field: 'codeacademyprogress', headerName: 'Code Academy Progress', width: 130 },
+    {
+      field: "sololearnprogress",
+      headerName: "Solo Learn",
+      width: 90,
+      headerClassName: "super-app-theme--header",
+      align: "center",
+      renderCell: (params) => {
+        return (
+          <>
+            {!params.row.sololearnprogress ? null : (
+              <a href={params.row.sololearnprogress} className="rowitem">
+                <img
+                  src={sololearn}
+                  style={{ width: 25, height: 25 }}
+                  alt="codeacademy"
+                />
+              </a>
+            )}
+          </>
+        );
+      },
+    },
+    {
+      field: "codeacademyprogress",
+      headerName: "Code Academy",
+      width: 120,
+      headerClassName: "super-app-theme--header",
+      align: "center",
+      renderCell: (params) => {
+        return (
+          <>
+            {!params.row.codeacademyprogress ? null : (
+              <a href={params.row.codeacademyprogress} className="rowitem">
+                <img
+                  src={imgCode}
+                  style={{ width: 25, height: 25 }}
+                  alt="codeacademy"
+                />
+              </a>
+            )}
+          </>
+        );
+      },
+    },
     // { field: 'assistedtoinformativesession', headerName: 'Assisted Informative Session', width: 130 },
   ];
 
