@@ -37,7 +37,6 @@ export const LoginSignup = () => {
 
   const signin = () => {
     authService.signin(userData).then((res) => {
-      console.log(userData);
       console.log(res);
 
       const authUser = {
@@ -53,6 +52,7 @@ export const LoginSignup = () => {
     });
   };
 
+  // falta posar que si es registra que surti un avís de ok
   const signup = () => {
     authService.signup(userData).then((res) => {
       console.log(res);

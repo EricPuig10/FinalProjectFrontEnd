@@ -29,7 +29,10 @@ export const authService = {
 
   signup(req){
     const auth = axios.post(`${baseURL}/auth/signup`, req)
-    .then(res => {return res.data});
+    .then((res) => {
+      console.log(res.data)
+      return res.data
+    });
     return auth;
   }
 };

@@ -14,4 +14,9 @@ export const localAuthService = {
     const authJson = localStorage.getItem("auth") ? true : false;
     return authJson;
   },
+
+  isAdmin(){
+    if(this.getAuthUser().id === 1) return true;
+    return false;
+  },
 };

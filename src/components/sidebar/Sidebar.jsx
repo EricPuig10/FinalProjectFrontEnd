@@ -57,15 +57,18 @@ export const Sidebar = () => {
           <Texthiden>Procesos</Texthiden>
         </Link>
       </CtButton>
-
+      
+      {localAuthService.isAdmin() ? (
       <CtButton>
-        <Link to="/signup">
-          <Icon>
-            <i className="fa-solid fa-gear fa-xl"></i>
-          </Icon>
-          <Texthiden>Config</Texthiden>
-        </Link>
-      </CtButton>
+        
+          <Link to="/signup">
+            <Icon>
+              <i className="fa-solid fa-gear fa-xl"></i>
+            </Icon>
+            <Texthiden>Config</Texthiden>
+          </Link>
+        
+      </CtButton>) : null}
 
       <CtButton>
         {localAuthService.isLogged() ? (
@@ -78,5 +81,3 @@ export const Sidebar = () => {
     </CtSidebar>
   );
 };
-
-

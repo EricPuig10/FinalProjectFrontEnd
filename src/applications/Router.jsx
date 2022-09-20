@@ -7,6 +7,7 @@ import { CandidatsByBootcampPage } from "../pages/CandidatsByBootcampPage";
 import { DashboardPage } from "../pages/DashboardPage";
 import { HomePage } from "../pages/HomePage";
 import { LoginPage } from "../pages/LoginPage";
+import { SignupPage } from "../pages/SignupPage";
 import ProfileBootcampPage from "../pages/ProfileBootcampPage";
 import { Error404 } from "../pages/Error404";
 import ProcessPage from "../pages/ProcessPage";
@@ -20,14 +21,14 @@ export default function Router() {
   };
 
   const AuthCrud = ({ children }) => {
-    if (!localStorage.getItem("auth_user")) {
+    if (!localStorage.getItem("auth_token")) {
       return <Navigate to="/login" />;
     }
     return children;
   };
 
   const AuthAdmin = ({ children }) => {
-    if (!localStorage.getItem("auth_admin")) {
+    if (!localStorage.getItem("auth_user")) {
       return <Navigate to="/" />;
     }
     return children;
@@ -126,7 +127,7 @@ export default function Router() {
             path="/signup"
             element={
               <AuthAdmin>
-                <LoginPage />
+                <SignupPage />
               </AuthAdmin>
             }
           />
