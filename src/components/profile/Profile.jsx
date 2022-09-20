@@ -9,6 +9,11 @@ import {
   CardActions,
   CardContent,
   CardHeader,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
   Divider,
   Grid,
   MenuItem,
@@ -26,6 +31,8 @@ import { bootcampsService } from "../../services/bootcampsService";
 import { processService } from "../../services/processService";
 import { CloseBtn, Input } from "../formCandidat/Form.styled";
 import { cloudinaryService } from "../../services/imageService";
+import AlertDialogSlide from "../modals/AlertDialogSlide";
+import AlertDialog from "../modals/AlertDialogSlide";
 
 const initialCandidat = {
   id: "",
@@ -63,6 +70,8 @@ export const Profile = () => {
   const [bootcamps, setBootcamps] = useState([]);
   const [process, setProcess] = useState([]);
   const [msg, setMsg] = useState();
+  const [open, setOpen] = useState(false);
+  const [text, setText] = useState("");
 
   const { id } = useParams();
   let navigate = useNavigate();
@@ -147,6 +156,11 @@ export const Profile = () => {
     getById(id);
   };
 
+  const reallyDelete = (text) => {
+    handleClickOpen();
+    setText(text);
+  };
+
   const deleteCandidat = (id) => {
     candidatsService.deleteCandidat(id).then((res) => {
       if (!res) return;
@@ -174,6 +188,14 @@ export const Profile = () => {
     });
   };
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <>
       <Modal>
@@ -183,6 +205,31 @@ export const Profile = () => {
           </Alert>
         ) : null}
       </Modal>
+      {open !== false ? (
+        <Modal>
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">
+              {"Atención"}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                {text}
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose}>No</Button>
+              <Button onClick={() => deleteCandidat(id)} autoFocus>
+                Si
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </Modal>
+      ) : null}
       <DetailDiv>
         <form
           autoComplete="off"
@@ -206,7 +253,10 @@ export const Profile = () => {
             <CloseBtn
               variant="contained"
               color="primary"
-              onClick={() => deleteCandidat(candidat.id)}
+              type="button"
+              onClick={() =>
+                reallyDelete("Seguro que quieres eliminar a " + candidat.name + " ?")
+              }
             >
               <i className="fa-regular fa-trash-can fa-xl"></i>
             </CloseBtn>
@@ -240,10 +290,10 @@ export const Profile = () => {
                       style={{ display: "none" }}
                     ></Input>
                     <ButtonUploadImg
-                      for="file-upload"
+                      htmlFor="file-upload"
                       className="custom-file-upload"
                     >
-                      <i class="fa fa-cloud-upload"></i> Subir imagen
+                      <i className="fa fa-cloud-upload"></i> Subir imagen
                     </ButtonUploadImg>
                     <input
                       onChange={onFileChangeHandler}

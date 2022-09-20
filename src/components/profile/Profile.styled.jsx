@@ -129,4 +129,5 @@ export const Modal = styled.div`
   z-index: 10000;
   top: 13%;
   left: 45%;
+  background-color: red;
 `;

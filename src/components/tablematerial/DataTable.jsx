@@ -5,9 +5,22 @@ import { candidatsService } from "../../services/candidatsService";
 import { useEffect } from "react";
 import { BtnAdd, CtTabBut, TableButton } from "./DataTable.styled";
 import { Link } from "react-router-dom";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  formLabelClasses,
+} from "@mui/material";
+import { Modal } from "../profile/Profile.styled";
 
 export const DataTable = () => {
   const [candidats, setCandidats] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [text, setText] = useState("");
+  const [id, setId] = useState();
 
   useEffect(() => {
     getAllCandidats();
@@ -42,7 +55,9 @@ export const DataTable = () => {
               <TableButton
                 variant="contained"
                 color="primary"
-                onClick={() => deleteCandidat(cellValues.row.id)}
+                onClick={() =>
+                  reallyDelete(`Quieres eliminar a ${cellValues.row.name}?`, cellValues.row.id)
+                }
               >
                 <i className="fa-regular fa-trash-can fa-lg"></i>
               </TableButton>
@@ -149,11 +164,6 @@ export const DataTable = () => {
   ];
 
   const deleteCandidat = (id) => {
-    let candidatToDelete = candidats.filter((candidat) => candidat.id === id);
-    let deleteConfirmed = window.confirm(
-      `Really remove ${candidatToDelete[0].name} from the list?`
-    );
-    if (!deleteConfirmed) return;
     let filterCandidats = candidats.filter((candidat) => candidat.id !== id);
     console.log(filterCandidats);
 
@@ -166,6 +176,21 @@ export const DataTable = () => {
       }
       setCandidats(filterCandidats);
     });
+    handleClose();
+  };
+
+  const reallyDelete = (text, id) => {
+    handleClickOpen();
+    setText(text);
+    setId(id);
+  };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   return (
@@ -179,10 +204,33 @@ export const DataTable = () => {
           marginTop: "2.5%",
         }}
       >
+        {open !== false ? (
+          <Modal>
+            <Dialog
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">{"Atención"}</DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  {text}
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose}>No</Button>
+                <Button onClick={() => deleteCandidat(id)} autoFocus>
+                  Si
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </Modal>
+        ) : null}
         <DataGrid
           columns={columns}
-          type= "text"
-          aria-label= "name"
+          type="text"
+          aria-label="name"
           rows={candidats}
           pageSize={8}
           rowsPerPageOptions={[8]}
