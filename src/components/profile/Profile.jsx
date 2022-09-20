@@ -9,8 +9,14 @@ import {
   CardActions,
   CardContent,
   CardHeader,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
   Divider,
   Grid,
+  InputAdornment,
   MenuItem,
   TextField,
 } from "@mui/material";
@@ -26,6 +32,9 @@ import { bootcampsService } from "../../services/bootcampsService";
 import { processService } from "../../services/processService";
 import { CloseBtn, Input } from "../formCandidat/Form.styled";
 import { cloudinaryService } from "../../services/imageService";
+import imgCode from "../../assets/img/codeacademy.png";
+import sololearn from "../../assets/img/sololearn.webp";
+import gmail from "../../assets/img/gmail.png";
 
 const initialCandidat = {
   id: "",
@@ -47,8 +56,8 @@ const initialCandidat = {
   gender: "",
   nationality: "",
   laboralsituation: "",
-  bootcamp: "",
-  processState: "",
+  bootcamp: "Osona",
+  processState: "First process",
   sololearnprogress: "",
   codeacademyprogress: "",
   assistedtoinformativesession: "",
@@ -63,6 +72,8 @@ export const Profile = () => {
   const [bootcamps, setBootcamps] = useState([]);
   const [process, setProcess] = useState([]);
   const [msg, setMsg] = useState();
+  const [open, setOpen] = useState(false);
+  const [text, setText] = useState("");
 
   const { id } = useParams();
   let navigate = useNavigate();
@@ -147,6 +158,11 @@ export const Profile = () => {
     getById(id);
   };
 
+  const reallyDelete = (text) => {
+    handleClickOpen();
+    setText(text);
+  };
+
   const deleteCandidat = (id) => {
     candidatsService.deleteCandidat(id).then((res) => {
       if (!res) return;
@@ -174,6 +190,17 @@ export const Profile = () => {
     });
   };
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  console.log(candidat.bootcamp);
+
+  let mailMessage = `mailto:${candidat.email}?Subject=Has sido seleccionado!`;
+
   return (
     <>
       <Modal>
@@ -183,6 +210,29 @@ export const Profile = () => {
           </Alert>
         ) : null}
       </Modal>
+      {open !== false ? (
+        <Modal>
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">{"Atención"}</DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                {text}
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose}>No</Button>
+              <Button onClick={() => deleteCandidat(id)} autoFocus>
+                Si
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </Modal>
+      ) : null}
       <DetailDiv>
         <form
           autoComplete="off"
@@ -206,7 +256,12 @@ export const Profile = () => {
             <CloseBtn
               variant="contained"
               color="primary"
-              onClick={() => deleteCandidat(candidat.id)}
+              type="button"
+              onClick={() =>
+                reallyDelete(
+                  "Seguro que quieres eliminar a " + candidat.name + " ?"
+                )
+              }
             >
               <i className="fa-regular fa-trash-can fa-xl"></i>
             </CloseBtn>
@@ -240,10 +295,10 @@ export const Profile = () => {
                       style={{ display: "none" }}
                     ></Input>
                     <ButtonUploadImg
-                      for="file-upload"
+                      htmlFor="file-upload"
                       className="custom-file-upload"
                     >
-                      <i class="fa fa-cloud-upload"></i> Subir imagen
+                      <i className="fa fa-cloud-upload"></i> Subir imagen
                     </ButtonUploadImg>
                     <input
                       onChange={onFileChangeHandler}
@@ -292,6 +347,7 @@ export const Profile = () => {
                       fullWidth
                       label="2º apellido"
                       name="secondlastname"
+                      required
                       onChange={handleChange}
                       value={candidat.secondlastname}
                       variant="outlined"
@@ -323,6 +379,19 @@ export const Profile = () => {
                       type="email"
                       value={candidat.email}
                       variant="outlined"
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <a href={mailMessage}>
+                              <img
+                                src={gmail}
+                                style={{ width: 20, height: 18 }}
+                                alt="sololearn"
+                              />
+                            </a>
+                          </InputAdornment>
+                        ),
+                      }}
                     />
                   </Grid>
                   <Grid item md={6} xs={12}>
@@ -330,6 +399,7 @@ export const Profile = () => {
                       fullWidth
                       label="Número de teléfono"
                       name="phone"
+                      required
                       onChange={handleChange}
                       type="tel"
                       value={candidat.phone}
@@ -418,6 +488,53 @@ export const Profile = () => {
                       variant="outlined"
                     />
                   </Grid>
+                  <Grid item md={6} xs={12}>
+                    <TextField
+                      fullWidth
+                      label="SoloLearn"
+                      name="sololearnprogress"
+                      onChange={handleChange}
+                      value={candidat.sololearnprogress}
+                      variant="outlined"
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <a href={candidat.sololearnprogress}>
+                              <img
+                                src={sololearn}
+                                style={{ width: 25, height: 25 }}
+                                alt="sololearn"
+                              />
+                            </a>
+                          </InputAdornment>
+                        ),
+                      }}
+                    />
+                  </Grid>
+                  <Grid item md={6} xs={12}>
+                    <TextField
+                      fullWidth
+                      label="CodeAcademy"
+                      name="codeacademyprogress"
+                      onChange={handleChange}
+                      value={candidat.codeacademyprogress}
+                      variant="outlined"
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <a href={candidat.codeacademyprogress}>
+                              <img
+                                src={imgCode}
+                                style={{ width: 25, height: 25 }}
+                                alt="codeacademy"
+                              />
+                            </a>
+                          </InputAdornment>
+                        ),
+                      }}
+                    />
+                  </Grid>
+
                   <Grid item md={6} xs={12}>
                     <TextField
                       fullWidth
