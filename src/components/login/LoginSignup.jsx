@@ -8,7 +8,7 @@ import imgAdmin from "../../assets/img/imgAdmin.png";
 import { authService } from "../../services/authService";
 import { localAuthService } from "../../services/localAuthService";
 import {
-  BtEyes,
+  BtEye,
   BtLogin,
   CtButton,
   CtForm,
@@ -151,9 +151,9 @@ export const LoginSignup = () => {
               value={userData.password}
               onChange={onInputChange}
             />
-            <BtEyes onClick={switchShown}>
+            <BtEye onClick={switchShown}>
             {shown ? <i className="fa-regular fa-eye-slash"></i> : <i className="fa-regular fa-eye"></i>}
-            </BtEyes>
+            </BtEye>
           </LabelPassword>
           
           <CtButton>

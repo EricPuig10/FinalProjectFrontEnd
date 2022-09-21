@@ -84,7 +84,7 @@ export const PopUp = styled.div`
   right: 1.5%;
 `;
 
-export const BtEyes = styled.button`
+export const BtEye = styled.button`
   width: 20%; 
   height: 2.5rem;
   background: #dce0f0;
