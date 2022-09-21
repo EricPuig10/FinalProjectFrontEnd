@@ -2,7 +2,9 @@ import { Alert, Button, Dialog, DialogContent, DialogContentText, DialogTitle, M
 import ForwardToInboxIcon from '@mui/icons-material/ForwardToInbox';
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import imgLogin from "../../assets/img/imgLogin.png";
+import imgUser from "../../assets/img/imgUser.png";
+import imgAdmin from "../../assets/img/imgAdmin.png";
+
 import { authService } from "../../services/authService";
 import { localAuthService } from "../../services/localAuthService";
 import {
@@ -83,9 +85,21 @@ export const LoginSignup = () => {
 
   return (
     <>
+     
+     {location === "/signup" ? (
+            <>
       <CtImg>
-        <Img src={imgLogin}></Img>
+        <Img src={imgUser}></Img>
       </CtImg>
+      </>
+        ) : (
+        <>
+      <CtImg>
+        <Img src={imgAdmin}></Img>
+      </CtImg>
+      </>
+        )}
+
 
       <PopUp>
         {msg !== undefined ? (
