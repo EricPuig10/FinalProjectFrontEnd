@@ -1,7 +1,7 @@
-import { Alert, Button, Dialog, DialogContent, DialogContentText, DialogTitle, EmailIcon ,InputAdornment, Modal } from "@mui/material";
+import { Alert, Button, Dialog, DialogContent, DialogContentText, DialogTitle, Modal } from "@mui/material";
 import ForwardToInboxIcon from '@mui/icons-material/ForwardToInbox';
 import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate, Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import imgLogin from "../../assets/img/imgLogin.png";
 import { authService } from "../../services/authService";
 import { localAuthService } from "../../services/localAuthService";
@@ -15,13 +15,11 @@ import {
   Img,
   Label,
 } from "./Login.styled";
-import gmail from "../../assets/img/gmail.png";
-import axios from "axios";
+import { lightGreen } from "@mui/material/colors";
 
 export const LoginSignup = () => {
-  const [msg, setMsg] = useState();
+  const [msg, setMsg] = useState("");
   const [open, setOpen] = useState(false);
-  const [text, setText] = useState("");
   const [userData, setUserData] = useState({
     username: "",
     email: "",
@@ -41,36 +39,30 @@ export const LoginSignup = () => {
     }, 2500);
   };
 
-  const resetInputsForm = (e) => {
+  const resetInputsForm = () => {
     setUserData("");
   };
 
   const onInputChange = (e) => {
-    e.persist();
+    // e.persist();
     let name = e.target.name;
     let value = e.target.value;
     setUserData({ ...userData, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault()
 
-    try {
-      window.location.href=`mailto:${userData.email}?Subject=Ya estás registrado en nuestra app de gestión de candidatos&body=Tu nombre de usuario es ${userData.username}, tu email ${userData.email} y la contraseña ${userData.password} para que puedas iniciar sesión en http://localhost:3000/login`;
+  //   try {
+  //     window.location.href=`mailto:${userData.email}?Subject=Ya estás registrado en nuestra app de gestión de candidatos&body=Tu nombre de usuario es ${userData.username}, tu email ${userData.email} y la contraseña ${userData.password} para que puedas iniciar sesión en http://localhost:3000/login`;
       
-      const signup = () => {
-        authService.signup(userData).then((res) => {
-          if(res) alertTimed("Nuevo usuario registrado con éxito");
-        });
-        resetInputsForm();
-      };
+  //     signup()
 
 
-
-    } catch (error) {
+  //   } catch (error) {
       
-    }
-  }
+  //   }
+  // }
 
   const signin = () => {
     authService.signin(userData).then((res) => {
@@ -89,12 +81,18 @@ export const LoginSignup = () => {
     });
   };
 
-  // falta posar que si es registra que surti un avís de ok
   const signup = () => {
     authService.signup(userData).then((res) => {
-      if(res) alertTimed("Nuevo usuario registrado con éxito");
+      console.log(res)
+      // if(res.data) {
+      //   window.alert(res.data.message);
+      //   console.log(res.data.message)}
+      //   else{
+      //     console.log("no se ha registrado")
+      //   }
     });
-    resetInputsForm();
+    // resetInputsForm();
+    // localAuthService.deleteAuthUser();
   };
 
   const handleClose = () => {
@@ -102,23 +100,23 @@ export const LoginSignup = () => {
   };
 
   console.log(userData)
-  let mailMessage = `mailto:${userData.email}?Subject=Ya estás registrado en nuestra app de gestión de candidatos`+`&body=Tus datos son ${userData}`;
+  // let mailMessage = `mailto:${userData.email}?Subject=Ya estás registrado en nuestra app de gestión de candidatos&body=Tu nombre de usuario es ${userData.name}`;
 
   return (
     <>
       <CtImg>
         <Img src={imgLogin}></Img>
       </CtImg>
-      
+
       {/* <Modal>
-        {msg !== undefined ? (
+        {msg !== "" ? (
           <Alert severity="success" msg={msg} color="primary">
             {msg}
           </Alert>
         ) : null}
-      </Modal>
+      </Modal> */}
       
-      {open !== false ? (
+      {/* {open !== false ? (
         <Modal>
           <Dialog
             open={open}
@@ -129,7 +127,7 @@ export const LoginSignup = () => {
             <DialogTitle id="alert-dialog-title">{"El ususario ya está registrado"}</DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
-                {text}
+                {msg}
               </DialogContentText>
             </DialogContent>
           </Dialog>
@@ -137,7 +135,7 @@ export const LoginSignup = () => {
       ) : null} */}
       
       <CtForm>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={signup} autoComplete="off" noValidate>
           <Label htmlFor="title">
             <CtInput
               type="text"
@@ -180,11 +178,10 @@ export const LoginSignup = () => {
               </BtLogin>
             ) : (
               <Button 
-                type="button" 
+                type="submit" 
                 id="signup" 
-                onClick={signup}
+
                 endIcon={<ForwardToInboxIcon />}
-                href={mailMessage}
                 >
                 REGISTRAR Y ENVIAR
               </Button>

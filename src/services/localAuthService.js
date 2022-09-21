@@ -10,6 +10,10 @@ export const localAuthService = {
     localStorage.setItem("auth", JSON.stringify(authUser));
   },
 
+  deleteAuthUser() {
+    localStorage.removeItem("auth");
+  },
+
   isLogged() {
     const authJson = localStorage.getItem("auth") ? true : false;
     return authJson;
@@ -19,4 +23,6 @@ export const localAuthService = {
     if(this.getAuthUser().id === 1) return true;
     return false;
   },
+
+
 };
