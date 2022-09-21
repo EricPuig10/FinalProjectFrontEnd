@@ -12,7 +12,6 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  formLabelClasses,
 } from "@mui/material";
 import { Modal } from "../profile/Profile.styled";
 import imgCode from "../../assets/img/codeacademy.png";

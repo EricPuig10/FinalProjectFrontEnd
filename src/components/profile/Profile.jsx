@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import {
   Alert,
-  Autocomplete,
   Avatar,
   Box,
   Button,
@@ -17,7 +16,6 @@ import {
   Divider,
   Grid,
   InputAdornment,
-  MenuItem,
   TextField,
 } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";

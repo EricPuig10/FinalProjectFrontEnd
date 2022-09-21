@@ -4,7 +4,6 @@ import { useState } from "react";
 import { bootcampsService } from "../../services/bootcampsService";
 import { useEffect } from "react";
 import { BtnAdd, CtTabBut, TableButton } from "./DataTable.styled";
-import { FormBootcamp } from "../formCandidat/FormBootcamp";
 import { Link, useLocation } from "react-router-dom";
 import { Modal } from "../profile/Profile.styled";
 import {

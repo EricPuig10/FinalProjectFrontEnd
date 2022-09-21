@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { CtTabBut, TableButton } from "./DataTable.styled";
 
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { processService } from "../../services/processService";
 
 export function BootcampTable() {
@@ -19,8 +19,6 @@ export function BootcampTable() {
       setProcess(res);
     });
   };
-
-//   const location = useLocation();
 
   const columns = [
     {
