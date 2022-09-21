@@ -130,3 +130,7 @@ export const Modal = styled.div`
   top:2%;
   right: 1%;
 `;
+
+export const DocDiv = styled.div`
+display: flex;
+`
