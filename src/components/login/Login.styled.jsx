@@ -92,3 +92,9 @@ export const Img = styled.img`
   align-items: center;
 `;
 
+export const PopUp = styled.div`
+  position: fixed;
+  z-index: 10000;
+  top: 10%;
+  right: 1.5%;
+`;
