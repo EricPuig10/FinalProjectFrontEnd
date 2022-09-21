@@ -75,7 +75,7 @@ export const LoginSignup = () => {
     authService.signup(userData).then((res) => {
       console.log(res);
       alertUp(res.message)
-      resetInputsForm();
+      // resetInputsForm();
       // setMsg(res.message)
       // if(res) window.alert("Nuevo usuario registrado con éxito");
     });
@@ -84,13 +84,13 @@ export const LoginSignup = () => {
   // console.log(userData)
   let mailMessage = `mailto:${userData.email}?Subject=Ya estás registrado en nuestra app de gestión de candidatos&body=Tu nombre de usuario es ${userData.username}. Este es tu email: ${userData.email} y tu contraseña: ${userData.password} para que puedas iniciar sesión en tu cuenta http://localhost:3000/signin`;
   
-  const resetInputsForm = () => {
-    setUserData({
-      username: "",
-      email: "",
-      password: "",
-    });
-  };
+  // const resetInputsForm = () => {
+  //   setUserData({
+  //     username: "",
+  //     email: "",
+  //     password: "",
+  //   });
+  // };
 
   return (
     <>
