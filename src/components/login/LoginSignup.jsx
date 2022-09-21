@@ -91,10 +91,12 @@ export const LoginSignup = () => {
 
   // falta posar que si es registra que surti un avís de ok
   const signup = () => {
+    // localAuthService.deleteAuthUser();
     authService.signup(userData).then((res) => {
+      console.log(res);
       if(res) alertTimed("Nuevo usuario registrado con éxito");
     });
-    resetInputsForm();
+    // resetInputsForm();
   };
 
   const handleClose = () => {
@@ -102,7 +104,7 @@ export const LoginSignup = () => {
   };
 
   console.log(userData)
-  let mailMessage = `mailto:${userData.email}?Subject=Ya estás registrado en nuestra app de gestión de candidatos`+`&body=Tus datos son ${userData}`;
+  let mailMessage = `mailto:${userData.email}?Subject=Ya estás registrado en nuestra app de gestión de candidatos`+`&body=Este es tu email: ${userData.email} y tu contraseña: ${userData.password} para que puedas iniciar sesión en tu cuenta http://localhost:3000/signin`;
 
   return (
     <>

@@ -19,4 +19,14 @@ export const localAuthService = {
     if(this.getAuthUser().id === 1) return true;
     return false;
   },
+
+
+  deleteAuthUser(confirmation) {
+    if(confirmation){
+      localStorage.removeItem("auth")
+      window.location = ("/");
+  } return;
+}
+
+
 };
