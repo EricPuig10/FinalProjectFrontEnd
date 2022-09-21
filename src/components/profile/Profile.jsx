@@ -36,6 +36,7 @@ import imgCode from "../../assets/img/codeacademy.png";
 import sololearn from "../../assets/img/sololearn.webp";
 import gmail from "../../assets/img/gmail.png";
 
+
 const initialCandidat = {
   id: "",
   name: "",
@@ -404,6 +405,13 @@ export const Profile = () => {
                       type="tel"
                       value={candidat.phone}
                       variant="outlined"
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <i class="fa-solid fa-phone"></i>
+                          </InputAdornment>
+                        ),
+                      }}
                     />
                   </Grid>
                   <Grid item md={6} xs={12}>
@@ -425,6 +433,13 @@ export const Profile = () => {
                       onChange={handleChange}
                       value={candidat.direction}
                       variant="outlined"
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <i class="fa-solid fa-house"></i>
+                          </InputAdornment>
+                        ),
+                      }}
                     />
                   </Grid>
 
