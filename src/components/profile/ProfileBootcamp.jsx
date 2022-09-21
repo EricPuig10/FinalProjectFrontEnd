@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { BasicInfoDiv, CtProfile } from "../profile/Profile.styled";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { bootcampsService } from "../../services/bootcampsService";
 import { categoryService } from "../../services/categoryService";
 import { CandidatsByBootcampTable } from "../tablematerial/CandidatsByBootcampTable";
@@ -32,8 +32,6 @@ function ProfileBootcamp() {
   const [categories, setCategories] = useState([]);
   const [isEditMode, setIsEditMode] = useState(false);
   const { id } = useParams();
-
-  const location = useLocation();
 
   useEffect(() => {
     getBootcampById(id);

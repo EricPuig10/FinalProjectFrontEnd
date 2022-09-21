@@ -35,7 +35,7 @@ export const LoginSignup = () => {
   // };
 
   const onInputChange = (e) => {
-    // e.persist();
+    e.persist();
     let name = e.target.name;
     let value = e.target.value;
     setUserData({ ...userData, [name]: value });

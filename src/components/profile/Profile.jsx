@@ -24,7 +24,6 @@ import {
   BasicInfoDiv,
   ButtonUploadImg,
   DetailDiv,
-  DocDiv,
   Modal,
 } from "./Profile.styled";
 import { bootcampsService } from "../../services/bootcampsService";
