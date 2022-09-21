@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Alert, Button, Dialog, DialogContent, DialogContentText, DialogTitle, Modal } from "@mui/material";
 import ForwardToInboxIcon from '@mui/icons-material/ForwardToInbox';
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -14,10 +14,12 @@ import {
   Form,
   Img,
   Label,
+  PopUp,
 } from "./Login.styled";
 
 export const LoginSignup = () => {
   
+  const [msg, setMsg] = useState();
   const [userData, setUserData] = useState({
     username: "",
     email: "",
@@ -33,6 +35,13 @@ export const LoginSignup = () => {
   // const resetInputsForm = (e) => {
   //   setUserData("");
   // };
+
+  const alertUp = (msg) => {
+    setMsg(msg);
+    setTimeout(function () {
+      setMsg(undefined);
+    }, 10000);
+  };
 
   const onInputChange = (e) => {
     e.persist();
@@ -61,7 +70,9 @@ export const LoginSignup = () => {
   const signup = () => {
     authService.signup(userData).then((res) => {
       console.log(res);
-      if(res) window.alert("Nuevo usuario registrado con éxito");
+      alertUp(res.message)
+      // setMsg(res.message)
+      // if(res) window.alert("Nuevo usuario registrado con éxito");
     });
     // resetInputsForm(); si buidem el formulari no se'ns carreguen les dades per l'e-mail
   };
@@ -69,12 +80,21 @@ export const LoginSignup = () => {
   // console.log(userData)
   let mailMessage = `mailto:${userData.email}?Subject=Ya estás registrado en nuestra app de gestión de candidatos&body=Tu nombre de usuario es ${userData.username}. Este es tu email: ${userData.email} y tu contraseña: ${userData.password} para que puedas iniciar sesión en tu cuenta http://localhost:3000/signin`;
 
+
   return (
     <>
       <CtImg>
         <Img src={imgLogin}></Img>
       </CtImg>
-            
+
+      <PopUp>
+        {msg !== undefined ? (
+          <Alert severity="success" msg={msg} color="primary" sx={{ border: 1, borderColor: "primary.main" }}>
+            {msg}
+          </Alert>
+        ) : null}
+      </PopUp>
+
       <CtForm>
         <Form>
           <Label htmlFor="title">
@@ -123,7 +143,7 @@ export const LoginSignup = () => {
                 id="signup" 
                 onClick={signup}
                 endIcon={<ForwardToInboxIcon />}
-                href={mailMessage}
+                href={mailMessage} // si el mail està aquí, l'envia tant si fa el registre com ni no
                 >
                 REGISTRAR Y ENVIAR
               </Button>
