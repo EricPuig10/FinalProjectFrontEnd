@@ -64,6 +64,8 @@ const initialCandidat = {
   img: "",
 };
 
+const genders = ["Masculino", "Femenino", "NB", "Otro"];
+
 export const Profile = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [candidat, setCandidat] = useState(initialCandidat);
@@ -205,7 +207,12 @@ export const Profile = () => {
     <>
       <Modal>
         {msg !== undefined ? (
-          <Alert severity="success" msg={msg} color="primary">
+          <Alert
+            severity="success"
+            msg={msg}
+            color="primary"
+            sx={{ border: 1, borderColor: "primary.main" }}
+          >
             {msg}
           </Alert>
         ) : null}
@@ -436,8 +443,17 @@ export const Profile = () => {
                       onChange={handleChange}
                       value={candidat.gender}
                       variant="outlined"
-                    />
+                      select
+                      SelectProps={{ native: true }}
+                    >
+                      {genders.map((gender, index) => (
+                        <option key={index} value={gender}>
+                          {gender}
+                        </option>
+                      ))}
+                    </TextField>
                   </Grid>
+
                   <Grid item md={6} xs={12}>
                     <TextField
                       fullWidth
