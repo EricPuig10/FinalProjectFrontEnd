@@ -109,7 +109,7 @@ export const CandidatsByBootcampTable = () => {
       setCandidats(filterCandidats);
     });
   };
-  console.log(candidats.bootcamp)
+  
 
   return (
     <>

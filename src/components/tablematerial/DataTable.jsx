@@ -23,6 +23,8 @@ export const DataTable = () => {
   const [text, setText] = useState("");
   const [id, setId] = useState();
 
+  console.log(candidats)
+
   useEffect(() => {
     getAllCandidats();
   }, []);

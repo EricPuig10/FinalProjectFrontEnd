@@ -24,6 +24,7 @@ import {
   BasicInfoDiv,
   ButtonUploadImg,
   DetailDiv,
+  DocDiv,
   Modal,
 } from "./Profile.styled";
 import { bootcampsService } from "../../services/bootcampsService";
@@ -51,7 +52,7 @@ const initialCandidat = {
   reached: "",
   spirit: "",
   motivation: "",
-  gender: "",
+  gender: "Masculino",
   nationality: "",
   laboralsituation: "",
   bootcamp: "Osona",
@@ -60,7 +61,14 @@ const initialCandidat = {
   codeacademyprogress: "",
   assistedtoinformativesession: "",
   img: "",
+  document: "NIF",
+  numberdocument: "",
+  location: "",
 };
+
+const genders = ["Masculino", "Femenino", "NB", "Otro"];
+
+const documents = ["NIF", "NIE", "Pasaporte"];
 
 export const Profile = () => {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -195,7 +203,7 @@ export const Profile = () => {
   const handleClose = () => {
     setOpen(false);
   };
-  console.log(candidat.bootcamp);
+  console.log(candidat.date);
 
   let mailMessage = `mailto:${candidat.email}?Subject=Has sido seleccionado!`;
 
@@ -203,7 +211,12 @@ export const Profile = () => {
     <>
       <Modal>
         {msg !== undefined ? (
-          <Alert severity="success" msg={msg} color="primary">
+          <Alert
+            severity="success"
+            msg={msg}
+            color="primary"
+            sx={{ border: 1, borderColor: "primary.main" }}
+          >
             {msg}
           </Alert>
         ) : null}
@@ -234,7 +247,6 @@ export const Profile = () => {
       <DetailDiv>
         <form
           autoComplete="off"
-          noValidate
           encType="multipart/form-data"
           onSubmit={onSubmitHandler}
         >
@@ -351,7 +363,38 @@ export const Profile = () => {
                       variant="outlined"
                     />
                   </Grid>
-                  <Grid item md={6} xs={12}>
+                  <Grid item md={6} xs={12} mb={2}>
+                    <TextField
+                      fullWidth
+                      label="Documento"
+                      name="document"
+                      required
+                      onChange={handleChange}
+                      value={candidat.document}
+                      variant="outlined"
+                      select
+                      SelectProps={{ native: true }}
+                      sx={{ width: 210 }}
+                    >
+                      {documents.map((document, index) => (
+                        <option key={index} value={document}>
+                          {document}
+                        </option>
+                      ))}
+                    </TextField>
+                  </Grid>
+                  <Grid item md={6} xs={12} mb={2}>
+                    <TextField
+                      label="Nº documento"
+                      name="numberdocument"
+                      type="text"
+                      onChange={handleChange}
+                      value={candidat.numberdocument}
+                      variant="outlined"
+                      fullWidth
+                    />
+                  </Grid>
+                  {/* <Grid item md={6} xs={12} mb={2}>
                     <TextField
                       fullWidth
                       label="Edad"
@@ -361,7 +404,7 @@ export const Profile = () => {
                       value={candidat.age}
                       variant="outlined"
                     />
-                  </Grid>
+                  </Grid> */}
                 </Box>
               </CardContent>
 
@@ -402,8 +445,27 @@ export const Profile = () => {
                       type="tel"
                       value={candidat.phone}
                       variant="outlined"
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <i className="fa-solid fa-phone"></i>
+                          </InputAdornment>
+                        ),
+                      }}
                     />
                   </Grid>
+                  <Grid item md={6} xs={12}>
+                    <TextField
+                      fullWidth
+                      name="date"
+                      type="date"
+                      helperText="Indique la fecha de nacimiento"
+                      onChange={handleChange}
+                      value={candidat.date}
+                      variant="outlined"
+                    />
+                  </Grid>
+
                   <Grid item md={6} xs={12}>
                     <TextField
                       fullWidth
@@ -418,11 +480,29 @@ export const Profile = () => {
                   <Grid item md={6} xs={12}>
                     <TextField
                       fullWidth
+                      label="Población"
+                      name="location"
+                      type="text"
+                      onChange={handleChange}
+                      value={candidat.location}
+                      variant="outlined"
+                    />
+                  </Grid>
+                  <Grid item md={6} xs={12}>
+                    <TextField
+                      fullWidth
                       label="Dirección"
                       name="direction"
                       onChange={handleChange}
                       value={candidat.direction}
                       variant="outlined"
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <i className="fa-solid fa-house"></i>
+                          </InputAdornment>
+                        ),
+                      }}
                     />
                   </Grid>
 
@@ -434,8 +514,18 @@ export const Profile = () => {
                       onChange={handleChange}
                       value={candidat.gender}
                       variant="outlined"
-                    />
+                      select
+                      SelectProps={{ native: true }}
+                      
+                    >
+                      {genders.map((gender, index) => (
+                        <option key={index} value={gender}>
+                          {gender}
+                        </option>
+                      ))}
+                    </TextField>
                   </Grid>
+
                   <Grid item md={6} xs={12}>
                     <TextField
                       fullWidth
@@ -494,6 +584,7 @@ export const Profile = () => {
                       onChange={handleChange}
                       value={candidat.sololearnprogress}
                       variant="outlined"
+                      type="url"
                       InputProps={{
                         startAdornment: (
                           <InputAdornment position="start">
@@ -516,6 +607,7 @@ export const Profile = () => {
                       name="codeacademyprogress"
                       onChange={handleChange}
                       value={candidat.codeacademyprogress}
+                      type="url"
                       variant="outlined"
                       InputProps={{
                         startAdornment: (

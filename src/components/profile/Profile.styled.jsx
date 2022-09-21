@@ -127,7 +127,10 @@ export const ButtonUploadImg = styled.label`
 export const Modal = styled.div`
   position: fixed;
   z-index: 10000;
-  top: 13%;
-  left: 45%;
-  background-color: red;
+  top:2%;
+  right: 1%;
 `;
+
+export const DocDiv = styled.div`
+display: flex;
+`
