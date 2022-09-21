@@ -8,20 +8,26 @@ import imgAdmin from "../../assets/img/imgAdmin.png";
 import { authService } from "../../services/authService";
 import { localAuthService } from "../../services/localAuthService";
 import {
+  BtEyes,
   BtLogin,
   CtButton,
   CtForm,
   CtImg,
   CtInput,
+  CtInputPassword,
   Form,
   Img,
   Label,
+  LabelPassword,
   PopUp,
 } from "./Login.styled";
 
 export const LoginSignup = () => {
   
   const [msg, setMsg] = useState();
+  const [shown, setShown] = useState(false);
+  const switchShown = () => setShown(!shown);
+  const [password, setPassword] = useState('');
   const [userData, setUserData] = useState({
     username: "",
     email: "",
@@ -29,14 +35,9 @@ export const LoginSignup = () => {
   });
 
   let navigate = useNavigate();
-
   const location = useLocation().pathname;
 
   useEffect(() => {}, [location]);
-
-  // const resetInputsForm = (e) => {
-  //   setUserData("");
-  // };
 
   const alertUp = (msg) => {
     setMsg(msg);
@@ -66,6 +67,7 @@ export const LoginSignup = () => {
       localStorage.setItem("auth_id", res.id);
       localAuthService.saveAuthUser(authUser);
       navigate("/", { replace: true });
+      // resetInputsForm();
     });
   };
 
@@ -73,19 +75,26 @@ export const LoginSignup = () => {
     authService.signup(userData).then((res) => {
       console.log(res);
       alertUp(res.message)
+      resetInputsForm();
       // setMsg(res.message)
       // if(res) window.alert("Nuevo usuario registrado con éxito");
     });
-    // resetInputsForm(); si buidem el formulari no se'ns carreguen les dades per l'e-mail
   };
 
   // console.log(userData)
   let mailMessage = `mailto:${userData.email}?Subject=Ya estás registrado en nuestra app de gestión de candidatos&body=Tu nombre de usuario es ${userData.username}. Este es tu email: ${userData.email} y tu contraseña: ${userData.password} para que puedas iniciar sesión en tu cuenta http://localhost:3000/signin`;
-
+  
+  const resetInputsForm = () => {
+    setUserData({
+      username: "",
+      email: "",
+      password: "",
+    });
+  };
 
   return (
     <>
-     
+
      {location === "/signup" ? (
             <>
       <CtImg>
@@ -99,7 +108,6 @@ export const LoginSignup = () => {
       </CtImg>
       </>
         )}
-
 
       <PopUp>
         {msg !== undefined ? (
@@ -128,24 +136,26 @@ export const LoginSignup = () => {
                   type="email"
                   name="email"
                   aria-label="email"
-                  placeholder="email"
+                  placeholder="Email"
                   value={userData.email}
                   onChange={onInputChange}
                 />
               </Label>
             </>
           )}
-
-          <Label htmlFor="password">
-            <CtInput
-              type="password"
+          <LabelPassword htmlFor="password">
+            <CtInputPassword
+              type={shown ? 'text' : 'password'}
               name="password"
               placeholder="Contraseña"
               value={userData.password}
               onChange={onInputChange}
             />
-          </Label>
-
+            <BtEyes onClick={switchShown}>
+            {shown ? <i className="fa-regular fa-eye-slash"></i> : <i className="fa-regular fa-eye"></i>}
+            </BtEyes>
+          </LabelPassword>
+          
           <CtButton>
             {location === "/login" ? (
               <BtLogin type="button" id="login" onClick={signin}>
@@ -157,7 +167,7 @@ export const LoginSignup = () => {
                 id="signup" 
                 onClick={signup}
                 endIcon={<ForwardToInboxIcon />}
-                href={mailMessage} // si el mail està aquí, l'envia tant si fa el registre com ni no
+                href={mailMessage} // si el mail està aquí, l'envia tant si fa el registre com i no
                 >
                 REGISTRAR Y ENVIAR
               </Button>
