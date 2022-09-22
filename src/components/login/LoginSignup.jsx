@@ -151,7 +151,7 @@ export const LoginSignup = () => {
               value={userData.password}
               onChange={onInputChange}
             />
-            <BtEye onClick={switchShown}>
+            <BtEye type="button" onClick={switchShown}>
             {shown ? <i className="fa-regular fa-eye-slash"></i> : <i className="fa-regular fa-eye"></i>}
             </BtEye>
           </LabelPassword>
