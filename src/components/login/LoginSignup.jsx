@@ -1,5 +1,13 @@
-import { Alert, Button, Dialog, DialogContent, DialogContentText, DialogTitle, Modal } from "@mui/material";
-import ForwardToInboxIcon from '@mui/icons-material/ForwardToInbox';
+import {
+  Alert,
+  Button,
+  Dialog,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Modal,
+} from "@mui/material";
+import ForwardToInboxIcon from "@mui/icons-material/ForwardToInbox";
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import imgLogin from "../../assets/img/imgLogin.png";
@@ -18,7 +26,6 @@ import {
 } from "./Login.styled";
 
 export const LoginSignup = () => {
-  
   const [msg, setMsg] = useState();
   const [userData, setUserData] = useState({
     username: "",
@@ -70,7 +77,12 @@ export const LoginSignup = () => {
   const signup = () => {
     authService.signup(userData).then((res) => {
       console.log(res);
-      alertUp(res.message)
+      if (res.error) {
+        alertUp(res.error);        
+      }
+      setError(true);
+      alertUp(res.message);
+
       // setMsg(res.message)
       // if(res) window.alert("Nuevo usuario registrado con éxito");
     });
@@ -78,9 +90,9 @@ export const LoginSignup = () => {
   };
 
   // console.log(userData)
-  let mailMessage = `mailto:${userData.email}?Subject=Ya estás registrado en nuestra app de gestión de candidatos&body=Tu nombre de usuario es ${userData.username}. Este es tu email: ${userData.email} y tu contraseña: ${userData.password} para que puedas iniciar sesión en tu cuenta http://localhost:3000/signin`;
+  const [error, setError] = useState(false);
 
-
+  const messageMail = `mailto:${userData.email}?Subject=Ya estás registrado en nuestra app de gestión de candidatos&body=Tu nombre de usuario es ${userData.username}. Este es tu email: ${userData.email} y tu contraseña: ${userData.password} para que puedas iniciar sesión en tu cuenta http://localhost:3000/signin`;
   return (
     <>
       <CtImg>
@@ -89,7 +101,12 @@ export const LoginSignup = () => {
 
       <PopUp>
         {msg !== undefined ? (
-          <Alert severity="success" msg={msg} color="primary" sx={{ border: 1, borderColor: "primary.main" }}>
+          <Alert
+            severity="success"
+            msg={msg}
+            color="primary"
+            sx={{ border: 1, borderColor: "primary.main" }}
+          >
             {msg}
           </Alert>
         ) : null}
@@ -138,13 +155,14 @@ export const LoginSignup = () => {
                 LOG IN
               </BtLogin>
             ) : (
-              <Button 
-                type="button" 
-                id="signup" 
+              <Button
+                type="button"
+                id="signup"
                 onClick={signup}
                 endIcon={<ForwardToInboxIcon />}
-                href={mailMessage} // si el mail està aquí, l'envia tant si fa el registre com ni no
-                >
+                href={!error ? "/signup" : messageMail}
+                // si el mail està aquí, l'envia tant si fa el registre com ni no
+              >
                 REGISTRAR Y ENVIAR
               </Button>
             )}

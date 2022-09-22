@@ -51,7 +51,7 @@ const initialCandidat = {
   reached: "",
   spirit: "",
   motivation: "",
-  gender: "Masculino",
+  gender: "Otro",
   nationality: "",
   laboralsituation: "",
   bootcamp: "Osona",

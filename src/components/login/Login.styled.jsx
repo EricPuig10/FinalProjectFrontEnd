@@ -95,6 +95,6 @@ export const Img = styled.img`
 export const PopUp = styled.div`
   position: fixed;
   z-index: 10000;
-  top: 10%;
-  right: 1.5%;
+  top: 15%;
+  right: 3%;
 `;
