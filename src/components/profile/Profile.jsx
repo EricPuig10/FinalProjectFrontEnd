@@ -515,7 +515,6 @@ export const Profile = () => {
                       variant="outlined"
                       select
                       SelectProps={{ native: true }}
-                      
                     >
                       {genders.map((gender, index) => (
                         <option key={index} value={gender}>

@@ -38,7 +38,7 @@ export function BootcampTable() {
               </TableButton>
 
               <TableButton variant="contained" color="primary">
-                <Link to={`/bootcamps/${cellValues.row.id}`}>
+                <Link to={`/procesos/${cellValues.row.id}/candidatos`}>
                   <i className="fa-regular fa-file fa-lg"></i>
                 </Link>
               </TableButton>
@@ -54,13 +54,12 @@ export function BootcampTable() {
       width: 130,
       renderCell: (params) => {
         return (
-          <Link to={`/process/${params.row.id}/candidats`}>
+          <Link to={`/procesos/${params.row.id}/candidatos`}>
             <div className="rowitem">{params.row.name}</div>
           </Link>
         );
       },
     },
-    
   ];
 
   return (

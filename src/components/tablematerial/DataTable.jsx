@@ -23,7 +23,7 @@ export const DataTable = () => {
   const [text, setText] = useState("");
   const [id, setId] = useState();
 
-  console.log(candidats)
+  console.log(candidats);
 
   useEffect(() => {
     getAllCandidats();
@@ -67,7 +67,7 @@ export const DataTable = () => {
               >
                 <i className="fa-regular fa-trash-can fa-lg"></i>
               </TableButton>
-              <Link to={`/candidats/${cellValues.row.id}`}>
+              <Link to={`/candidatos/${cellValues.row.id}`}>
                 <TableButton
                   variant="contained"
                   color="primary"
@@ -148,7 +148,7 @@ export const DataTable = () => {
       headerClassName: "super-app-theme--header",
       renderCell: (params) => {
         return (
-          <Link to={`/bootcamps/${params.row.bootcamp.id}/candidats`}>
+          <Link to={`/bootcamps/${params.row.bootcamp.id}/candidatos`}>
             <div className="rowitem">{params.row.bootcamp.bootcampName}</div>
           </Link>
         );

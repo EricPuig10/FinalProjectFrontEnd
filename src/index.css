@@ -1,5 +1,5 @@
 @import url(./components/notfound/NotFound.css);
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
 * {
   margin: 0;
@@ -24,7 +24,6 @@ thead th {
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
-  
 }
 
 html,
@@ -40,4 +39,3 @@ a {
   text-decoration: none;
   color: inherit;
 }
-

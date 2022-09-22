@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import imgHome from '../../assets/img/imgHome_.png'
+import imgHome from "../../assets/img/imgHome_.png";
 
 import {
   DivButtonsHome,
@@ -19,13 +19,13 @@ export const Home = () => {
         <ImgHome src={imgHome} />
       </DivImgHome>
       <DivButtonsHome>
-        <Link to="/candidats">
+        <Link to="/candidatos">
           <HomeButton>Candidatos</HomeButton>
         </Link>
         <Link to="/bootcamps">
           <HomeButton>Bootcamps</HomeButton>
         </Link>
-        <Link to="/process">
+        <Link to="/procesos">
           <HomeButton>Proceso</HomeButton>
         </Link>
       </DivButtonsHome>

@@ -32,7 +32,7 @@ export const Sidebar = () => {
       </CtButton>
 
       <CtButton>
-        <Link to="/candidats">
+        <Link to="/candidatos">
           <Icon>
             <i className="fa-solid fa-user fa-xl"></i>
           </Icon>
@@ -50,25 +50,24 @@ export const Sidebar = () => {
       </CtButton>
 
       <CtButton>
-        <Link to="/process">
+        <Link to="/procesos">
           <Icon>
             <i className="fa-sharp fa-solid fa-ranking-star fa-xl"></i>
           </Icon>
           <Texthiden>Procesos</Texthiden>
         </Link>
       </CtButton>
-      
+
       {localAuthService.isAdmin() ? (
-      <CtButton>
-        
+        <CtButton>
           <Link to="/signup">
             <Icon>
               <i className="fa-solid fa-gear fa-xl"></i>
             </Icon>
             <Texthiden>Config</Texthiden>
           </Link>
-        
-      </CtButton>) : null}
+        </CtButton>
+      ) : null}
 
       <CtButton>
         {localAuthService.isLogged() ? (

@@ -8,7 +8,9 @@ export const SignupPage = () => {
     <>
       <Navbar />
 
-<div><Sidebar /></div>
+      <div>
+        <Sidebar />
+      </div>
 
       <LoginSignup />
     </>

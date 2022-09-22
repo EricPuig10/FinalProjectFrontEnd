@@ -65,8 +65,7 @@ function ProfileBootcamp() {
   };
 
   const addNewBootcamp = (data) => {
-    bootcampsService.addBootcamp(data).then((res) => {
-    });
+    bootcampsService.addBootcamp(data).then((res) => {});
   };
 
   const updateBootcamp = (newBootcamp) => {
@@ -95,23 +94,16 @@ function ProfileBootcamp() {
     });
   };
 
-
   return (
     <>
       <CtProfile>
         <form autoComplete="off" noValidate onSubmit={onSubmitHandler}>
           <Card>
-          {bootcamp.bootcampName === "" ? (
-            <CardHeader
-              subheader=""
-              title="Crear un bootcamp"
-            />
-          ) : (
-            <CardHeader
-              subheader=""
-              title={bootcamp.bootcampName}
-            />
-          )}
+            {bootcamp.bootcampName === "" ? (
+              <CardHeader subheader="" title="Crear un bootcamp" />
+            ) : (
+              <CardHeader subheader="" title={bootcamp.bootcampName} />
+            )}
 
             <Divider />
             <BasicInfoDiv>

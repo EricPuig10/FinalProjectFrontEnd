@@ -10,7 +10,7 @@ export const ProcessPage = () => {
       <div>
         <Sidebar />
       </div>
-        <ProcessTable />
+      <ProcessTable />
     </>
   );
 };

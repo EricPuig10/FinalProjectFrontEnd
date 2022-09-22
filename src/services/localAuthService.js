@@ -15,8 +15,8 @@ export const localAuthService = {
     return authJson;
   },
 
-  isAdmin(){
-    if(this.getAuthUser().id === 1) return true;
+  isAdmin() {
+    if (this.getAuthUser().id === 1) return true;
     return false;
   },
 };

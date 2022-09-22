@@ -5,20 +5,29 @@ import { candidatsService } from "../../services/candidatsService";
 import { useEffect } from "react";
 import { BtnAdd, CtTabBut, TableButton } from "./DataTable.styled";
 import { Link, useLocation, useParams } from "react-router-dom";
+import { processService } from "../../services/processService";
 
-export const CandidatsByBootcampTable = () => {
+export const CandidatsByProcessTable = () => {
   const [candidats, setCandidats] = useState([]);
+  const [process, setProcess] = useState([]);
 
   const { id } = useParams();
 
   const location = useLocation();
   useEffect(() => {
-    getCandidatsByBootcampId(id);
+    getCandidatsByProcessId(id);
+    getProcessById(id);
   }, []);
 
-  const getCandidatsByBootcampId = (id) => {
-    candidatsService.getCandidatsByBootcampId(id).then((res) => {
+  const getCandidatsByProcessId = (id) => {
+    candidatsService.getCandidatsByProcessId(id).then((res) => {
       setCandidats(res);
+    });
+  };
+
+  const getProcessById = () => {
+    processService.getById(id).then((res) => {
+      setProcess(res);
     });
   };
 
@@ -110,6 +119,8 @@ export const CandidatsByBootcampTable = () => {
     });
   };
 
+  console.log(process);
+
   return (
     <>
       <div
@@ -121,7 +132,7 @@ export const CandidatsByBootcampTable = () => {
           marginTop: "2.5%",
         }}
       >
-        <h1>{candidats.bootcamp}</h1>
+        <p style={{ marginBottom: 4, fontSize: 20 }}>{process.name}s</p>
         <DataGrid
           columns={columns}
           rows={candidats}
@@ -129,13 +140,13 @@ export const CandidatsByBootcampTable = () => {
           rowsPerPageOptions={[10]}
         />
       </div>
-      {location.pathname === "/bootcamps/create" || "/bootcamps/:id" ? null : (
+      {/* {location.pathname === "/bootcamps/create" || "/bootcamps/:id" ? null : (
         <Link to="/bootcamps/create">
           <BtnAdd>
             <i className="fa-solid fa-plus fa-2xl"></i>
           </BtnAdd>
         </Link>
-      )}
+      )} */}
     </>
   );
 };

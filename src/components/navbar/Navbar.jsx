@@ -5,7 +5,6 @@ import { localAuthService } from "../../services/localAuthService";
 import { DivButton, DivLogo, DivNav, LogInButton, Logo } from "./Navbar.styled";
 
 export const Navbar = () => {
-  
   const logout = () => {
     authService.logout();
   };

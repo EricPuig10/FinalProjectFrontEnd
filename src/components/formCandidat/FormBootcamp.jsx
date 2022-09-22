@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import { useState } from "react";
 import { bootcampsService } from "../../services/bootcampsService";
@@ -13,7 +12,7 @@ import {
   SubmitBtnForm,
 } from "./Form.styled";
 
-export function FormBootcamp ( props ) {
+export function FormBootcamp(props) {
   const [newBootcamp, setNewBootcamp] = useState(props.bootcampToEdit);
   const [bootcamps, setBootcamps] = useState([]);
   const [candidats, setCandidats] = useState([]);
@@ -27,7 +26,6 @@ export function FormBootcamp ( props ) {
   const getAllBootcamps = () => {
     bootcampsService.getAllBootcamps().then((res) => {
       setBootcamps(res);
-      
     });
   };
 
@@ -71,9 +69,8 @@ export function FormBootcamp ( props ) {
     });
 
     //pendiente de cambiar en las funciones
-    
   };
-  console.log(newBootcamp.category)
+  console.log(newBootcamp.category);
 
   const onInputChange = (e) => {
     const name = e.target.name;
@@ -137,7 +134,7 @@ export function FormBootcamp ( props ) {
                 type="text"
                 placeholder="Duration"
               ></Input>
-              
+
               <Input
                 onChange={onInputChange}
                 aria-label="characteristics"
@@ -145,7 +142,7 @@ export function FormBootcamp ( props ) {
                 name="characteristics"
                 placeholder="characteristics of bootcamp"
               ></Input>
-              
+
               <Input
                 onChange={onInputChange}
                 aria-label="isPresential"
@@ -190,6 +187,6 @@ export function FormBootcamp ( props ) {
       </div>
     </div>
   );
-};
+}
 
-export default FormBootcamp
+export default FormBootcamp;

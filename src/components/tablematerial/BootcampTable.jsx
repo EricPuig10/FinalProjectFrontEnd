@@ -83,7 +83,7 @@ export function BootcampTable() {
       width: 130,
       renderCell: (params) => {
         return (
-          <Link to={`/bootcamps/${params.row.id}/candidats`}>
+          <Link to={`/bootcamps/${params.row.id}/candidatos`}>
             <div className="rowitem">{params.row.bootcampName}</div>
           </Link>
         );

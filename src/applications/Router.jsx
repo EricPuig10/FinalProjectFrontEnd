@@ -11,6 +11,7 @@ import { SignupPage } from "../pages/SignupPage";
 import ProfileBootcampPage from "../pages/ProfileBootcampPage";
 import { Error404 } from "../pages/Error404";
 import ProcessPage from "../pages/ProcessPage";
+import { CandidatsByProcessPage } from "../pages/CandidatsByProcessPage";
 
 export default function Router() {
   const AuthRoute = ({ children }) => {
@@ -32,7 +33,7 @@ export default function Router() {
       return <Navigate to="/" />;
     }
     return children;
-  }
+  };
 
   const theme = createTheme({
     palette: {
@@ -59,7 +60,7 @@ export default function Router() {
             }
           />
           <Route
-            path="/candidats"
+            path="/candidatos"
             element={
               <AuthCrud>
                 <DashboardPage />
@@ -75,7 +76,7 @@ export default function Router() {
             }
           />
           <Route
-            path="/candidats/:id"
+            path="/candidatos/:id"
             element={
               <AuthCrud>
                 <ProfilePage />
@@ -91,10 +92,18 @@ export default function Router() {
             }
           />
           <Route
-            path="/bootcamps/:id/candidats"
+            path="/bootcamps/:id/candidatos"
             element={
               <AuthCrud>
                 <CandidatsByBootcampPage />
+              </AuthCrud>
+            }
+          />
+          <Route
+            path="/procesos/:id/candidatos"
+            element={
+              <AuthCrud>
+                <CandidatsByProcessPage />
               </AuthCrud>
             }
           />
@@ -115,7 +124,7 @@ export default function Router() {
             }
           />
           <Route
-            path="/process"
+            path="/procesos"
             element={
               <AuthCrud>
                 <ProcessPage />

@@ -42,23 +42,22 @@ export const CtInput = styled.input`
   background: #dce0f0;
   border: none;
   outline: none;
-  color: #ea561d; 
-
+  color: #ea561d;
 `;
 
 export const CtButton = styled.div`
-  width: 100%; 
+  width: 100%;
   height: 2rem;
   display: flex;
   justify-content: center;
 `;
 
 export const BtLogin = styled.button`
-  width: 80%; 
+  width: 80%;
   height: 2.5rem;
   border: none;
   text-align: center;
-  background-color:#ea561d;
+  background-color: #ea561d;
   color: white;
   cursor: pointer;
   font-size: 1rem;
@@ -88,11 +87,11 @@ export const PopUp = styled.div`
 `;
 
 export const BtEye = styled.button`
-  width: 20%; 
+  width: 20%;
   height: 2.5rem;
   background: #dce0f0;
   border: none;
-  color: #ea561d; 
+  color: #ea561d;
   cursor: pointer;
 `;
 
@@ -101,7 +100,7 @@ export const CtInputPassword = styled.input`
   width: 100%;
   height: 3rem;
   display: flex;
-  color: #ea561d; 
+  color: #ea561d;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;

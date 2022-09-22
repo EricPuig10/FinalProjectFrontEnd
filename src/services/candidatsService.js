@@ -13,27 +13,29 @@ const baseURL = "http://localhost:8080";
 
 export const candidatsService = {
   getAllCandidats() {
-    const candidats = axios.get(baseURL + "/candidats").then((res) => res.data);
+    const candidats = axios
+      .get(baseURL + "/candidatos")
+      .then((res) => res.data);
     return candidats;
   },
 
   getCandidatById(id) {
     const candidat = axios
-      .get(baseURL + "/candidats/" + id)
+      .get(baseURL + "/candidatos/" + id)
       .then((res) => res.data);
     return candidat;
   },
 
   getCandidatsByBootcampId(id) {
     const candidatsByBootcamp = axios
-      .get(baseURL + "/bootcamps/" + id + "/candidats")
+      .get(baseURL + "/bootcamps/" + id + "/candidatos")
       .then((res) => res.data);
     return candidatsByBootcamp;
   },
 
   deleteCandidat(id) {
     const candidat = axios
-      .delete(baseURL + "/candidats/" + id)
+      .delete(baseURL + "/candidatos/" + id)
       .then((res) => {
         return res.data;
       })
@@ -45,14 +47,14 @@ export const candidatsService = {
 
   addCandidat(data) {
     const candidats = axios
-      .post(baseURL + "/candidats", { ...data, userId: 1 })
+      .post(baseURL + "/candidatos", { ...data, userId: 1 })
       .then((res) => res.data);
     return candidats;
   },
 
   updateCandidat(candidat) {
     const updatedCandidat = axios
-      .put(baseURL + "/candidats/" + candidat.id, candidat)
+      .put(baseURL + "/candidatos/" + candidat.id, candidat)
       .then((res) => {
         return res.data;
       })
@@ -60,5 +62,11 @@ export const candidatsService = {
         console.log(err);
       });
     return updatedCandidat;
+  },
+  getCandidatsByProcessId(id) {
+    const candidatsByProcess = axios
+      .get(baseURL + "/procesos/" + id + "/candidatos")
+      .then((res) => res.data);
+    return candidatsByProcess;
   },
 };

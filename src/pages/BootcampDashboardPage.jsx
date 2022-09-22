@@ -10,7 +10,7 @@ export const BootcampDashboardPage = () => {
       <div>
         <Sidebar />
       </div>
-        <BootcampTable />
+      <BootcampTable />
     </>
   );
 };
