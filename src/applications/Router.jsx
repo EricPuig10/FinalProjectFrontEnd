@@ -39,9 +39,9 @@ export default function Router() {
       primary: {
         main: "#ea561d",
       },
-      // secondary: {
-      //   main: '#f44336',
-      // },
+      typography: {
+        fontFamily: "Poppins",
+      },
     },
   });
 

@@ -41,6 +41,9 @@ export const CtInput = styled.input`
   font-size: 1em;
   background: #dce0f0;
   border: none;
+  outline: none;
+  color: #ea561d; 
+
 `;
 
 export const CtButton = styled.div`
@@ -98,12 +101,14 @@ export const CtInputPassword = styled.input`
   width: 100%;
   height: 3rem;
   display: flex;
+  color: #ea561d; 
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   font-size: 1em;
   background: #dce0f0;
   border: none;
+  outline: none;
 `;
 
 export const LabelPassword = styled.label`
