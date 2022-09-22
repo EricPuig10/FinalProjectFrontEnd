@@ -32,9 +32,10 @@ import {
 
 export const LoginSignup = () => {
   const [msg, setMsg] = useState();
+  const [errormsg, setErrorMsg] = useState();
   const [shown, setShown] = useState(false);
   const switchShown = () => setShown(!shown);
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState("");
   const [userData, setUserData] = useState({
     username: "",
     email: "",
@@ -50,6 +51,13 @@ export const LoginSignup = () => {
     setMsg(msg);
     setTimeout(function () {
       setMsg(undefined);
+    }, 10000);
+  };
+
+  const alertError = (errormsg) => {
+    setErrorMsg(errormsg);
+    setTimeout(function () {
+      setErrorMsg(undefined);
     }, 10000);
   };
 
@@ -80,38 +88,49 @@ export const LoginSignup = () => {
 
   const signup = () => {
     authService.signup(userData).then((res) => {
-      console.log(res);
       if (res.error) {
-        alertUp(res.error);        
+        alertError(res.error);
+        redireccionarWithTimeout();
+        return;
       }
-      setError(true);
       alertUp(res.message);
+      setTimeout(redireccionar(), 5000);
 
       // setMsg(res.message)
       // if(res) window.alert("Nuevo usuario registrado con éxito");
     });
   };
 
-  // console.log(userData)
-  const [error, setError] = useState(false);
+  const redireccionar = () => {
+    window.location.href = messageMail;
+  };
+
+  const redireccionarSignUp = () => {
+    window.location.href = "/signup";
+  };
+
+  const redireccionarWithTimeout = () => {
+    setTimeout(function () {
+      redireccionarSignUp();
+    }, 2000);
+  };
 
   const messageMail = `mailto:${userData.email}?Subject=Ya estás registrado en nuestra app de gestión de candidatos&body=Tu nombre de usuario es ${userData.username}. Este es tu email: ${userData.email} y tu contraseña: ${userData.password} para que puedas iniciar sesión en tu cuenta http://localhost:3000/signin`;
   return (
     <>
-
-     {location === "/signup" ? (
-            <>
-      <CtImg>
-        <Img src={imgUser}></Img>
-      </CtImg>
-      </>
-        ) : (
+      {location === "/signup" ? (
         <>
-      <CtImg>
-        <Img src={imgAdmin}></Img>
-      </CtImg>
-      </>
-        )}
+          <CtImg>
+            <Img src={imgUser}></Img>
+          </CtImg>
+        </>
+      ) : (
+        <>
+          <CtImg>
+            <Img src={imgAdmin}></Img>
+          </CtImg>
+        </>
+      )}
 
       <PopUp>
         {msg !== undefined ? (
@@ -122,6 +141,18 @@ export const LoginSignup = () => {
             sx={{ border: 1, borderColor: "primary.main" }}
           >
             {msg}
+          </Alert>
+        ) : null}
+      </PopUp>
+      <PopUp>
+        {errormsg !== undefined ? (
+          <Alert
+            severity="success"
+            errormsg={errormsg}
+            color="primary"
+            sx={{ border: 1, borderColor: "primary.main" }}
+          >
+            {errormsg}
           </Alert>
         ) : null}
       </PopUp>
@@ -154,17 +185,21 @@ export const LoginSignup = () => {
           )}
           <LabelPassword htmlFor="password">
             <CtInputPassword
-              type={shown ? 'text' : 'password'}
+              type={shown ? "text" : "password"}
               name="password"
               placeholder="Contraseña"
               value={userData.password}
               onChange={onInputChange}
             />
             <BtEye type="button" onClick={switchShown}>
-            {shown ? <i className="fa-regular fa-eye-slash"></i> : <i className="fa-regular fa-eye"></i>}
+              {shown ? (
+                <i className="fa-regular fa-eye-slash"></i>
+              ) : (
+                <i className="fa-regular fa-eye"></i>
+              )}
             </BtEye>
           </LabelPassword>
-          
+
           <CtButton>
             {location === "/login" ? (
               <BtLogin type="button" id="login" onClick={signin}>
@@ -176,7 +211,7 @@ export const LoginSignup = () => {
                 id="signup"
                 onClick={signup}
                 endIcon={<ForwardToInboxIcon />}
-                href={!error ? "/signup" : messageMail}
+                // href={!error ? "/signup" : messageMail}
                 // si el mail està aquí, l'envia tant si fa el registre com ni no
               >
                 REGISTRAR Y ENVIAR
