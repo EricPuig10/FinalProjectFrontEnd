@@ -14,8 +14,6 @@ export const BackGroundForm = styled.div`
   height: 100%;
   position: absolute;
   top: 0%;
-  /* background-color: red; */
-  /* border: 5px solid red; */
   z-index: 100;
 `;
 
@@ -52,8 +50,6 @@ export const InputsCont = styled.div`
   margin-left: 2.3%;
   display: flex;
   z-index: 4;
-  /* padding-top: 2.2%;
-  padding-bottom:2.2%; */
   align-items: center;
   position: relative;
   @media (max-width: 450px) {

@@ -47,7 +47,7 @@ export const CtInput = styled.input`
 `;
 
 export const CtButton = styled.div`
-  width: 100%; /* o 80% */
+  width: 100%; 
   height: 2rem;
   display: flex;
   justify-content: center;

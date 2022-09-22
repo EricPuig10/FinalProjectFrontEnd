@@ -27,12 +27,10 @@ export const HomeText = styled.h2`
   display: flex;
   margin-top: 2%;
   justify-content: center;
-  font-family: "Quicksand";
 `;
 
 export const DivButtonsHome = styled.div`
   position: absolute;
-  /* background-color: yellow; */
   top: 67%;
   left: 8.5%;
   width: 80%;
@@ -48,11 +46,9 @@ export const HomeButton = styled.button`
   border-style: solid;
   color: #ea561d;
   background-color: transparent;
-  font-family: "Poppins";
   font-weight: 400;
   cursor: pointer;
   border-radius: 0.1vw;
-  transition: 0.4s;
 
   &:hover {
     color: white;

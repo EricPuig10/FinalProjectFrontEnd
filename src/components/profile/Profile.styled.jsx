@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const DetailDiv = styled.div`
   background-color: white;
   width: 93%;
-  /* border: 1px solid red; */
   position: absolute;
   top: 9.9%;
   left: 7%;
@@ -29,7 +28,6 @@ export const LeftDiv = styled.div`
   display: flex;
   flex-direction: column;
   width: 25%;
-  /* border: 1px solid red; */
   margin: 2%;
 `;
 
@@ -82,7 +80,6 @@ export const Variables = styled.div`
 `;
 
 export const DivButtonsDetail = styled.div`
-  /* border: 2px solid red; */
   margin: 2%;
   width: 20%;
   display: flex;
