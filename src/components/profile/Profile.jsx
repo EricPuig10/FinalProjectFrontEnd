@@ -28,7 +28,7 @@ import {
 } from "./Profile.styled";
 import { bootcampsService } from "../../services/bootcampsService";
 import { processService } from "../../services/processService";
-import { CloseBtn, Input } from "../formCandidat/Form.styled";
+import { CloseBtn, Input } from "../profile/Profile.styled";
 import { cloudinaryService } from "../../services/imageService";
 import imgCode from "../../assets/img/codeacademy.png";
 import sololearn from "../../assets/img/sololearn.webp";
@@ -55,7 +55,7 @@ const initialCandidat = {
   nationality: "",
   laboralsituation: "",
   bootcamp: "Osona",
-  processState: "First process",
+  processState: "Registradx",
   sololearnprogress: "",
   codeacademyprogress: "",
   assistedtoinformativesession: "",
@@ -88,6 +88,7 @@ export const Profile = () => {
     getAllBootcamps();
     getAllProcess();
     editMode();
+    // eslint-disable-next-line
   }, []);
 
   const alertTimed = (msg) => {
@@ -149,7 +150,7 @@ export const Profile = () => {
 
   const addNewCandidat = (data) => {
     candidatsService.addCandidat(data).then((res) => {
-      navigate("/candidats");
+      navigate("/candidatos");
     });
   };
 
@@ -172,25 +173,21 @@ export const Profile = () => {
     candidatsService.deleteCandidat(id).then((res) => {
       if (!res) return;
       if (res.error) {
-        console.log(res.error);
-
         return;
       }
-      navigate("/candidats");
+      navigate("/candidatos");
     });
   };
 
   const onFileChangeHandler = (e) => {
-    console.log(e.target.name, e.target.files[0]);
     let data = { ...candidat, file: e.target.files[0] };
     uploadImg(data);
   };
 
   const uploadImg = (data) => {
     let { file, ...inputsData } = data;
-    console.log(inputsData);
+
     cloudinaryService.uploadImage(file).then((res) => {
-      console.log(res);
       setCandidat({ ...inputsData, img: res.url });
     });
   };
@@ -202,7 +199,6 @@ export const Profile = () => {
   const handleClose = () => {
     setOpen(false);
   };
-  console.log(candidat.date);
 
   let mailMessage = `mailto:${candidat.email}?Subject=Has sido seleccionado!`;
 
@@ -243,6 +239,7 @@ export const Profile = () => {
           </Dialog>
         </Modal>
       ) : null}
+      
       <DetailDiv>
         <form
           autoComplete="off"

@@ -131,3 +131,75 @@ export const Modal = styled.div`
 export const DocDiv = styled.div`
   display: flex;
 `;
+
+export const Input = styled.input`
+  background-color: rgb(190, 190, 190);
+  padding: 0.9%;
+  border-style: solid;
+  border-color: white;
+  font-size: 0.9em;
+  width: 80%;
+  color: black;
+  margin-bottom: 1%;
+  @media (max-width: 450px) {
+    padding: 3%;
+    margin-bottom: 2%;
+    width: 90%;
+    font-size: 1.2em;
+    border-radius: 2vw;
+  }
+`;
+
+export const CloseBtn = styled.button`
+  border: none;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  font-weight: bold;
+  font-size: 1em;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 1%;
+  padding-right: 1%;
+  border-radius: 1.2vw;
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  cursor: pointer;
+  &:hover {
+    color: grey;
+  }
+  @media (max-width: 450px) {
+    position: absolute;
+    padding-top: 10%;
+    top: 1%;
+    left: 44%;
+    background-color: transparent;
+  }
+`;
+
+export const CloseBtnBootcamp = styled.button`
+  border: none;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  font-weight: bold;
+  font-size: 1em;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 1%;
+  padding-right: 1%;
+  border-radius: 1.2vw;
+  position: absolute;
+  top: 11%;
+  right: 2%;
+  cursor: pointer;
+  &:hover {
+    color: grey;
+  }
+  @media (max-width: 450px) {
+    position: absolute;
+    padding-top: 10%;
+    top: 1%;
+    left: 44%;
+    background-color: transparent;
+  }
+`;

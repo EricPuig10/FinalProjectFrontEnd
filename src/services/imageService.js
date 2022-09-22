@@ -32,9 +32,7 @@ export const cloudinaryService = {
       .then((res) => {
         return res.data;
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => {});
     return imageToUpload;
   },
 

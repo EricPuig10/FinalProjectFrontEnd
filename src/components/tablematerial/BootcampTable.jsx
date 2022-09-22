@@ -107,18 +107,11 @@ export function BootcampTable() {
   ];
 
   const deleteBootcamp = (id) => {
-    // let bootcampToDelete = bootcamps.filter((bootcamp) => bootcamp.id === id);
-    // let deleteConfirmed = window.confirm(
-    //   `Confirm to delete ${bootcampToDelete[0].bootcampName} from the list`
-    // );
-    // if (!deleteConfirmed) return;
     let filterBootcamps = bootcamps.filter((bootcamp) => bootcamp.id !== id);
 
     bootcampsService.deleteBootcamp(id).then((res) => {
       if (!res) return;
       if (res.error) {
-        console.log(res.error);
-
         return;
       }
       setBootcamps(filterBootcamps);

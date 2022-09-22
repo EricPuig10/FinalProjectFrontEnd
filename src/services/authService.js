@@ -5,7 +5,6 @@ let baseURL = "http://localhost:8080";
 export const authService = {
   signin(request) {
     const auth = axios.post(`${baseURL}/auth/signin`, request).then((res) => {
-      console.log(res);
       return res.data;
     });
     return auth;
@@ -31,7 +30,6 @@ export const authService = {
     const auth = axios
       .post(`${baseURL}/auth/signup`, req)
       .then((res) => {
-        console.log(res.data);
         return res.data;
       })
       .catch((err) => {

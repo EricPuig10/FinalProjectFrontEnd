@@ -23,7 +23,6 @@ export const DataTable = () => {
   const [text, setText] = useState("");
   const [id, setId] = useState();
 
-  console.log(candidats);
 
   useEffect(() => {
     getAllCandidats();
@@ -45,16 +44,6 @@ export const DataTable = () => {
         return (
           <>
             <CtTabBut>
-              {/* <TableButton
-                variant="contained"
-                color="primary"
-                onClick={() => {
-                  editCandidat(cellValues.row.id);
-                }}
-              >
-                <i className="fa-regular fa-pen-to-square fa-lg"></i>
-              </TableButton> */}
-
               <TableButton
                 variant="contained"
                 color="primary"
@@ -106,9 +95,9 @@ export const DataTable = () => {
       headerClassName: "super-app-theme--header",
     },
     {
-      field: "age",
-      headerName: "Edad",
-      width: 90,
+      field: "date",
+      headerName: "Fecha de nacimiento",
+      width: 130,
       headerClassName: "super-app-theme--header",
     },
     {
@@ -213,13 +202,10 @@ export const DataTable = () => {
 
   const deleteCandidat = (id) => {
     let filterCandidats = candidats.filter((candidat) => candidat.id !== id);
-    console.log(filterCandidats);
 
     candidatsService.deleteCandidat(id).then((res) => {
       if (!res) return;
       if (res.error) {
-        console.log(res.error);
-
         return;
       }
       setCandidats(filterCandidats);

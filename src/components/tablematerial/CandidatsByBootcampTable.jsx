@@ -5,6 +5,8 @@ import { candidatsService } from "../../services/candidatsService";
 import { useEffect } from "react";
 import { BtnAdd, CtTabBut, TableButton } from "./DataTable.styled";
 import { Link, useLocation, useParams } from "react-router-dom";
+import imgCode from "../../assets/img/codeacademy.png";
+import sololearn from "../../assets/img/sololearn.webp";
 
 export const CandidatsByBootcampTable = () => {
   const [candidats, setCandidats] = useState([]);
@@ -14,6 +16,7 @@ export const CandidatsByBootcampTable = () => {
   const location = useLocation();
   useEffect(() => {
     getCandidatsByBootcampId(id);
+    // eslint-disable-next-line
   }, []);
 
   const getCandidatsByBootcampId = (id) => {
@@ -83,11 +86,50 @@ export const CandidatsByBootcampTable = () => {
       renderCell: (params) => {
         return <div className="rowitem">{params.row.processState.name}</div>;
       },
+    },    {
+      field: "sololearnprogress",
+      headerName: "Solo Learn",
+      width: 90,
+      headerClassName: "super-app-theme--header",
+      align: "center",
+      renderCell: (params) => {
+        return (
+          <>
+            {!params.row.sololearnprogress ? null : (
+              <a href={params.row.sololearnprogress} className="rowitem">
+                <img
+                  src={sololearn}
+                  style={{ width: 25, height: 25 }}
+                  alt="codeacademy"
+                />
+              </a>
+            )}
+          </>
+        );
+      },
     },
-
-    // { field: 'sololearnprogress', headerName: 'Solo Learn Progress', width: 130 },
-    // { field: 'codeacademyprogress', headerName: 'Code Academy Progress', width: 130 },
-    // { field: 'assistedtoinformativesession', headerName: 'Assisted Informative Session', width: 130 },
+    {
+      field: "codeacademyprogress",
+      headerName: "Code Academy",
+      width: 120,
+      headerClassName: "super-app-theme--header",
+      align: "center",
+      renderCell: (params) => {
+        return (
+          <>
+            {!params.row.codeacademyprogress ? null : (
+              <a href={params.row.codeacademyprogress} className="rowitem">
+                <img
+                  src={imgCode}
+                  style={{ width: 25, height: 25 }}
+                  alt="codeacademy"
+                />
+              </a>
+            )}
+          </>
+        );
+      },
+    },
   ];
 
   const deleteCandidat = (id) => {
@@ -97,13 +139,10 @@ export const CandidatsByBootcampTable = () => {
     );
     if (!deleteConfirmed) return;
     let filterCandidats = candidats.filter((candidat) => candidat.id !== id);
-    console.log(filterCandidats);
 
     candidatsService.deleteCandidat(id).then((res) => {
       if (!res) return;
       if (res.error) {
-        console.log(res.error);
-
         return;
       }
       setCandidats(filterCandidats);

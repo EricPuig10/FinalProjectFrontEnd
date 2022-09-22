@@ -3,9 +3,11 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useState } from "react";
 import { candidatsService } from "../../services/candidatsService";
 import { useEffect } from "react";
-import { BtnAdd, CtTabBut, TableButton } from "./DataTable.styled";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { CtTabBut, TableButton } from "./DataTable.styled";
+import { Link, useParams } from "react-router-dom";
 import { processService } from "../../services/processService";
+import imgCode from "../../assets/img/codeacademy.png";
+import sololearn from "../../assets/img/sololearn.webp";
 
 export const CandidatsByProcessTable = () => {
   const [candidats, setCandidats] = useState([]);
@@ -13,10 +15,10 @@ export const CandidatsByProcessTable = () => {
 
   const { id } = useParams();
 
-  const location = useLocation();
   useEffect(() => {
     getCandidatsByProcessId(id);
     getProcessById(id);
+    // eslint-disable-next-line
   }, []);
 
   const getCandidatsByProcessId = (id) => {
@@ -93,10 +95,51 @@ export const CandidatsByProcessTable = () => {
         return <div className="rowitem">{params.row.processState.name}</div>;
       },
     },
+    {
+        field: "sololearnprogress",
+        headerName: "Solo Learn",
+        width: 90,
+        headerClassName: "super-app-theme--header",
+        align: "center",
+        renderCell: (params) => {
+          return (
+            <>
+              {!params.row.sololearnprogress ? null : (
+                <a href={params.row.sololearnprogress} className="rowitem">
+                  <img
+                    src={sololearn}
+                    style={{ width: 25, height: 25 }}
+                    alt="codeacademy"
+                  />
+                </a>
+              )}
+            </>
+          );
+        },
+      },
+      {
+        field: "codeacademyprogress",
+        headerName: "Code Academy",
+        width: 120,
+        headerClassName: "super-app-theme--header",
+        align: "center",
+        renderCell: (params) => {
+          return (
+            <>
+              {!params.row.codeacademyprogress ? null : (
+                <a href={params.row.codeacademyprogress} className="rowitem">
+                  <img
+                    src={imgCode}
+                    style={{ width: 25, height: 25 }}
+                    alt="codeacademy"
+                  />
+                </a>
+              )}
+            </>
+          );
+        },
+      },
 
-    // { field: 'sololearnprogress', headerName: 'Solo Learn Progress', width: 130 },
-    // { field: 'codeacademyprogress', headerName: 'Code Academy Progress', width: 130 },
-    // { field: 'assistedtoinformativesession', headerName: 'Assisted Informative Session', width: 130 },
   ];
 
   const deleteCandidat = (id) => {
@@ -106,12 +149,10 @@ export const CandidatsByProcessTable = () => {
     );
     if (!deleteConfirmed) return;
     let filterCandidats = candidats.filter((candidat) => candidat.id !== id);
-    console.log(filterCandidats);
 
     candidatsService.deleteCandidat(id).then((res) => {
       if (!res) return;
       if (res.error) {
-        console.log(res.error);
 
         return;
       }
@@ -119,7 +160,6 @@ export const CandidatsByProcessTable = () => {
     });
   };
 
-  console.log(process);
 
   return (
     <>
@@ -140,13 +180,6 @@ export const CandidatsByProcessTable = () => {
           rowsPerPageOptions={[10]}
         />
       </div>
-      {/* {location.pathname === "/bootcamps/create" || "/bootcamps/:id" ? null : (
-        <Link to="/bootcamps/create">
-          <BtnAdd>
-            <i className="fa-solid fa-plus fa-2xl"></i>
-          </BtnAdd>
-        </Link>
-      )} */}
     </>
   );
 };

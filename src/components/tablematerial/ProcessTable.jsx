@@ -27,15 +27,12 @@ export function BootcampTable() {
         return (
           <>
             <CtTabBut>
-              <TableButton
+              {/* <TableButton
                 variant="contained"
                 color="primary"
-                // onClick={() => {
-                //   deleteProcess(cellValues.row.id);
-                // }}
               >
                 <i className="fa-regular fa-trash-can fa-lg"></i>
-              </TableButton>
+              </TableButton> */}
 
               <TableButton variant="contained" color="primary">
                 <Link to={`/procesos/${cellValues.row.id}/candidatos`}>
@@ -82,13 +79,6 @@ export function BootcampTable() {
           rowsPerPageOptions={[10]}
         />
       </div>
-      {/* {location.pathname === "/bootcamps/create" ? null : (
-        <Link to="/bootcamps/create">
-          <BtnAdd>
-            <i className="fa-solid fa-plus fa-2xl"></i>
-          </BtnAdd>
-        </Link>
-      )} */}
     </>
   );
 }
