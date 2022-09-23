@@ -18,4 +18,10 @@ export const categoryService = {
       .then((res) => res.data);
     return categories;
   },
+  addCategory(data) {
+    const categories = axios
+      .post(baseURL + "/categories", { ...data, userId: 1 })
+      .then((res) => res.data);
+    return categories;
+  },
 };

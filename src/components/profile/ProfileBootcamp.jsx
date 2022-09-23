@@ -5,6 +5,7 @@ import {
   Card,
   CardContent,
   CardHeader,
+  createFilterOptions,
   Dialog,
   DialogActions,
   DialogContent,
@@ -26,6 +27,7 @@ import { bootcampsService } from "../../services/bootcampsService";
 import { categoryService } from "../../services/categoryService";
 import { CandidatsByBootcampTable } from "../tablematerial/CandidatsByBootcampTable";
 
+
 const initialBootcamp = {
   bootcampName: "",
   duration: "",
@@ -38,6 +40,9 @@ const initialBootcamp = {
   others: "",
 };
 
+// eslint-disable-next-line
+const filter = createFilterOptions();
+
 function ProfileBootcamp() {
   const [bootcamp, setBootcamp] = useState(initialBootcamp);
   const [categories, setCategories] = useState([]);
@@ -46,6 +51,7 @@ function ProfileBootcamp() {
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
   const { id } = useParams();
+  const [category, setCategory] = useState();
 
   let navigate = useNavigate();
 
@@ -66,6 +72,14 @@ function ProfileBootcamp() {
   const handleChange = (event) => {
     setBootcamp({
       ...bootcamp,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  // eslint-disable-next-line
+  const changeCategory = (event) => {
+    setCategory({
+      ...category,
       [event.target.name]: event.target.value,
     });
   };
@@ -142,6 +156,13 @@ function ProfileBootcamp() {
   const reallyDelete = (text) => {
     handleClickOpen();
     setText(text);
+  };
+
+  // eslint-disable-next-line
+  const addNewCategory = (data) => {
+    categoryService.addCategory(data).then((res) => {
+      setCategories(...categories, res)
+    })
   };
 
   return (
@@ -311,6 +332,64 @@ function ProfileBootcamp() {
                       variant="outlined"
                     />
                   </Grid>
+                  {/* <Grid item md={6} xs={12}>
+                    <Autocomplete
+                      value={bootcamp.category}
+                      name="category"
+                      onChange={(event, newValue) => {
+                        if (typeof newValue === "string") {
+                          changeCategory();
+                        } else if (newValue && newValue.inputValue) {
+                          // Create a new value from the user input
+                          changeCategory();
+                        } else {
+                          changeCategory();
+                        }
+                      }}
+                      filterOptions={(options, params) => {
+                        const filtered = filter(options, params);
+
+                        const { inputValue } = params;
+                        // Suggest the creation of a new value
+                        const isExisting = options.some(
+                          (option) => inputValue === option
+                        );
+                        if (inputValue !== "" && !isExisting) {
+                          addNewCategory(category);
+                        }
+
+                        return filtered;
+                      }}
+                      selectOnFocus
+                      clearOnBlur
+                      handleHomeEndKeys
+                      id="free-solo-with-text-demo"
+                      options={categories}
+                      getOptionLabel={(option) => {
+                        // Value selected with enter, right from the input
+                        if (typeof option === "string") {
+                          return option;
+                        }
+                        // Add "xxx" option created dynamically
+                        if (option.inputValue) {
+                          return option.inputValue;
+                        }
+                        // Regular option
+                        return option;
+                      }}
+                      renderOption={(props, option) => (
+                        <li {...props}>{option}</li>
+                      )}
+                      sx={{ width: 300 }}
+                      freeSolo
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          label="Free solo with text demo"
+                        />
+                      )}
+                    />
+                  </Grid> */}
                   {/* <Grid item md={6} xs={12}>
                   <TextField
                     fullWidth
