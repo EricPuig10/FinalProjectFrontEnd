@@ -1,11 +1,12 @@
 import {
   Alert,
   Button,
-  Dialog,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Modal,
+  CardContent,
+  Divider,
+  Grid,
+  IconButton,
+  InputAdornment,
+  TextField,
 } from "@mui/material";
 import ForwardToInboxIcon from "@mui/icons-material/ForwardToInbox";
 import React, { useState, useEffect } from "react";
@@ -16,30 +17,24 @@ import imgAdmin from "../../assets/img/imgAdmin.png";
 import { authService } from "../../services/authService";
 import { localAuthService } from "../../services/localAuthService";
 import {
-  BtEye,
-  BtLogin,
   CtButton,
   CtForm,
   CtImg,
-  CtInput,
-  CtInputPassword,
-  Form,
   Img,
-  Label,
-  LabelPassword,
   PopUp,
 } from "./Login.styled";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 export const LoginSignup = () => {
   const [msg, setMsg] = useState();
   const [errormsg, setErrorMsg] = useState();
   const [shown, setShown] = useState(false);
   const switchShown = () => setShown(!shown);
-  const [password, setPassword] = useState("");
   const [userData, setUserData] = useState({
     username: "",
     email: "",
     password: "",
+    showPassword: false,
   });
 
   let navigate = useNavigate();
@@ -115,6 +110,17 @@ export const LoginSignup = () => {
     }, 2000);
   };
 
+  const handleClickShowPassword = () => {
+    setUserData({
+      ...userData,
+      showPassword: !userData.showPassword,
+    });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
   const messageMail = `mailto:${userData.email}?Subject=Ya estás registrado en nuestra app de gestión de candidatos&body=Tu nombre de usuario es ${userData.username}. Este es tu email: ${userData.email} y tu contraseña: ${userData.password} para que puedas iniciar sesión en tu cuenta http://localhost:3000/signin`;
   return (
     <>
@@ -144,6 +150,7 @@ export const LoginSignup = () => {
           </Alert>
         ) : null}
       </PopUp>
+
       <PopUp>
         {errormsg !== undefined ? (
           <Alert
@@ -157,68 +164,103 @@ export const LoginSignup = () => {
         ) : null}
       </PopUp>
 
+      <Divider orientation="vertical"/>
       <CtForm>
-        <Form>
-          <Label htmlFor="title">
-            <CtInput
-              type="text"
-              name="username"
-              placeholder="Nombre de usuario"
-              value={userData.username}
-              onChange={onInputChange}
-            />
-          </Label>
-
-          {location === "/signup" && (
+        <CardContent >
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                // helperText="Nombre de usuario"
+                label="Nombre de usuario"
+                name="username"
+                placeholder="Nombre de usuario"
+                value={userData.username}
+                onChange={onInputChange}
+                required
+                variant="outlined"
+                // style={{ margin: 8 }}
+              />
+            </Grid>
+            
+            {location === "/signup" && (
             <>
-              <Label htmlFor="email">
-                <CtInput
-                  type="email"
-                  name="email"
-                  aria-label="email"
-                  placeholder="Email"
-                  value={userData.email}
-                  onChange={onInputChange}
-                />
-              </Label>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                // helperText="Dirección de correo electrónico"
+                label="email"
+                name="email"
+                aria-label="email"
+                required
+                type="email"
+                value={userData.email}
+                onChange={onInputChange}
+                variant="outlined"
+              />
+            </Grid>
             </>
-          )}
-          <LabelPassword htmlFor="password">
-            <CtInputPassword
-              type={shown ? "text" : "password"}
-              name="password"
-              placeholder="Contraseña"
-              value={userData.password}
-              onChange={onInputChange}
-            />
-            <BtEye type="button" onClick={switchShown}>
-              {shown ? (
-                <i className="fa-regular fa-eye-slash"></i>
-              ) : (
-                <i className="fa-regular fa-eye"></i>
-              )}
-            </BtEye>
-          </LabelPassword>
+            )}
 
-          <CtButton>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                // helperText="Contraseña"
+                type="password"
+                // type={shown ? "text" : "password"}
+                label="password"
+                name="password"
+                placeholder="Password"
+                value={userData.password}
+                onChange={onInputChange}
+                required
+                variant="outlined"
+                InputProps={{
+                  endAdornment:
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                    >{userData.showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }} 
+              >
+              </TextField>
+            </Grid>
+          </Grid>
+          <>
+          </>
+          <CtButton >
+          <Grid item xs={12}>
             {location === "/login" ? (
-              <BtLogin type="button" id="login" onClick={signin}>
-                LOG IN
-              </BtLogin>
+              <Button
+                type="button" 
+                variant="contained" 
+                id="login" 
+                onClick={signin} 
+                // style={{ margin: 8 }}
+                >
+                  LOG IN
+              </Button>
             ) : (
               <Button
                 type="button"
+                variant="contained"
                 id="signup"
                 onClick={signup}
                 endIcon={<ForwardToInboxIcon />}
+                style={{ padding: 8 }}
                 // href={!error ? "/signup" : messageMail}
                 // si el mail està aquí, l'envia tant si fa el registre com ni no
               >
                 REGISTRAR Y ENVIAR
               </Button>
             )}
+            </Grid>
           </CtButton>
-        </Form>
+        </CardContent>     
       </CtForm>
     </>
   );
