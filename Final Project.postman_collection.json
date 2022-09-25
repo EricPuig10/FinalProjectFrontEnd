@@ -1,0 +1,914 @@
+{
+	"info": {
+		"_postman_id": "a4da0620-48f4-4af4-8be6-582bb3cf332b",
+		"name": "Final Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AuthUser",
+			"item": [
+				{
+					"name": "LogIn",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Admin\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SignUp",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBZG1pbiIsImlhdCI6MTY2MzgzNjA0MiwiZXhwIjoxNjYzOTIyNDQyfQ.4RCkpbIvcrccjTUv2adnE5v6LQ1eehtNOVpDzx2x8HLedgZ1wVzUsl7w5HmZ-qqMceaXflsrZJGkb38NvUNAWQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"User\",\r\n    \"email\": \"user@factoriaf5.org\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bootcamp",
+			"item": [
+				{
+					"name": "GetAllBootcamps",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBZG1pbiIsImlhdCI6MTY2Mzk1NTU2OSwiZXhwIjoxNjY0MDQxOTY5fQ.CGxfPqs8g7tqLBZ4tHkZPnO6Z6TnGuwhF22QhTD_WcpaUklwK9UwEqTXFzLk84QaJ904rYqDkDcWz_gFN0bxSg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/bootcamps",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"bootcamps"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetBootcampById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBZG1pbiIsImlhdCI6MTY2Mzk1NTU2OSwiZXhwIjoxNjY0MDQxOTY5fQ.CGxfPqs8g7tqLBZ4tHkZPnO6Z6TnGuwhF22QhTD_WcpaUklwK9UwEqTXFzLk84QaJ904rYqDkDcWz_gFN0bxSg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/bootcamps/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"bootcamps",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateBootcamp",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBZG1pbiIsImlhdCI6MTY2Mzk1NTU2OSwiZXhwIjoxNjY0MDQxOTY5fQ.CGxfPqs8g7tqLBZ4tHkZPnO6Z6TnGuwhF22QhTD_WcpaUklwK9UwEqTXFzLk84QaJ904rYqDkDcWz_gFN0bxSg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bootcampName\": \"F5 Central\",\r\n    \"category\": \"AI\",\r\n    \"duration\": \"850\",\r\n    \"characteristics\": \"Junior\",\r\n    \"former\": \"Sergi\",\r\n    \"coformer\": \"Alex\",\r\n    \"initialDate\": \"2000-01-21\",\r\n    \"finalDate\": \"2000-09-21\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/bootcamps",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"bootcamps"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeteleBootcamp",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBZG1pbiIsImlhdCI6MTY2Mzk3MDYzMCwiZXhwIjoxNjY0MDU3MDMwfQ.ynsKIuwBm0s31oNDQQBeYTVWnjlo9m2Yl-WmySBIAhxG-9jE_2EsClo3PXkLjsriLtbK76e4PrrbHUl8Rvgiiw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/bootcamps/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"bootcamps",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateBootcamp",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBZG1pbiIsImlhdCI6MTY2Mzk1NTU2OSwiZXhwIjoxNjY0MDQxOTY5fQ.CGxfPqs8g7tqLBZ4tHkZPnO6Z6TnGuwhF22QhTD_WcpaUklwK9UwEqTXFzLk84QaJ904rYqDkDcWz_gFN0bxSg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bootcampName\": \"LaCiba\",\r\n    \"category\": \"AI\",\r\n    \"duration\": \"300\",\r\n    \"characteristics\": \"Women\",\r\n    \"former\": \"Sergi\",\r\n    \"coformer\": \"Alex\",\r\n    \"initialDate\": \"2000-01-21\",\r\n    \"finalDate\": \"2000-09-21\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/bootcamps/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"bootcamps",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Candidats",
+			"item": [
+				{
+					"name": "GetAllCandidates",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBZG1pbiIsImlhdCI6MTY2Mzk1NTU2OSwiZXhwIjoxNjY0MDQxOTY5fQ.CGxfPqs8g7tqLBZ4tHkZPnO6Z6TnGuwhF22QhTD_WcpaUklwK9UwEqTXFzLk84QaJ904rYqDkDcWz_gFN0bxSg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/candidatos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"candidatos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCandidat",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBZG1pbiIsImlhdCI6MTY2Mzk1NTU2OSwiZXhwIjoxNjY0MDQxOTY5fQ.CGxfPqs8g7tqLBZ4tHkZPnO6Z6TnGuwhF22QhTD_WcpaUklwK9UwEqTXFzLk84QaJ904rYqDkDcWz_gFN0bxSg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/candidatos/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"candidatos",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCandidat",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBZG1pbiIsImlhdCI6MTY2Mzk1NTU2OSwiZXhwIjoxNjY0MDQxOTY5fQ.CGxfPqs8g7tqLBZ4tHkZPnO6Z6TnGuwhF22QhTD_WcpaUklwK9UwEqTXFzLk84QaJ904rYqDkDcWz_gFN0bxSg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"Natàlia\",\r\n        \"lastname\": \"Boya\",\r\n        \"secondlastname\": \"Roca\",\r\n        \"email\": \"nboya@gmail.com\",\r\n        \"phone\": 123456789,\r\n        \"age\": 21,\r\n        \"degree\": \"Grado en Arquitectura\",\r\n        \"superpower\": \"Telekinesis\",\r\n        \"direction\": \"Calle 13\",\r\n        \"english\": \"B2\",\r\n        \"formation\": \"Full Stack\",\r\n        \"reached\": \"Instagram\",\r\n        \"spirit\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500\",\r\n        \"motivation\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500\",\r\n        \"gender\": \"Femenino\",\r\n        \"nationality\": \"Cataluña\",\r\n        \"laboralsituation\": \"Desempleada\",\r\n        \"sololearnprogress\": \"https://www.sololearn.com/profile/25054939\",\r\n        \"codeacademyprogress\": \"https://www.codecademy.com/profiles/array8391488472\",\r\n        \"assistedtoinformativesession\": true,\r\n        \"bootcamp\": \"Osona\",\r\n        \"processState\": \"Seleccionadx\",\r\n        \"img\": \"https://media-exp1.licdn.com/dms/image/C4D03AQGM1CtNvNPhHw/profile-displayphoto-shrink_200_200/0/1661264470577?e=1668643200&v=beta&t=fxeQoNAjyECSes0YG8LYhJzFSoA3Si0mkKrx73Jm_CI\",\r\n        \"location\": \"Gurb\",\r\n        \"document\": \"NIF\",\r\n        \"numberdocument\": \"11111111W\",\r\n        \"date\": \"2000-09-21\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/candidatos/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"candidatos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateCandidat",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBZG1pbiIsImlhdCI6MTY2Mzk1NTU2OSwiZXhwIjoxNjY0MDQxOTY5fQ.CGxfPqs8g7tqLBZ4tHkZPnO6Z6TnGuwhF22QhTD_WcpaUklwK9UwEqTXFzLk84QaJ904rYqDkDcWz_gFN0bxSg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"name\": \"Sébastien\",\r\n        \"lastname\": \"Loeb\",\r\n        \"secondlastname\": \"Roca\",\r\n        \"email\": \"loeb@gmail.com\",\r\n        \"phone\": 123456789,\r\n        \"age\": 21,\r\n        \"degree\": \"Bachillerato\",\r\n        \"superpower\": \"Velocidad\",\r\n        \"direction\": \"Calle 13\",\r\n        \"english\": \"B1\",\r\n        \"formation\": \"AI\",\r\n        \"reached\": \"Instagram\",\r\n        \"spirit\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500\",\r\n        \"motivation\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500\",\r\n        \"gender\": \"Femenino\",\r\n        \"nationality\": \"Cataluña\",\r\n        \"laboralsituation\": \"Desempleada\",\r\n        \"sololearnprogress\": \"https://www.sololearn.com/profile/25054939\",\r\n        \"codeacademyprogress\": \"https://www.codecademy.com/profiles/array8391488472\",\r\n        \"assistedtoinformativesession\": true,\r\n        \"bootcamp\": \"Osona\",\r\n        \"processState\": \"Pre-seleccionadx\",\r\n        \"img\": \"img.jpg\",\r\n        \"location\": \"Vic\",\r\n        \"document\": \"NIF\",\r\n        \"numberdocument\": \"11111111W\",\r\n        \"date\": \"2000-09-21\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/candidatos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"candidatos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCandidateById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBZG1pbiIsImlhdCI6MTY2Mzk1NTU2OSwiZXhwIjoxNjY0MDQxOTY5fQ.CGxfPqs8g7tqLBZ4tHkZPnO6Z6TnGuwhF22QhTD_WcpaUklwK9UwEqTXFzLk84QaJ904rYqDkDcWz_gFN0bxSg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/candidatos/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"candidatos",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCandidateByBootcamp",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBZG1pbiIsImlhdCI6MTY2Mzk1NTU2OSwiZXhwIjoxNjY0MDQxOTY5fQ.CGxfPqs8g7tqLBZ4tHkZPnO6Z6TnGuwhF22QhTD_WcpaUklwK9UwEqTXFzLk84QaJ904rYqDkDcWz_gFN0bxSg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/bootcamps/1/candidatos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"bootcamps",
+								"1",
+								"candidatos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCandidateByProcess",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBZG1pbiIsImlhdCI6MTY2Mzk1NTU2OSwiZXhwIjoxNjY0MDQxOTY5fQ.CGxfPqs8g7tqLBZ4tHkZPnO6Z6TnGuwhF22QhTD_WcpaUklwK9UwEqTXFzLk84QaJ904rYqDkDcWz_gFN0bxSg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/procesos/2/candidatos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"procesos",
+								"2",
+								"candidatos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "GetAllCategories",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBZG1pbiIsImlhdCI6MTY2Mzk1NTU2OSwiZXhwIjoxNjY0MDQxOTY5fQ.CGxfPqs8g7tqLBZ4tHkZPnO6Z6TnGuwhF22QhTD_WcpaUklwK9UwEqTXFzLk84QaJ904rYqDkDcWz_gFN0bxSg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/categorias",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categorias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCategoryById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBZG1pbiIsImlhdCI6MTY2Mzk1NTU2OSwiZXhwIjoxNjY0MDQxOTY5fQ.CGxfPqs8g7tqLBZ4tHkZPnO6Z6TnGuwhF22QhTD_WcpaUklwK9UwEqTXFzLk84QaJ904rYqDkDcWz_gFN0bxSg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/categorias/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categorias",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateCategory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBZG1pbiIsImlhdCI6MTY2Mzk1NTU2OSwiZXhwIjoxNjY0MDQxOTY5fQ.CGxfPqs8g7tqLBZ4tHkZPnO6Z6TnGuwhF22QhTD_WcpaUklwK9UwEqTXFzLk84QaJ904rYqDkDcWz_gFN0bxSg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"New Category\"\r\n    },",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/categorias",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categorias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCategory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBZG1pbiIsImlhdCI6MTY2Mzk1NTU2OSwiZXhwIjoxNjY0MDQxOTY5fQ.CGxfPqs8g7tqLBZ4tHkZPnO6Z6TnGuwhF22QhTD_WcpaUklwK9UwEqTXFzLk84QaJ904rYqDkDcWz_gFN0bxSg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/categorias/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categorias",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCategory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBZG1pbiIsImlhdCI6MTY2Mzk1NTU2OSwiZXhwIjoxNjY0MDQxOTY5fQ.CGxfPqs8g7tqLBZ4tHkZPnO6Z6TnGuwhF22QhTD_WcpaUklwK9UwEqTXFzLk84QaJ904rYqDkDcWz_gFN0bxSg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"name\": \"Front End Dev\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/categorias/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categorias",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ProcessState",
+			"item": [
+				{
+					"name": "GetAllProcess",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBZG1pbiIsImlhdCI6MTY2Mzk1NTU2OSwiZXhwIjoxNjY0MDQxOTY5fQ.CGxfPqs8g7tqLBZ4tHkZPnO6Z6TnGuwhF22QhTD_WcpaUklwK9UwEqTXFzLk84QaJ904rYqDkDcWz_gFN0bxSg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/procesos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"procesos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetProcessById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBZG1pbiIsImlhdCI6MTY2Mzk1NTU2OSwiZXhwIjoxNjY0MDQxOTY5fQ.CGxfPqs8g7tqLBZ4tHkZPnO6Z6TnGuwhF22QhTD_WcpaUklwK9UwEqTXFzLk84QaJ904rYqDkDcWz_gFN0bxSg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/procesos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"procesos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "GetAllUsers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBZG1pbiIsImlhdCI6MTY2Mzk1NTU2OSwiZXhwIjoxNjY0MDQxOTY5fQ.CGxfPqs8g7tqLBZ4tHkZPnO6Z6TnGuwhF22QhTD_WcpaUklwK9UwEqTXFzLk84QaJ904rYqDkDcWz_gFN0bxSg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUserById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBZG1pbiIsImlhdCI6MTY2Mzk1NTU2OSwiZXhwIjoxNjY0MDQxOTY5fQ.CGxfPqs8g7tqLBZ4tHkZPnO6Z6TnGuwhF22QhTD_WcpaUklwK9UwEqTXFzLk84QaJ904rYqDkDcWz_gFN0bxSg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Image",
+			"item": [
+				{
+					"name": "GetAllImages",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBZG1pbiIsImlhdCI6MTY2Mzk1NTU2OSwiZXhwIjoxNjY0MDQxOTY5fQ.CGxfPqs8g7tqLBZ4tHkZPnO6Z6TnGuwhF22QhTD_WcpaUklwK9UwEqTXFzLk84QaJ904rYqDkDcWz_gFN0bxSg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/cloudinary/images",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cloudinary",
+								"images"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UploadImages",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBZG1pbiIsImlhdCI6MTY2Mzk1NTU2OSwiZXhwIjoxNjY0MDQxOTY5fQ.CGxfPqs8g7tqLBZ4tHkZPnO6Z6TnGuwhF22QhTD_WcpaUklwK9UwEqTXFzLk84QaJ904rYqDkDcWz_gFN0bxSg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"img\": \"https://media-exp1.licdn.com/dms/image/C4D03AQG17WUfd78sgA/profile-displayphoto-shrink_800_800/0/1587477510501?e=1668038400&v=beta&t=CDPVd3nDIuH06ntqP_TcBYJJYfo-SmgegCV6zvB1CHI\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/cloudinary/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cloudinary",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteImages",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBZG1pbiIsImlhdCI6MTY2Mzk1NTU2OSwiZXhwIjoxNjY0MDQxOTY5fQ.CGxfPqs8g7tqLBZ4tHkZPnO6Z6TnGuwhF22QhTD_WcpaUklwK9UwEqTXFzLk84QaJ904rYqDkDcWz_gFN0bxSg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/cloudinary/delete/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cloudinary",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
