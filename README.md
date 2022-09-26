@@ -10,25 +10,21 @@ FACTORIA APP
 
 ## PROJECT LINKS
 
-[Front-End] (https://github.com/EricPuig10/FinalProjectFrontEnd.git)
-[Back-End] (https://github.com/EricPuig10/FinalProjectBackEnd.git)
+[Front-End](https://github.com/EricPuig10/FinalProjectFrontEnd.git)</br>
+[Back-End](https://github.com/EricPuig10/FinalProjectBackEnd.git)
 
 
 ## GENERAL INFO
+
+### OBJECTIVES
+
+## IU DESIGN
 
 ![FACTORIA_MACKBOOK_HOME_](https://user-images.githubusercontent.com/102957525/192257975-eefb9c63-2f73-4d35-8471-3765172fa55c.png)
 
 ![FACTORIA_MACKBOOK_LOGIN](https://user-images.githubusercontent.com/102957525/192258182-1b84f26b-49c0-4ef6-b961-92eca4d1e839.png)
 
 ![FACTORIA_MACKBOOK_TABLACANDIDATOS](https://user-images.githubusercontent.com/102957525/192258216-91746a09-fdbc-4dcc-81f8-99764d432d83.png)
-
-
-### OBJECTIVES
-
-
-
-## IU DESIGN
-
 
 
 ## STACK
