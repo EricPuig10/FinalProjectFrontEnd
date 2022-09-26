@@ -8,6 +8,7 @@ import {
   CardActions,
   CardContent,
   CardHeader,
+  CircularProgress,
   Dialog,
   DialogActions,
   DialogContent,
@@ -79,6 +80,7 @@ export const Profile = () => {
   const [msg, setMsg] = useState();
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const { id } = useParams();
   let navigate = useNavigate();
@@ -186,9 +188,10 @@ export const Profile = () => {
 
   const uploadImg = (data) => {
     let { file, ...inputsData } = data;
-
+    setIsLoading(true);
     cloudinaryService.uploadImage(file).then((res) => {
       setCandidat({ ...inputsData, img: res.url });
+      setIsLoading(false);
     });
   };
 
@@ -239,7 +242,7 @@ export const Profile = () => {
           </Dialog>
         </Modal>
       ) : null}
-      
+
       <DetailDiv>
         <form
           autoComplete="off"
@@ -281,15 +284,20 @@ export const Profile = () => {
                     flexDirection: "column",
                   }}
                 >
-                  <Avatar
-                    src={candidat.img}
-                    sx={{
-                      height: 200,
-                      m: 2,
-                      width: 200,
-                      borderRadius: 0,
-                    }}
-                  />
+                  {isLoading ? (
+                    <CircularProgress />
+                  ) : (
+                    <Avatar
+                      src={candidat.img}
+                      sx={{
+                        height: 200,
+                        m: 2,
+                        width: 200,
+                        borderRadius: 0,
+                      }}
+                    />
+                  )}
+
                   <CardActions>
                     <Input
                       onChange={handleChange}

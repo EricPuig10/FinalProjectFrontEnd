@@ -7,15 +7,19 @@ import { BtnAdd, CtTabBut, TableButton } from "./DataTable.styled";
 import { Link, useLocation, useParams } from "react-router-dom";
 import imgCode from "../../assets/img/codeacademy.png";
 import sololearn from "../../assets/img/sololearn.webp";
+import { bootcampsService } from "../../services/bootcampsService";
 
 export const CandidatsByBootcampTable = () => {
   const [candidats, setCandidats] = useState([]);
+  const [bootcamp, setBootcamp] = useState([]);
 
   const { id } = useParams();
 
   const location = useLocation();
+
   useEffect(() => {
     getCandidatsByBootcampId(id);
+    getBootcampById(id);
     // eslint-disable-next-line
   }, []);
 
@@ -23,6 +27,12 @@ export const CandidatsByBootcampTable = () => {
     candidatsService.getCandidatsByBootcampId(id).then((res) => {
       setCandidats(res);
     });
+  };
+
+  const getBootcampById = () => {
+    bootcampsService.getBootcampById(id).then((res) => {
+      setBootcamp(res);
+    })
   };
 
   const columns = [
@@ -160,7 +170,7 @@ export const CandidatsByBootcampTable = () => {
           marginTop: "2.5%",
         }}
       >
-        <h1>{candidats.bootcamp}</h1>
+        <p style={{ marginBottom: 4, fontSize: 20 }}>Candidatos del bootcamp {bootcamp.bootcampName}</p>
         <DataGrid
           columns={columns}
           rows={candidats}
