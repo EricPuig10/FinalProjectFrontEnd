@@ -19,17 +19,28 @@ FACTORIA F5 APP
 
 ## GENERAL INFO
 
-SPA for candidates management of Factory F5 using a Rest API that includes JWT-Auth.
+SPA for candidates management of Factoria F5 using a Rest API that includes JWT-Auth.
 
 &nbsp;
 
-### OBJECTIVES & TARGET
+### OBJECTIVES
 
 This app wants to improve the candidates selection process for the bootamps in Factoria F5, to achieve a more efficient and effective control of this task.
 
 The authorized users can make a CRUD of Candidates & Bootmaps. And also filter the candidates by bootcamp o by process state.
 
 The Master Admin can create new users too.
+
+App developed in 4 weeks.
+
+&nbsp;
+
+### USER STORIES
+1. As an Auth User I want to get a list of candidates and make a crud. I want to open a candidat card to manage the information.
+2. As an Auth User I want to get a list of bootcamps and make a crud. I want to open a bootcamp card to manage the information.
+3. As an Auth User I want to get a list of Process State and filter each step of the process with the candidates.
+4. As an Auth User I want to filter the candidates by bootcamp and by process state.
+5. As a Master Administrator I want to create new users from Factoria F5.
 
 &nbsp;
 
@@ -77,9 +88,16 @@ npm install
 ```
 git clone https://github.com/EricPuig10/FinalProjectBackEnd
 ```
+
+### Running App
+>npm start
+
+### Running Test
+>npm run test
+
 &nbsp;
 
-## NEXT
+## WHAT'S NEXT?
 >SECURITY: Automatic generation of an e-mail for new users with redirection to the password change site, before accessing the app.
 
 >LOADING: Importing the excels auto-generated after the candidat register.
