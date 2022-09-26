@@ -8,12 +8,12 @@ import {
   InputAdornment,
   TextField,
 } from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import ForwardToInboxIcon from "@mui/icons-material/ForwardToInbox";
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import imgUser from "../../assets/img/imgUser.png";
 import imgAdmin from "../../assets/img/imgAdmin.png";
-
 import { authService } from "../../services/authService";
 import { localAuthService } from "../../services/localAuthService";
 import {
@@ -23,7 +23,7 @@ import {
   Img,
   PopUp,
 } from "./Login.styled";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+
 
 export const LoginSignup = () => {
   const [msg, setMsg] = useState();
@@ -38,6 +38,7 @@ export const LoginSignup = () => {
   });
 
   let navigate = useNavigate();
+  
   const location = useLocation().pathname;
 
   useEffect(() => {}, [location]);
@@ -67,6 +68,13 @@ export const LoginSignup = () => {
     authService.signin(userData).then((res) => {
       console.log(res);
 
+      if (res.error) {
+        alertError(res.error);
+        console.log(res.error)
+        redireccionarWithTimeout();
+        return;
+      }
+
       const authUser = {
         token: res.accessToken,
         username: res.username,
@@ -77,7 +85,6 @@ export const LoginSignup = () => {
       localStorage.setItem("auth_id", res.id);
       localAuthService.saveAuthUser(authUser);
       navigate("/", { replace: true });
-      // resetInputsForm();
     });
   };
 
@@ -85,11 +92,15 @@ export const LoginSignup = () => {
     authService.signup(userData).then((res) => {
       if (res.error) {
         alertError(res.error);
+        console.log(res.error)
         redireccionarWithTimeout();
         return;
       }
       alertUp(res.message);
+      console.log(res.message)
       setTimeout(redireccionar(), 5000);
+
+// href={!error ? "/signup" : messageMail}
 
       // setMsg(res.message)
       // if(res) window.alert("Nuevo usuario registrado con éxito");

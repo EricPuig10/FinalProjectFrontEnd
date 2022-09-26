@@ -6,7 +6,10 @@ export const authService = {
   signin(request) {
     const auth = axios.post(`${baseURL}/auth/signin`, request).then((res) => {
       return res.data;
-    });
+    })
+    .catch(err => {
+      return { error: err.response.data.message }
+  })
     return auth;
   },
 
