@@ -203,6 +203,8 @@ export const Profile = () => {
     setOpen(false);
   };
 
+  
+
   let mailMessage = `mailto:${candidat.email}?Subject=Has sido seleccionado!&body=Hola, contactamos contigo para que sepas que has avanzado en el proceso de selección!
   
                                                                                  Muchas gracias,                                                                                     
