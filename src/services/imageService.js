@@ -1,6 +1,5 @@
 import axios from "../config/axiosConfig"
 
-
 export const cloudinaryService = {
   getAllImages() {
     const images = axios
