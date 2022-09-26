@@ -3,36 +3,34 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useState } from "react";
 import { candidatsService } from "../../services/candidatsService";
 import { useEffect } from "react";
-import { BtnAdd, CtTabBut, TableButton } from "./DataTable.styled";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { CtTabBut, TableButton } from "./DataTable.styled";
+import { Link, useParams } from "react-router-dom";
+import { processService } from "../../services/processService";
 import imgCode from "../../assets/img/codeacademy.png";
 import sololearn from "../../assets/img/sololearn.webp";
-import { bootcampsService } from "../../services/bootcampsService";
 
-export const CandidatsByBootcampTable = () => {
+export const CandidatsByProcessTable = () => {
   const [candidats, setCandidats] = useState([]);
-  const [bootcamp, setBootcamp] = useState([]);
+  const [process, setProcess] = useState([]);
 
   const { id } = useParams();
 
-  const location = useLocation();
-
   useEffect(() => {
-    getCandidatsByBootcampId(id);
-    getBootcampById(id);
+    getCandidatsByProcessId(id);
+    getProcessById(id);
     // eslint-disable-next-line
   }, []);
 
-  const getCandidatsByBootcampId = (id) => {
-    candidatsService.getCandidatsByBootcampId(id).then((res) => {
+  const getCandidatsByProcessId = (id) => {
+    candidatsService.getCandidatsByProcessId(id).then((res) => {
       setCandidats(res);
     });
   };
 
-  const getBootcampById = () => {
-    bootcampsService.getBootcampById(id).then((res) => {
-      setBootcamp(res);
-    })
+  const getProcessById = () => {
+    processService.getById(id).then((res) => {
+      setProcess(res);
+    });
   };
 
   const columns = [
@@ -96,50 +94,52 @@ export const CandidatsByBootcampTable = () => {
       renderCell: (params) => {
         return <div className="rowitem">{params.row.processState.name}</div>;
       },
-    },    {
-      field: "sololearnprogress",
-      headerName: "Solo Learn",
-      width: 90,
-      headerClassName: "super-app-theme--header",
-      align: "center",
-      renderCell: (params) => {
-        return (
-          <>
-            {!params.row.sololearnprogress ? null : (
-              <a href={params.row.sololearnprogress} className="rowitem">
-                <img
-                  src={sololearn}
-                  style={{ width: 25, height: 25 }}
-                  alt="codeacademy"
-                />
-              </a>
-            )}
-          </>
-        );
-      },
     },
     {
-      field: "codeacademyprogress",
-      headerName: "Code Academy",
-      width: 120,
-      headerClassName: "super-app-theme--header",
-      align: "center",
-      renderCell: (params) => {
-        return (
-          <>
-            {!params.row.codeacademyprogress ? null : (
-              <a href={params.row.codeacademyprogress} className="rowitem">
-                <img
-                  src={imgCode}
-                  style={{ width: 25, height: 25 }}
-                  alt="codeacademy"
-                />
-              </a>
-            )}
-          </>
-        );
+        field: "sololearnprogress",
+        headerName: "Solo Learn",
+        width: 90,
+        headerClassName: "super-app-theme--header",
+        align: "center",
+        renderCell: (params) => {
+          return (
+            <>
+              {!params.row.sololearnprogress ? null : (
+                <a href={params.row.sololearnprogress} className="rowitem">
+                  <img
+                    src={sololearn}
+                    style={{ width: 25, height: 25 }}
+                    alt="codeacademy"
+                  />
+                </a>
+              )}
+            </>
+          );
+        },
       },
-    },
+      {
+        field: "codeacademyprogress",
+        headerName: "Code Academy",
+        width: 120,
+        headerClassName: "super-app-theme--header",
+        align: "center",
+        renderCell: (params) => {
+          return (
+            <>
+              {!params.row.codeacademyprogress ? null : (
+                <a href={params.row.codeacademyprogress} className="rowitem">
+                  <img
+                    src={imgCode}
+                    style={{ width: 25, height: 25 }}
+                    alt="codeacademy"
+                  />
+                </a>
+              )}
+            </>
+          );
+        },
+      },
+
   ];
 
   const deleteCandidat = (id) => {
@@ -153,11 +153,13 @@ export const CandidatsByBootcampTable = () => {
     candidatsService.deleteCandidat(id).then((res) => {
       if (!res) return;
       if (res.error) {
+
         return;
       }
       setCandidats(filterCandidats);
     });
   };
+
 
   return (
     <>
@@ -170,7 +172,7 @@ export const CandidatsByBootcampTable = () => {
           marginTop: "2.5%",
         }}
       >
-        <p style={{ marginBottom: 4, fontSize: 20 }}>Candidatos del bootcamp {bootcamp.bootcampName}</p>
+        <p style={{ marginBottom: 4, fontSize: 20 }}>{process.name}s</p>
         <DataGrid
           columns={columns}
           rows={candidats}
@@ -178,13 +180,6 @@ export const CandidatsByBootcampTable = () => {
           rowsPerPageOptions={[10]}
         />
       </div>
-      {location.pathname === "/bootcamps/create" || "/bootcamps/:id" ? null : (
-        <Link to="/bootcamps/create">
-          <BtnAdd>
-            <i className="fa-solid fa-plus fa-2xl"></i>
-          </BtnAdd>
-        </Link>
-      )}
     </>
   );
 };

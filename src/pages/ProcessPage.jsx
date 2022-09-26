@@ -1,16 +1,18 @@
 import React from "react";
 import { Navbar } from "../components/navbar/Navbar";
 import { Sidebar } from "../components/sidebar/Sidebar";
-import { DataTable } from "../components/tablematerial/DataTable";
+import ProcessTable from "../components/tablematerial/ProcessTable";
 
-export const DashboardPage = () => {
+export const ProcessPage = () => {
   return (
     <>
       <Navbar />
       <div>
         <Sidebar />
-        <DataTable />
       </div>
+      <ProcessTable />
     </>
   );
 };
+
+export default ProcessPage;

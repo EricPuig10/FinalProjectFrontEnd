@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+FACTORIA APP
+============
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## TABLE OF CONTENTS
+1. [GENERAL INFO](#GENERAL-INFO)
+2. [TECHNOLOGIES & TOOLS](#TECHNOLOGIES-TOOLS)
+3. [INSTALLATION](#INSTALLATION_)
 
-## Available Scripts
+***
 
-In the project directory, you can run:
+## PROJECT LINKS
 
-### `npm start`
+[Front-End] (https://github.com/EricPuig10/FinalProjectFrontEnd.git)
+[Back-End] (https://github.com/EricPuig10/FinalProjectBackEnd.git)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## GENERAL INFO
 
-### `npm test`
+![FACTORIA_MACKBOOK_HOME_](https://user-images.githubusercontent.com/102957525/192257975-eefb9c63-2f73-4d35-8471-3765172fa55c.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![FACTORIA_MACKBOOK_LOGIN](https://user-images.githubusercontent.com/102957525/192258182-1b84f26b-49c0-4ef6-b961-92eca4d1e839.png)
 
-### `npm run build`
+![FACTORIA_MACKBOOK_TABLACANDIDATOS](https://user-images.githubusercontent.com/102957525/192258216-91746a09-fdbc-4dcc-81f8-99764d432d83.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### OBJECTIVES
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## IU DESIGN
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## STACK
+- Visual Studio Code
+- HTML 5
+- CSS 3
+- JavaScript ES6 Vanilla
+- React
+- Axios
+- React router DOM 
+- Material UI
+- Styled Components
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## INSTALLATION
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Este proyecto fue arrancado con Create React App por lo tanto requiere node.js y npm. Una vez que hayas verificado que node está instalado en tu directorio, sigue los siguientes pasos:
 
-### Code Splitting
+1. Clone the repository with the following command:  
+```
+git clone https://github.com/EricPuig10/FinalProjectFrontEnd
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+2. Ejecutar la aplicación en modo de desarrollo
 
-### Analyzing the Bundle Size
+```
+npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+3. Para el correcto funcionamiento del front-end, deberás clonar también el repositorio del back-end:
 
-### Making a Progressive Web App
+```
+git clone https://github.com/EricPuig10/FinalProjectBackEnd
+```
+## NEXT
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+## AGRADECIMIENTOS
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## TEAM
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[Eric Puigvendrello ](https://github.com/EricPuig10)<br>
+[Natàlia Boya ](https://github.com/nboyaroca)<br>
+[Joan Gil ](https://github.com/jilbosch)<br>
+[Laura Castillo ](https://github.com/laucasdu)<br>

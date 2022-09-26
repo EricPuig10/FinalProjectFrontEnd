@@ -25,4 +25,16 @@ export const authService = {
       : false;
     return JSON.parse(authJson);
   },
+
+  signup(req) {
+    const auth = axios
+      .post(`${baseURL}/auth/signup`, req)
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        return { error: err.response.data.message };
+      });
+    return auth;
+  },
 };

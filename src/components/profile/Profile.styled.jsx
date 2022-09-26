@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const DetailDiv = styled.div`
   background-color: white;
   width: 93%;
-  /* border: 1px solid red; */
   position: absolute;
   top: 9.9%;
   left: 7%;
@@ -12,11 +11,11 @@ export const DetailDiv = styled.div`
 `;
 
 export const CtProfile = styled.div`
-background-color: white;
-width: 93%;
-margin-left:7%;
-z-index: 1000;
-`
+  background-color: white;
+  width: 93%;
+  margin-left: 7%;
+  z-index: 1000;
+`;
 
 export const Div = styled.div``;
 
@@ -25,11 +24,11 @@ export const BasicInfoDiv = styled.div`
   position: relative;
   width: 100%;
 `;
+
 export const LeftDiv = styled.div`
   display: flex;
   flex-direction: column;
   width: 25%;
-  /* border: 1px solid red; */
   margin: 2%;
 `;
 
@@ -82,7 +81,6 @@ export const Variables = styled.div`
 `;
 
 export const DivButtonsDetail = styled.div`
-  /* border: 2px solid red; */
   margin: 2%;
   width: 20%;
   display: flex;
@@ -121,5 +119,88 @@ export const ButtonUploadImg = styled.label`
   &:hover {
     color: #ff4700;
     border: 1px solid #ff4700;
+  }
+`;
+
+export const Modal = styled.div`
+  position: fixed;
+  z-index: 10000;
+  top: 2%;
+  right: 1%;
+`;
+
+export const DocDiv = styled.div`
+  display: flex;
+`;
+
+export const Input = styled.input`
+  background-color: rgb(190, 190, 190);
+  padding: 0.9%;
+  border-style: solid;
+  border-color: white;
+  font-size: 0.9em;
+  width: 80%;
+  color: black;
+  margin-bottom: 1%;
+  @media (max-width: 450px) {
+    padding: 3%;
+    margin-bottom: 2%;
+    width: 90%;
+    font-size: 1.2em;
+    border-radius: 2vw;
+  }
+`;
+
+export const CloseBtn = styled.button`
+  border: none;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  font-weight: bold;
+  font-size: 1em;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 1%;
+  padding-right: 1%;
+  border-radius: 1.2vw;
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  cursor: pointer;
+  &:hover {
+    color: grey;
+  }
+  @media (max-width: 450px) {
+    position: absolute;
+    padding-top: 10%;
+    top: 1%;
+    left: 44%;
+    background-color: transparent;
+  }
+`;
+
+export const CloseBtnBootcamp = styled.button`
+  border: none;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  font-weight: bold;
+  font-size: 1em;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 1%;
+  padding-right: 1%;
+  border-radius: 1.2vw;
+  position: absolute;
+  top: 11%;
+  right: 2%;
+  cursor: pointer;
+  &:hover {
+    color: grey;
+  }
+  @media (max-width: 450px) {
+    position: absolute;
+    padding-top: 10%;
+    top: 1%;
+    left: 44%;
+    background-color: transparent;
   }
 `;

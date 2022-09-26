@@ -4,15 +4,40 @@ import { useState } from "react";
 import { bootcampsService } from "../../services/bootcampsService";
 import { useEffect } from "react";
 import { BtnAdd, CtTabBut, TableButton } from "./DataTable.styled";
-import { FormBootcamp } from "../formCandidat/FormBootcamp";
 import { Link, useLocation } from "react-router-dom";
+import { Modal } from "../profile/Profile.styled";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from "@mui/material";
 
 export function BootcampTable() {
   const [bootcamps, setBootcamps] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [text, setText] = useState("");
+  const [id, setId] = useState();
 
   useEffect(() => {
     getAllBootcamps();
   }, []);
+
+  const reallyDelete = (text, id) => {
+    handleClickOpen();
+    setText(text);
+    setId(id);
+  };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const getAllBootcamps = () => {
     bootcampsService.getAllBootcamps().then((res) => {
@@ -32,7 +57,10 @@ export function BootcampTable() {
                 variant="contained"
                 color="primary"
                 onClick={() => {
-                  deleteBootcamp(cellValues.row.id);
+                  reallyDelete(
+                    `Seguro que quieres eliminar ${cellValues.row.bootcampName}?`,
+                    cellValues.row.id
+                  );
                 }}
               >
                 <i className="fa-regular fa-trash-can fa-lg"></i>
@@ -55,7 +83,7 @@ export function BootcampTable() {
       width: 130,
       renderCell: (params) => {
         return (
-          <Link to={`/bootcamps/${params.row.id}/candidats`}>
+          <Link to={`/bootcamps/${params.row.id}/candidatos`}>
             <div className="rowitem">{params.row.bootcampName}</div>
           </Link>
         );
@@ -79,22 +107,16 @@ export function BootcampTable() {
   ];
 
   const deleteBootcamp = (id) => {
-    let bootcampToDelete = bootcamps.filter((bootcamp) => bootcamp.id === id);
-    let deleteConfirmed = window.confirm(
-      `Confirm to delete ${bootcampToDelete[0].bootcampName} from the list`
-    );
-    if (!deleteConfirmed) return;
     let filterBootcamps = bootcamps.filter((bootcamp) => bootcamp.id !== id);
 
     bootcampsService.deleteBootcamp(id).then((res) => {
       if (!res) return;
       if (res.error) {
-        console.log(res.error);
-
         return;
       }
       setBootcamps(filterBootcamps);
     });
+    handleClose();
   };
 
   return (
@@ -110,6 +132,29 @@ export function BootcampTable() {
           headerName: "#9d4848",
         }}
       >
+        {open !== false ? (
+          <Modal>
+            <Dialog
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">{"Atención"}</DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  {text}
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose}>No</Button>
+                <Button onClick={() => deleteBootcamp(id)} autoFocus>
+                  Si
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </Modal>
+        ) : null}
         <DataGrid
           columns={columns}
           rows={bootcamps}

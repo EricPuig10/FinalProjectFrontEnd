@@ -1,17 +1,27 @@
 import {
+  Alert,
   Box,
   Button,
   Card,
   CardContent,
   CardHeader,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
   Divider,
   Grid,
   TextField,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useTheme } from "@mui/material/styles";
-import { BasicInfoDiv, CtProfile } from "../profile/Profile.styled";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import {
+  BasicInfoDiv,
+  CloseBtnBootcamp,
+  CtProfile,
+  Modal,
+} from "../profile/Profile.styled";
+import { useNavigate, useParams } from "react-router-dom";
 import { bootcampsService } from "../../services/bootcampsService";
 import { categoryService } from "../../services/categoryService";
 import { CandidatsByBootcampTable } from "../tablematerial/CandidatsByBootcampTable";
@@ -19,7 +29,7 @@ import { CandidatsByBootcampTable } from "../tablematerial/CandidatsByBootcampTa
 const initialBootcamp = {
   bootcampName: "",
   duration: "",
-  category: "",
+  category: "Full Stack",
   characteristics: "",
   former: "",
   coformer: "",
@@ -32,18 +42,26 @@ function ProfileBootcamp() {
   const [bootcamp, setBootcamp] = useState(initialBootcamp);
   const [categories, setCategories] = useState([]);
   const [isEditMode, setIsEditMode] = useState(false);
+  const [msg, setMsg] = useState();
+  const [open, setOpen] = useState(false);
+  const [text, setText] = useState("");
   const { id } = useParams();
-  const theme = useTheme();
 
   let navigate = useNavigate();
-
-  const location = useLocation();
 
   useEffect(() => {
     getBootcampById(id);
     getAllCategories();
     editMode();
+    // eslint-disable-next-line
   }, []);
+
+  const alertTimed = (msg) => {
+    setMsg(msg);
+    setTimeout(function () {
+      setMsg(undefined);
+    }, 2500);
+  };
 
   const handleChange = (event) => {
     setBootcamp({
@@ -72,7 +90,17 @@ function ProfileBootcamp() {
 
   const addNewBootcamp = (data) => {
     bootcampsService.addBootcamp(data).then((res) => {
-      // navigate("/bootcamps");
+      navigate("/bootcamps");
+    });
+  };
+
+  const deleteBootcamp = (id) => {
+    bootcampsService.deleteBootcamp(id).then((res) => {
+      if (!res) return;
+      if (res.error) {
+        return;
+      }
+      navigate("/bootcamps");
     });
   };
 
@@ -80,6 +108,7 @@ function ProfileBootcamp() {
     bootcampsService.updateBootcamp(newBootcamp).then((res) => {
       if (!res) return;
       getBootcampById(id);
+      alertTimed("Bootcamp actualizado!");
     });
     getBootcampById(id);
   };
@@ -102,23 +131,76 @@ function ProfileBootcamp() {
     });
   };
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const reallyDelete = (text) => {
+    handleClickOpen();
+    setText(text);
+  };
+
   return (
     <>
       <CtProfile>
+        <Modal>
+          {msg !== undefined ? (
+            <Alert
+              severity="success"
+              msg={msg}
+              color="primary"
+              sx={{ border: 1, borderColor: "primary.main" }}
+            >
+              {msg}
+            </Alert>
+          ) : null}
+        </Modal>
+        {open !== false ? (
+          <Modal>
+            <Dialog
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">{"Atención"}</DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  {text}
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose}>No</Button>
+                <Button onClick={() => deleteBootcamp(id)} autoFocus>
+                  Si
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </Modal>
+        ) : null}
         <form autoComplete="off" noValidate onSubmit={onSubmitHandler}>
           <Card>
-          {bootcamp.bootcampName === "" ? (
-            <CardHeader
-              subheader=""
-              title="Crear un bootcamp"
-            />
-          ) : (
-            <CardHeader
-              subheader=""
-              title={bootcamp.bootcampName}
-            />
-          )}
-
+            {bootcamp.bootcampName === "" ? (
+              <CardHeader subheader="" title="Crear un bootcamp" />
+            ) : (
+              <CardHeader subheader="" title={bootcamp.bootcampName} />
+            )}
+            <CloseBtnBootcamp
+              variant="contained"
+              color="primary"
+              type="button"
+              onClick={() =>
+                reallyDelete(
+                  "Seguro que quieres eliminar " + bootcamp.bootcampName + " ?"
+                )
+              }
+            >
+              <i className="fa-regular fa-trash-can fa-xl"></i>
+            </CloseBtnBootcamp>
             <Divider />
             <BasicInfoDiv>
               <CardContent>

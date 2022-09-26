@@ -12,7 +12,6 @@ export const CtSidebar = styled.div`
   background-color: #ff4700;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-around; */
 `;
 
 export const CtLogo = styled.div`
@@ -78,7 +77,6 @@ export const Texthiden = styled.p`
 
 export const Txt = styled.p`
   color: white;
-  font-family: mulish, sans-serif;
   font-size: 16px;
   font-weight: 400;
   border: none;

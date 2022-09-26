@@ -15,7 +15,6 @@ export const DivNav = styled.div`
 export const DivLogo = styled.div`
   height: 100%;
   width: 10%;
-  /* background-color: green; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,13 +34,11 @@ export const Logo = styled.h3`
   justify-content: center;
   align-items: center;
   color: #ea561d;
-  font-family: "Poppins";
 `;
 
 export const DivButton = styled.div`
   height: 100%;
   width: 20%;
-  /* background-color: yellow; */
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -59,7 +56,6 @@ export const LogInButton = styled.button`
   background-color: transparent;
   border: none;
   color: #ea561d;
-  font-family: "Poppins";
   font-size: 1em;
   font-weight: 300;
   cursor: pointer;

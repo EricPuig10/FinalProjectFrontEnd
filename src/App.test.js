@@ -1,7 +1,8 @@
-import {  fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import Router from '../src/applications/Router';
 
 beforeEach(() => {
+  //eslint-disable-next-line
   render(<Router />);
 });
 
