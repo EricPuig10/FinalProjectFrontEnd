@@ -16,6 +16,7 @@ export const CandidatsByBootcampTable = () => {
   const { id } = useParams();
 
   const location = useLocation();
+
   useEffect(() => {
     getCandidatsByBootcampId(id);
     getBootcampById(id);

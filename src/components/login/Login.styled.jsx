@@ -47,9 +47,10 @@ export const CtInput = styled.input`
 
 export const CtButton = styled.div`
   width: 100%;
-  height: 2rem;
+  /* height: 2rem; */
   display: flex;
   justify-content: center;
+  padding-top: 2rem;
 `;
 
 export const BtLogin = styled.button`
