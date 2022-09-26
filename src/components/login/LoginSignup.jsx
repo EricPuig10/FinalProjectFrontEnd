@@ -110,11 +110,15 @@ export const LoginSignup = () => {
     }, 2000);
   };
 
+  // const handleClickShowPassword = () => {
+  //   setUserData({
+  //     ...userData,
+  //     showPassword: !userData.showPassword,
+  //   });
+  // };
+
   const handleClickShowPassword = () => {
-    setUserData({
-      ...userData,
-      showPassword: !userData.showPassword,
-    });
+    switchShown();
   };
 
   const handleMouseDownPassword = (event) => {
@@ -206,8 +210,8 @@ export const LoginSignup = () => {
               <TextField
                 fullWidth
                 // helperText="Contraseña"
-                type="password"
-                // type={shown ? "text" : "password"}
+                // type="password"
+                type={shown ? "text" : "password"}
                 label="password"
                 name="password"
                 placeholder="Password"
@@ -219,10 +223,11 @@ export const LoginSignup = () => {
                   endAdornment:
                   <InputAdornment position="end">
                     <IconButton
+                      type="button"
                       aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                    >{userData.showPassword ? <VisibilityOff /> : <Visibility />}
+                      onClick={switchShown}
+                      // onMouseDown={handleMouseDownPassword}
+                    >{shown ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                   </InputAdornment>
                 }} 
