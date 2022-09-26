@@ -1,32 +1,30 @@
 import axios from "../config/axiosConfig"
-const baseURL = "http://localhost:8080";
-
 
 export const candidatsService = {
   getAllCandidats() {
     const candidats = axios
-      .get(baseURL + "/candidatos")
+      .get("/candidatos")
       .then((res) => res.data);
     return candidats;
   },
 
   getCandidatById(id) {
     const candidat = axios
-      .get(baseURL + "/candidatos/" + id)
+      .get("/candidatos/" + id)
       .then((res) => res.data);
     return candidat;
   },
 
   getCandidatsByBootcampId(id) {
     const candidatsByBootcamp = axios
-      .get(baseURL + "/bootcamps/" + id + "/candidatos")
+      .get("/bootcamps/" + id + "/candidatos")
       .then((res) => res.data);
     return candidatsByBootcamp;
   },
 
   deleteCandidat(id) {
     const candidat = axios
-      .delete(baseURL + "/candidatos/" + id)
+      .delete("/candidatos/" + id)
       .then((res) => {
         return res.data;
       })
@@ -38,14 +36,14 @@ export const candidatsService = {
 
   addCandidat(data) {
     const candidats = axios
-      .post(baseURL + "/candidatos", { ...data, userId: 1 })
+      .post("/candidatos", { ...data, userId: 1 })
       .then((res) => res.data);
     return candidats;
   },
 
   updateCandidat(candidat) {
     const updatedCandidat = axios
-      .put(baseURL + "/candidatos/" + candidat.id, candidat)
+      .put("/candidatos/" + candidat.id, candidat)
       .then((res) => {
         return res.data;
       })
@@ -54,7 +52,7 @@ export const candidatsService = {
   },
   getCandidatsByProcessId(id) {
     const candidatsByProcess = axios
-      .get(baseURL + "/procesos/" + id + "/candidatos")
+      .get("/procesos/" + id + "/candidatos")
       .then((res) => res.data);
     return candidatsByProcess;
   },
