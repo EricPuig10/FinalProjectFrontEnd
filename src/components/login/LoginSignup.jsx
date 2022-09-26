@@ -110,21 +110,6 @@ export const LoginSignup = () => {
     }, 2000);
   };
 
-  // const handleClickShowPassword = () => {
-  //   setUserData({
-  //     ...userData,
-  //     showPassword: !userData.showPassword,
-  //   });
-  // };
-
-  const handleClickShowPassword = () => {
-    switchShown();
-  };
-
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
-
   const messageMail = `mailto:${userData.email}?Subject=Ya estás registrado en nuestra app de gestión de candidatos&body=Tu nombre de usuario es ${userData.username}. Este es tu email: ${userData.email} y tu contraseña: ${userData.password} para que puedas iniciar sesión en tu cuenta http://localhost:3000/signin`;
   return (
     <>
@@ -175,7 +160,6 @@ export const LoginSignup = () => {
             <Grid item xs={12}>
               <TextField
                 fullWidth
-                // helperText="Nombre de usuario"
                 label="Nombre de usuario"
                 name="username"
                 placeholder="Nombre de usuario"
@@ -192,7 +176,6 @@ export const LoginSignup = () => {
             <Grid item xs={12}>
               <TextField
                 fullWidth
-                // helperText="Dirección de correo electrónico"
                 label="email"
                 name="email"
                 aria-label="email"
@@ -209,8 +192,6 @@ export const LoginSignup = () => {
             <Grid item xs={12}>
               <TextField
                 fullWidth
-                // helperText="Contraseña"
-                // type="password"
                 type={shown ? "text" : "password"}
                 label="password"
                 name="password"
@@ -226,7 +207,6 @@ export const LoginSignup = () => {
                       type="button"
                       aria-label="toggle password visibility"
                       onClick={switchShown}
-                      // onMouseDown={handleMouseDownPassword}
                     >{shown ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                   </InputAdornment>
