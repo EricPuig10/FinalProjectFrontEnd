@@ -29,7 +29,7 @@ import { CandidatsByBootcampTable } from "../tablematerial/CandidatsByBootcampTa
 const initialBootcamp = {
   bootcampName: "",
   duration: "",
-  category: "",
+  category: "Full Stack",
   characteristics: "",
   former: "",
   coformer: "",

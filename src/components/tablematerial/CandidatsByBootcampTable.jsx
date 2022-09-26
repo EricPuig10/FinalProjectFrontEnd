@@ -32,10 +32,8 @@ export const CandidatsByBootcampTable = () => {
   const getBootcampById = () => {
     bootcampsService.getBootcampById(id).then((res) => {
       setBootcamp(res);
-    });
+    })
   };
-
-  console.log(bootcamp)
 
   const columns = [
     {
