@@ -1,5 +1,4 @@
 export const localAuthService = {
-  
   getAuthUser() {
     const authJson = localStorage.getItem("auth")
       ? localStorage.getItem("auth")

@@ -265,7 +265,7 @@ export const DataTable = () => {
           </Modal>
         ) : null}
         {isLoading ? (
-          <CircularProgress  />
+          <CircularProgress />
         ) : (
           <DataGrid
             columns={columns}

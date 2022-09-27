@@ -10,7 +10,7 @@ import {
   Logo,
   Texthiden,
 } from "./Sidebar.styled";
-import logoFactoria from "../../assets/img/logoFactoria.png"
+import logoFactoria from "../../assets/img/logoFactoria.png";
 
 export const Sidebar = () => {
   const logout = () => {

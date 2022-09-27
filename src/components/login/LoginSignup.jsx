@@ -16,14 +16,7 @@ import imgUser from "../../assets/img/imgUser.png";
 import imgAdmin from "../../assets/img/imgAdmin.png";
 import { authService } from "../../services/authService";
 import { localAuthService } from "../../services/localAuthService";
-import {
-  CtButton,
-  CtForm,
-  CtImg,
-  Img,
-  PopUp,
-} from "./Login.styled";
-
+import { CtButton, CtForm, CtImg, Img, PopUp } from "./Login.styled";
 
 export const LoginSignup = () => {
   const [msg, setMsg] = useState();
@@ -38,7 +31,7 @@ export const LoginSignup = () => {
   });
 
   let navigate = useNavigate();
-  
+
   const location = useLocation().pathname;
 
   useEffect(() => {}, [location]);
@@ -70,8 +63,8 @@ export const LoginSignup = () => {
 
       if (res.error) {
         alertError(res.error);
-        console.log(res.error)
-        redireccionarWithTimeout();
+        console.log(res.error);
+        redireccionarLoginWithTimeout();
         return;
       }
 
@@ -92,15 +85,15 @@ export const LoginSignup = () => {
     authService.signup(userData).then((res) => {
       if (res.error) {
         alertError(res.error);
-        console.log(res.error)
+        console.log(res.error);
         redireccionarWithTimeout();
         return;
       }
       alertUp(res.message);
-      console.log(res.message)
+      console.log(res.message);
       setTimeout(redireccionar(), 5000);
 
-// href={!error ? "/signup" : messageMail}
+      // href={!error ? "/signup" : messageMail}
 
       // setMsg(res.message)
       // if(res) window.alert("Nuevo usuario registrado con éxito");
@@ -111,6 +104,10 @@ export const LoginSignup = () => {
     window.location.href = messageMail;
   };
 
+  const redireccionarLogin = () => {
+    window.location.href = "/login";
+  };
+
   const redireccionarSignUp = () => {
     window.location.href = "/signup";
   };
@@ -118,6 +115,12 @@ export const LoginSignup = () => {
   const redireccionarWithTimeout = () => {
     setTimeout(function () {
       redireccionarSignUp();
+    }, 2000);
+  };
+
+  const redireccionarLoginWithTimeout = () => {
+    setTimeout(function () {
+      redireccionarLogin();
     }, 2000);
   };
 
@@ -164,9 +167,9 @@ export const LoginSignup = () => {
         ) : null}
       </PopUp>
 
-      <Divider orientation="vertical"/>
+      <Divider orientation="vertical" />
       <CtForm>
-        <CardContent >
+        <CardContent>
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <TextField
@@ -181,82 +184,82 @@ export const LoginSignup = () => {
                 // style={{ margin: 8 }}
               />
             </Grid>
-            
+
             {location === "/signup" && (
-            <>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                label="email"
-                name="email"
-                aria-label="email"
-                required
-                type="email"
-                value={userData.email}
-                onChange={onInputChange}
-                variant="outlined"
-              />
-            </Grid>
-            </>
+              <>
+                <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    label="Email"
+                    name="email"
+                    aria-label="email"
+                    required
+                    type="email"
+                    value={userData.email}
+                    onChange={onInputChange}
+                    variant="outlined"
+                  />
+                </Grid>
+              </>
             )}
 
             <Grid item xs={12}>
               <TextField
                 fullWidth
                 type={shown ? "text" : "password"}
-                label="password"
+                label="Contraseña"
+                required
                 name="password"
-                placeholder="Password"
+                placeholder="password"
                 value={userData.password}
                 onChange={onInputChange}
-                required
                 variant="outlined"
                 InputProps={{
-                  endAdornment:
-                  <InputAdornment position="end">
-                    <IconButton
-                      type="button"
-                      aria-label="toggle password visibility"
-                      onClick={switchShown}
-                    >{shown ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                }} 
-              >
-              </TextField>
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        type="button"
+                        aria-label="toggle password visibility"
+                        onClick={switchShown}
+                      >
+                        {shown ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              ></TextField>
             </Grid>
           </Grid>
-          <>
-          </>
-          <CtButton >
-          <Grid item xs={12}>
-            {location === "/login" ? (
-              <Button
-                type="button" 
-                variant="contained" 
-                id="login" 
-                onClick={signin} 
-                // style={{ margin: 8 }}
+          <></>
+          <CtButton>
+            <Grid item xs={12}>
+              {location === "/login" ? (
+                <Button
+                  type="button"
+                  variant="contained"
+                  id="login"
+                  onClick={signin}
+                  // style={{ margin: 8 }}
                 >
                   LOG IN
-              </Button>
-            ) : (
-              <Button
-                type="button"
-                variant="contained"
-                id="signup"
-                onClick={signup}
-                endIcon={<ForwardToInboxIcon />}
-                style={{ padding: 8 }}
-                // href={!error ? "/signup" : messageMail}
-                // si el mail està aquí, l'envia tant si fa el registre com ni no
-              >
-                REGISTRAR Y ENVIAR
-              </Button>
-            )}
+                </Button>
+              ) : (
+                <Button
+                  type="button"
+                  variant="contained"
+                  id="signup"
+                  onClick={signup}
+                  endIcon={<ForwardToInboxIcon />}
+                  style={{ padding: 8 }}
+                  // href={!error ? "/signup" : messageMail}
+                  // si el mail està aquí, l'envia tant si fa el registre com ni no
+                >
+                  REGISTRAR Y ENVIAR
+                </Button>
+              )}
             </Grid>
           </CtButton>
-        </CardContent>     
+        </CardContent>
       </CtForm>
     </>
   );

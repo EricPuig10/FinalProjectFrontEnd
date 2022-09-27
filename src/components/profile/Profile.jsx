@@ -19,7 +19,7 @@ import {
   InputAdornment,
   TextField,
 } from "@mui/material";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { candidatsService } from "../../services/candidatsService";
 import {
   BasicInfoDiv,
@@ -84,6 +84,7 @@ export const Profile = () => {
 
   const { id } = useParams();
   let navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     getById(id);
@@ -203,8 +204,6 @@ export const Profile = () => {
     setOpen(false);
   };
 
-  
-
   let mailMessage = `mailto:${candidat.email}?Subject=Has sido seleccionado!&body=Hola, contactamos contigo para que sepas que has avanzado en el proceso de selección!
   
                                                                                  Muchas gracias,                                                                                     
@@ -265,19 +264,21 @@ export const Profile = () => {
                 title={candidat.name + " " + candidat.lastname}
               />
             )}
+            {location.pathname === "/create" ? null : (
+              <CloseBtn
+                variant="contained"
+                color="primary"
+                type="button"
+                onClick={() =>
+                  reallyDelete(
+                    "Seguro que quieres eliminar a " + candidat.name + " ?"
+                  )
+                }
+              >
+                <i className="fa-regular fa-trash-can fa-xl"></i>
+              </CloseBtn>
+            )}
 
-            <CloseBtn
-              variant="contained"
-              color="primary"
-              type="button"
-              onClick={() =>
-                reallyDelete(
-                  "Seguro que quieres eliminar a " + candidat.name + " ?"
-                )
-              }
-            >
-              <i className="fa-regular fa-trash-can fa-xl"></i>
-            </CloseBtn>
             <Divider />
             <BasicInfoDiv>
               <CardContent>
@@ -451,6 +452,7 @@ export const Profile = () => {
                       required
                       onChange={handleChange}
                       type="tel"
+                      pattern="[0-9]{3}[0-9]{3}[0-9]{3}"
                       value={candidat.phone}
                       variant="outlined"
                       InputProps={{
@@ -480,7 +482,6 @@ export const Profile = () => {
                       label="Comunidad Autónoma"
                       name="nationality"
                       onChange={handleChange}
-                      required
                       value={candidat.nationality}
                       variant="outlined"
                     />
@@ -489,6 +490,7 @@ export const Profile = () => {
                     <TextField
                       fullWidth
                       label="Población"
+                      required
                       name="location"
                       type="text"
                       onChange={handleChange}

@@ -32,7 +32,7 @@ export const CandidatsByBootcampTable = () => {
   const getBootcampById = () => {
     bootcampsService.getBootcampById(id).then((res) => {
       setBootcamp(res);
-    })
+    });
   };
 
   const columns = [
@@ -96,7 +96,8 @@ export const CandidatsByBootcampTable = () => {
       renderCell: (params) => {
         return <div className="rowitem">{params.row.processState.name}</div>;
       },
-    },    {
+    },
+    {
       field: "sololearnprogress",
       headerName: "Solo Learn",
       width: 90,
@@ -170,12 +171,21 @@ export const CandidatsByBootcampTable = () => {
           marginTop: "2.5%",
         }}
       >
-        <p style={{ marginBottom: 4, fontSize: 20 }}>Candidatos del bootcamp {bootcamp.bootcampName}</p>
+        <p style={{ marginBottom: 4, fontSize: 20 }}>
+          Candidatos del bootcamp {bootcamp.bootcampName}
+        </p>
         <DataGrid
           columns={columns}
           rows={candidats}
-          pageSize={10}
-          rowsPerPageOptions={[10]}
+          pageSize={8}
+          rowsPerPageOptions={[8]}
+          sx={{
+            overflowY: "hidden",
+            height: 545,
+            "& .super-app-theme--header": {
+              backgroundColor: "rgba(225, 225, 225, 0.55)",
+            },
+          }}
         />
       </div>
       {location.pathname === "/bootcamps/create" || "/bootcamps/:id" ? null : (

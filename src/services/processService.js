@@ -1,4 +1,4 @@
-import axios from "../config/axiosConfig"
+import axios from "../config/axiosConfig";
 
 export const processService = {
   getAllProcess() {
@@ -7,9 +7,7 @@ export const processService = {
   },
 
   getById(id) {
-    const process = axios
-      .get("/procesos/" + id)
-      .then((res) => res.data);
+    const process = axios.get("/procesos/" + id).then((res) => res.data);
     return process;
   },
 };

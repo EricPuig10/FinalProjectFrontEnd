@@ -1,17 +1,13 @@
-import axios from "../config/axiosConfig"
+import axios from "../config/axiosConfig";
 
 export const candidatsService = {
   getAllCandidats() {
-    const candidats = axios
-      .get("/candidatos")
-      .then((res) => res.data);
+    const candidats = axios.get("/candidatos").then((res) => res.data);
     return candidats;
   },
 
   getCandidatById(id) {
-    const candidat = axios
-      .get("/candidatos/" + id)
-      .then((res) => res.data);
+    const candidat = axios.get("/candidatos/" + id).then((res) => res.data);
     return candidat;
   },
 

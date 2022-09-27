@@ -158,8 +158,15 @@ export function BootcampTable() {
         <DataGrid
           columns={columns}
           rows={bootcamps}
-          pageSize={10}
-          rowsPerPageOptions={[10]}
+          pageSize={8}
+          rowsPerPageOptions={[8]}
+          sx={{
+            overflowY: "hidden",
+            height: 545,
+            "& .super-app-theme--header": {
+              backgroundColor: "rgba(225, 225, 225, 0.55)",
+            },
+          }}
         />
       </div>
       {location.pathname === "/bootcamps/create" ? null : (

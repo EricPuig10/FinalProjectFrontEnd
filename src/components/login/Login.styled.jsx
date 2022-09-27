@@ -74,7 +74,7 @@ export const CtImg = styled.div`
 `;
 
 export const Img = styled.img`
-  height: 45vh;
+  height: 42vh;
   display: flex;
   flex-direction: column;
   align-items: center;

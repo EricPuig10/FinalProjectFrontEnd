@@ -1,4 +1,4 @@
-import axios from "../config/axiosConfig"
+import axios from "../config/axiosConfig";
 
 export const bootcampsService = {
   getAllBootcamps() {
@@ -7,9 +7,7 @@ export const bootcampsService = {
   },
 
   getBootcampById(id) {
-    const bootcamp = axios
-      .get("/bootcamps/" + id)
-      .then((res) => res.data);
+    const bootcamp = axios.get("/bootcamps/" + id).then((res) => res.data);
     return bootcamp;
   },
 
