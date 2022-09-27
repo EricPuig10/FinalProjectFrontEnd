@@ -3,9 +3,9 @@ FACTORIA F5 APP
 
 ## TABLE OF CONTENTS
 1. [GENERAL INFO](#GENERAL-INFO)
-2. [TECHNOLOGIES & TOOLS](#TECHNOLOGIES-TOOLS)
+2. [STACK](#STACK)
 3. [INSTALLATION](#INSTALLATION_)
-4. [END](#NEXT)
+4. [NEXT](#NEXT)
 
 ***
 &nbsp;
@@ -77,13 +77,13 @@ We started the project creating a React App so node.js is required. Once you hav
 git clone https://github.com/EricPuig10/FinalProjectFrontEnd
 ```
 
-2. Ejecutar la aplicación en modo de desarrollo
+2. Run the app on development mode
 
 ```
 npm install
 ```
 
-3. Para el correcto funcionamiento del front-end, deberás clonar también el repositorio del back-end:
+3. For the front-end correct working, you must also clone de back-end repository:
 
 ```
 git clone https://github.com/EricPuig10/FinalProjectBackEnd
@@ -98,12 +98,12 @@ git clone https://github.com/EricPuig10/FinalProjectBackEnd
 &nbsp;
 
 ## WHAT'S NEXT?
->SECURITY: Automatic generation of an e-mail for new users with redirection to the password change site, before accessing the app.
 
->LOADING: Importing the excels auto-generated after the candidat register.
+>SECURITY: When Master Administrator creates a new user, the automatic generation of an e-mail must redirection to the password change site, before accessing the app.
+
+>LOADING: When a new candidat registers by himself, the auto-genereted excel will be imported to the data base.
 
 >FLEXIBILITY: The application will be adaptable to be able to add more options to the preset fields.
-
 
 &nbsp;
 
