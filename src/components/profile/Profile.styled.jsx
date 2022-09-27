@@ -24,6 +24,7 @@ export const BasicInfoDiv = styled.div`
   position: relative;
   width: 100%;
 `;
+
 export const LeftDiv = styled.div`
   display: flex;
   flex-direction: column;

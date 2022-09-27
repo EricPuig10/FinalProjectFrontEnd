@@ -7,6 +7,7 @@ import { BtnAdd, CtTabBut, TableButton } from "./DataTable.styled";
 import { Link } from "react-router-dom";
 import {
   Button,
+  CircularProgress,
   Dialog,
   DialogActions,
   DialogContent,
@@ -22,15 +23,17 @@ export const DataTable = () => {
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
   const [id, setId] = useState();
-
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     getAllCandidats();
   }, []);
 
   const getAllCandidats = () => {
+    setIsLoading(true);
     candidatsService.getAllCandidats().then((res) => {
       setCandidats(res);
+      setIsLoading(false);
     });
   };
 
@@ -261,21 +264,25 @@ export const DataTable = () => {
             </Dialog>
           </Modal>
         ) : null}
-        <DataGrid
-          columns={columns}
-          type="text"
-          aria-label="name"
-          rows={candidats}
-          pageSize={8}
-          rowsPerPageOptions={[8]}
-          sx={{
-            overflowY: "hidden",
-            height: 545,
-            "& .super-app-theme--header": {
-              backgroundColor: "rgba(225, 225, 225, 0.55)",
-            },
-          }}
-        />
+        {isLoading ? (
+          <CircularProgress />
+        ) : (
+          <DataGrid
+            columns={columns}
+            type="text"
+            aria-label="name"
+            rows={candidats}
+            pageSize={8}
+            rowsPerPageOptions={[8]}
+            sx={{
+              overflowY: "hidden",
+              height: 545,
+              "& .super-app-theme--header": {
+                backgroundColor: "rgba(225, 225, 225, 0.55)",
+              },
+            }}
+          />
+        )}
       </div>
       <Link to="/create">
         <BtnAdd type="button" aria-label="addbutton">

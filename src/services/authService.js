@@ -4,9 +4,14 @@ let baseURL = "http://localhost:8080";
 
 export const authService = {
   signin(request) {
-    const auth = axios.post(`${baseURL}/auth/signin`, request).then((res) => {
-      return res.data;
-    });
+    const auth = axios
+      .post(`${baseURL}/auth/signin`, request)
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        return { error: err.response.data.message };
+      });
     return auth;
   },
 

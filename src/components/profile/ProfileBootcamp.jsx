@@ -22,7 +22,7 @@ import {
   CtProfile,
   Modal,
 } from "../profile/Profile.styled";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { bootcampsService } from "../../services/bootcampsService";
 import { categoryService } from "../../services/categoryService";
 import { CandidatsByBootcampTable } from "../tablematerial/CandidatsByBootcampTable";
@@ -31,7 +31,7 @@ import { CandidatsByBootcampTable } from "../tablematerial/CandidatsByBootcampTa
 const initialBootcamp = {
   bootcampName: "",
   duration: "",
-  category: "",
+  category: "Full Stack",
   characteristics: "",
   former: "",
   coformer: "",
@@ -68,6 +68,8 @@ function ProfileBootcamp() {
       setMsg(undefined);
     }, 2500);
   };
+
+  const location = useLocation();
 
   const handleChange = (event) => {
     setBootcamp({
@@ -125,6 +127,7 @@ function ProfileBootcamp() {
       alertTimed("Bootcamp actualizado!");
     });
     getBootcampById(id);
+    window.location = `/bootcamps/${id}`;
   };
 
   const getBootcampById = (id) => {
@@ -210,18 +213,23 @@ function ProfileBootcamp() {
             ) : (
               <CardHeader subheader="" title={bootcamp.bootcampName} />
             )}
-            <CloseBtnBootcamp
-              variant="contained"
-              color="primary"
-              type="button"
-              onClick={() =>
-                reallyDelete(
-                  "Seguro que quieres eliminar " + bootcamp.bootcampName + " ?"
-                )
-              }
-            >
-              <i className="fa-regular fa-trash-can fa-xl"></i>
-            </CloseBtnBootcamp>
+            {location.pathname === "/bootcamps/create" ? null : (
+              <CloseBtnBootcamp
+                variant="contained"
+                color="primary"
+                type="button"
+                onClick={() =>
+                  reallyDelete(
+                    "Seguro que quieres eliminar " +
+                      bootcamp.bootcampName +
+                      " ?"
+                  )
+                }
+              >
+                <i className="fa-regular fa-trash-can fa-xl"></i>
+              </CloseBtnBootcamp>
+            )}
+
             <Divider />
             <BasicInfoDiv>
               <CardContent>

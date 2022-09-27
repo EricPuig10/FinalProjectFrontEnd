@@ -7,21 +7,31 @@ import { BtnAdd, CtTabBut, TableButton } from "./DataTable.styled";
 import { Link, useLocation, useParams } from "react-router-dom";
 import imgCode from "../../assets/img/codeacademy.png";
 import sololearn from "../../assets/img/sololearn.webp";
+import { bootcampsService } from "../../services/bootcampsService";
 
 export const CandidatsByBootcampTable = () => {
   const [candidats, setCandidats] = useState([]);
+  const [bootcamp, setBootcamp] = useState([]);
 
   const { id } = useParams();
 
   const location = useLocation();
+
   useEffect(() => {
     getCandidatsByBootcampId(id);
+    getBootcampById(id);
     // eslint-disable-next-line
   }, []);
 
   const getCandidatsByBootcampId = (id) => {
     candidatsService.getCandidatsByBootcampId(id).then((res) => {
       setCandidats(res);
+    });
+  };
+
+  const getBootcampById = () => {
+    bootcampsService.getBootcampById(id).then((res) => {
+      setBootcamp(res);
     });
   };
 
@@ -86,7 +96,8 @@ export const CandidatsByBootcampTable = () => {
       renderCell: (params) => {
         return <div className="rowitem">{params.row.processState.name}</div>;
       },
-    },    {
+    },
+    {
       field: "sololearnprogress",
       headerName: "Solo Learn",
       width: 90,
@@ -160,12 +171,21 @@ export const CandidatsByBootcampTable = () => {
           marginTop: "2.5%",
         }}
       >
-        <h1>{candidats.bootcamp}</h1>
+        <p style={{ marginBottom: 4, fontSize: 20 }}>
+          Candidatos del bootcamp {bootcamp.bootcampName}
+        </p>
         <DataGrid
           columns={columns}
           rows={candidats}
-          pageSize={10}
-          rowsPerPageOptions={[10]}
+          pageSize={8}
+          rowsPerPageOptions={[8]}
+          sx={{
+            overflowY: "hidden",
+            height: 545,
+            "& .super-app-theme--header": {
+              backgroundColor: "rgba(225, 225, 225, 0.55)",
+            },
+          }}
         />
       </div>
       {location.pathname === "/bootcamps/create" || "/bootcamps/:id" ? null : (

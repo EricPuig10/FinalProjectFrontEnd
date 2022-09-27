@@ -10,6 +10,7 @@ import {
   Logo,
   Texthiden,
 } from "./Sidebar.styled";
+import logoFactoria from "../../assets/img/logoFactoria.png";
 
 export const Sidebar = () => {
   const logout = () => {
@@ -19,7 +20,7 @@ export const Sidebar = () => {
   return (
     <CtSidebar>
       <CtLogo>
-        <Logo src="https://www.rompemosloscodigos.org/wp-content/uploads/2020/06/logo-factoria-F5.png"></Logo>
+        <Logo src={logoFactoria}></Logo>
       </CtLogo>
 
       <CtButton>

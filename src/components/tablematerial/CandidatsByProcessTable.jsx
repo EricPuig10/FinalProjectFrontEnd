@@ -96,50 +96,49 @@ export const CandidatsByProcessTable = () => {
       },
     },
     {
-        field: "sololearnprogress",
-        headerName: "Solo Learn",
-        width: 90,
-        headerClassName: "super-app-theme--header",
-        align: "center",
-        renderCell: (params) => {
-          return (
-            <>
-              {!params.row.sololearnprogress ? null : (
-                <a href={params.row.sololearnprogress} className="rowitem">
-                  <img
-                    src={sololearn}
-                    style={{ width: 25, height: 25 }}
-                    alt="codeacademy"
-                  />
-                </a>
-              )}
-            </>
-          );
-        },
+      field: "sololearnprogress",
+      headerName: "Solo Learn",
+      width: 90,
+      headerClassName: "super-app-theme--header",
+      align: "center",
+      renderCell: (params) => {
+        return (
+          <>
+            {!params.row.sololearnprogress ? null : (
+              <a href={params.row.sololearnprogress} className="rowitem">
+                <img
+                  src={sololearn}
+                  style={{ width: 25, height: 25 }}
+                  alt="codeacademy"
+                />
+              </a>
+            )}
+          </>
+        );
       },
-      {
-        field: "codeacademyprogress",
-        headerName: "Code Academy",
-        width: 120,
-        headerClassName: "super-app-theme--header",
-        align: "center",
-        renderCell: (params) => {
-          return (
-            <>
-              {!params.row.codeacademyprogress ? null : (
-                <a href={params.row.codeacademyprogress} className="rowitem">
-                  <img
-                    src={imgCode}
-                    style={{ width: 25, height: 25 }}
-                    alt="codeacademy"
-                  />
-                </a>
-              )}
-            </>
-          );
-        },
+    },
+    {
+      field: "codeacademyprogress",
+      headerName: "Code Academy",
+      width: 120,
+      headerClassName: "super-app-theme--header",
+      align: "center",
+      renderCell: (params) => {
+        return (
+          <>
+            {!params.row.codeacademyprogress ? null : (
+              <a href={params.row.codeacademyprogress} className="rowitem">
+                <img
+                  src={imgCode}
+                  style={{ width: 25, height: 25 }}
+                  alt="codeacademy"
+                />
+              </a>
+            )}
+          </>
+        );
       },
-
+    },
   ];
 
   const deleteCandidat = (id) => {
@@ -153,13 +152,11 @@ export const CandidatsByProcessTable = () => {
     candidatsService.deleteCandidat(id).then((res) => {
       if (!res) return;
       if (res.error) {
-
         return;
       }
       setCandidats(filterCandidats);
     });
   };
-
 
   return (
     <>
@@ -176,8 +173,15 @@ export const CandidatsByProcessTable = () => {
         <DataGrid
           columns={columns}
           rows={candidats}
-          pageSize={10}
-          rowsPerPageOptions={[10]}
+          pageSize={8}
+          rowsPerPageOptions={[8]}
+          sx={{
+            overflowY: "hidden",
+            height: 545,
+            "& .super-app-theme--header": {
+              backgroundColor: "rgba(225, 225, 225, 0.55)",
+            },
+          }}
         />
       </div>
     </>

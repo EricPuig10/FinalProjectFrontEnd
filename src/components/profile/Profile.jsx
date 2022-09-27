@@ -8,6 +8,7 @@ import {
   CardActions,
   CardContent,
   CardHeader,
+  CircularProgress,
   Dialog,
   DialogActions,
   DialogContent,
@@ -18,7 +19,7 @@ import {
   InputAdornment,
   TextField,
 } from "@mui/material";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { candidatsService } from "../../services/candidatsService";
 import {
   BasicInfoDiv,
@@ -79,9 +80,11 @@ export const Profile = () => {
   const [msg, setMsg] = useState();
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const { id } = useParams();
   let navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     getById(id);
@@ -186,9 +189,10 @@ export const Profile = () => {
 
   const uploadImg = (data) => {
     let { file, ...inputsData } = data;
-
+    setIsLoading(true);
     cloudinaryService.uploadImage(file).then((res) => {
       setCandidat({ ...inputsData, img: res.url });
+      setIsLoading(false);
     });
   };
 
@@ -200,8 +204,10 @@ export const Profile = () => {
     setOpen(false);
   };
 
-  let mailMessage = `mailto:${candidat.email}?Subject=Has sido seleccionado!`;
-
+  let mailMessage = `mailto:${candidat.email}?Subject=Has sido seleccionado!&body=Hola, contactamos contigo para que sepas que has avanzado en el proceso de selección!
+  
+                                                                                 Muchas gracias,                                                                                     
+                                                                                                                                Equipo de FactoriaF5`;
   return (
     <>
       <Modal>
@@ -239,7 +245,7 @@ export const Profile = () => {
           </Dialog>
         </Modal>
       ) : null}
-      
+
       <DetailDiv>
         <form
           autoComplete="off"
@@ -258,19 +264,21 @@ export const Profile = () => {
                 title={candidat.name + " " + candidat.lastname}
               />
             )}
+            {location.pathname === "/create" ? null : (
+              <CloseBtn
+                variant="contained"
+                color="primary"
+                type="button"
+                onClick={() =>
+                  reallyDelete(
+                    "Seguro que quieres eliminar a " + candidat.name + " ?"
+                  )
+                }
+              >
+                <i className="fa-regular fa-trash-can fa-xl"></i>
+              </CloseBtn>
+            )}
 
-            <CloseBtn
-              variant="contained"
-              color="primary"
-              type="button"
-              onClick={() =>
-                reallyDelete(
-                  "Seguro que quieres eliminar a " + candidat.name + " ?"
-                )
-              }
-            >
-              <i className="fa-regular fa-trash-can fa-xl"></i>
-            </CloseBtn>
             <Divider />
             <BasicInfoDiv>
               <CardContent>
@@ -281,15 +289,20 @@ export const Profile = () => {
                     flexDirection: "column",
                   }}
                 >
-                  <Avatar
-                    src={candidat.img}
-                    sx={{
-                      height: 200,
-                      m: 2,
-                      width: 200,
-                      borderRadius: 0,
-                    }}
-                  />
+                  {isLoading ? (
+                    <CircularProgress />
+                  ) : (
+                    <Avatar
+                      src={candidat.img}
+                      sx={{
+                        height: 200,
+                        m: 2,
+                        width: 200,
+                        borderRadius: 0,
+                      }}
+                    />
+                  )}
+
                   <CardActions>
                     <Input
                       onChange={handleChange}
@@ -439,6 +452,7 @@ export const Profile = () => {
                       required
                       onChange={handleChange}
                       type="tel"
+                      pattern="[0-9]{3}[0-9]{3}[0-9]{3}"
                       value={candidat.phone}
                       variant="outlined"
                       InputProps={{
@@ -468,7 +482,6 @@ export const Profile = () => {
                       label="Comunidad Autónoma"
                       name="nationality"
                       onChange={handleChange}
-                      required
                       value={candidat.nationality}
                       variant="outlined"
                     />
@@ -477,6 +490,7 @@ export const Profile = () => {
                     <TextField
                       fullWidth
                       label="Población"
+                      required
                       name="location"
                       type="text"
                       onChange={handleChange}
