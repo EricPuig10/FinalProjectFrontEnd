@@ -7,7 +7,7 @@ export const categoryService = {
   },
   addCategory(data) {
     const categories = axios
-      .post(baseURL + "/categories", { ...data, userId: 1 })
+      .post("/categories", { ...data, userId: 1 })
       .then((res) => res.data);
     return categories;
   },
